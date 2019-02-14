@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <group
+        android:id="@+id/menu_top"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_news"
+            android:icon="@drawable/ic_playlist_add"
+            android:title="@string/news" />
+    </group>
+    <group
+        android:id="@+id/menu_list"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_point_list"
+            android:icon="@drawable/ic_playlist_add"
+            android:title="@string/point_list" />
+        <item
+            android:id="@+id/nav_rating_list"
+            android:icon="@drawable/ic_playlist_add"
+            android:title="@string/rating_list" />
+        <item
+            android:id="@+id/nav_favorite_couples"
+            android:icon="@drawable/ic_playlist_add"
+            android:title="@string/favorite_couples" />
+    </group>
+    <group
+        android:id="@+id/menu_bottom"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_clubs"
+            android:icon="@drawable/ic_playlist_add"
+            android:title="@string/clubs" />
+        <item
+            android:id="@+id/nav_adjudicators"
+            android:icon="@drawable/ic_playlist_add"
+            android:title="@string/adjudicators" />
+        <item
+            android:id="@+id/nav_competitions"
+            android:icon="@drawable/ic_playlist_add"
+            android:title="@string/competitions" />
+        <item
+            android:id="@+id/nav_contacts"
+            android:icon="@drawable/ic_playlist_add"
+            android:title="@string/contact" />
+    </group>
+</menu>
