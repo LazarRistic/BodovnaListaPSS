@@ -8,4 +8,6 @@
     <string name="competitions">Takmicenja</string>
     <string name="news">Vesti</string>
     <string name="contact">Kontakt</string>
+    <string name="read_more">Pročitaj više</string>
+    <string name="read_less">Pročitaj manje</string>
 </resources>

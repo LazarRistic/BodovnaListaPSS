@@ -1,31 +1,61 @@
 package com.overswayit.plesnisavezsrbije;
 
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
+
+import com.google.android.material.navigation.NavigationView;
+import com.overswayit.plesnisavezsrbije.models.News;
+import com.overswayit.plesnisavezsrbije.viewmodels.NewsViewModel;
+import com.overswayit.plesnisavezsrbije.views.NewsAdapter;
+
+import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
+    @BindView(R.id.news_recycler_view) RecyclerView recyclerView;
+
     private DrawerLayout mDrawerLayout;
+    private NewsAdapter newsAdapter;
+    private ArrayList<News> newsArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         setupActionBar();
         setupNavigationDrawer();
+
+        newsAdapter = new NewsAdapter(newsArrayList);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(newsAdapter);
+
+        NewsViewModel viewModel = ViewModelProviders.of(this).get(NewsViewModel.class);
+        viewModel.getAllNews().observe(this, news -> {
+            newsArrayList.clear();
+            newsArrayList.addAll(news);
+            newsAdapter.notifyDataSetChanged();
+        });
     }
 
     @Override
