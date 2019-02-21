@@ -7,7 +7,14 @@
     <string name="adjudicators">Sudije</string>
     <string name="competitions">Takmicenja</string>
     <string name="news">Vesti</string>
-    <string name="contact">Kontakt</string>
     <string name="read_more">Pročitaj više</string>
     <string name="read_less">Pročitaj manje</string>
+    <string name="club_logo">Logo kluba</string>
+    <string name="contact">Kontakt</string>
+    <string name="club_address">%1$s, %2$s</string>
+    <string name="call">Pozovi</string>
+    <string name="send_message">Pošalji poruku</string>
+    <string name="send_email">Pošalji email</string>
+    <string name="not_available">N/A</string>
+    <string name="pps_app">Plesni Savez Srbije App</string>
 </resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/club_contact_phone_call_button"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/call"
+        android:padding="16dp"
+        android:src="@drawable/ic_local_phone"
+        android:tint="@color/colorAccent" />
+
+    <ImageView
+        android:id="@+id/club_contact_phone_message_button"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/send_message"
+        android:padding="16dp"
+        android:src="@drawable/ic_message"
+        android:tint="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/club_contact_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/club_contact_phone_message_button"
+        android:layout_toEndOf="@+id/club_contact_phone_call_button"
+        android:gravity="start|center"
+        android:paddingStart="20dp"
+        android:paddingEnd="0dp"
+        android:textIsSelectable="true" />
+
+
+</RelativeLayout>

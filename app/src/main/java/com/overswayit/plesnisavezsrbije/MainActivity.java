@@ -1,10 +1,13 @@
 package com.overswayit.plesnisavezsrbije;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.overswayit.plesnisavezsrbije.activities.BaseActivity;
+import com.overswayit.plesnisavezsrbije.activities.ClubsActivity;
 import com.overswayit.plesnisavezsrbije.models.News;
 import com.overswayit.plesnisavezsrbije.viewmodels.NewsViewModel;
 import com.overswayit.plesnisavezsrbije.views.NewsAdapter;
@@ -13,7 +16,6 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -24,9 +26,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
-    @BindView(R.id.news_recycler_view) RecyclerView recyclerView;
+    @BindView(R.id.news_recycler_view)
+    RecyclerView recyclerView;
 
     private DrawerLayout mDrawerLayout;
     private NewsAdapter newsAdapter;
@@ -106,8 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), R.string.favorite_couples, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_clubs:
-//                ToDo: Open Clubs Activity
-                Toast.makeText(getApplicationContext(), R.string.clubs, Toast.LENGTH_SHORT).show();
+                openActivity(ClubsActivity.class);
                 break;
             case R.id.nav_adjudicators:
 //                ToDo: Open Adjudicators Activity
@@ -122,6 +124,10 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), R.string.contact, Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+
+    private void openActivity(Class<ClubsActivity> clubsActivityClass) {
+        startActivity(new Intent(this, clubsActivityClass));
     }
 
     private void setupActionBar() {

@@ -21,10 +21,11 @@
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:titleTextColor="@color/white" />
 
-        <include layout="@layout/activity_news"
+        <include
+            layout="@layout/layout_news"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize"/>
+            android:layout_marginTop="?attr/actionBarSize" />
 
     </FrameLayout>
 
@@ -35,6 +36,6 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_items"/>
+        app:menu="@menu/drawer_items" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
