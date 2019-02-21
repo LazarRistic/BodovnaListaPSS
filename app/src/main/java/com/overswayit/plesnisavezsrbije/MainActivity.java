@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.overswayit.plesnisavezsrbije.activities.AdjudicatorsActivity;
 import com.overswayit.plesnisavezsrbije.activities.BaseActivity;
 import com.overswayit.plesnisavezsrbije.activities.ClubsActivity;
 import com.overswayit.plesnisavezsrbije.models.News;
@@ -112,8 +113,7 @@ public class MainActivity extends BaseActivity {
                 openActivity(ClubsActivity.class);
                 break;
             case R.id.nav_adjudicators:
-//                ToDo: Open Adjudicators Activity
-                Toast.makeText(getApplicationContext(), R.string.adjudicators, Toast.LENGTH_SHORT).show();
+                openActivity(AdjudicatorsActivity.class);
                 break;
             case R.id.nav_competitions:
 //                ToDo: Open Competitions Activity
@@ -126,7 +126,7 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private void openActivity(Class<ClubsActivity> clubsActivityClass) {
+    private void openActivity(Class<?> clubsActivityClass) {
         startActivity(new Intent(this, clubsActivityClass));
     }
 

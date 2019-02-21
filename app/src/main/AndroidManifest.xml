@@ -25,7 +25,11 @@
         <activity
             android:name=".activities.ClubsActivity"
             android:label="@string/clubs"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.AdjudicatorsActivity"
+            android:label="@string/clubs"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
