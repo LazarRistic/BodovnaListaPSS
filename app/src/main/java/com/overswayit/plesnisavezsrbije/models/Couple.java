@@ -18,5 +18,4 @@ public class Couple {
     public Quadruple<AgeCategory, DanceCategory, String, String> ratingListLA;
     public Quadruple<AgeCategory, DanceCategory, String, String> ratingListST;
     public Quadruple<AgeCategory, DanceCategory, String, String> ratingListKM;
-
 }
