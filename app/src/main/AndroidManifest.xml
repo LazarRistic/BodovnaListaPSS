@@ -30,6 +30,10 @@
             android:name=".activities.AdjudicatorsActivity"
             android:label="@string/clubs"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.ClubActivity"
+            android:label="@string/clubs"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

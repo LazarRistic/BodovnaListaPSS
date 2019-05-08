@@ -3,7 +3,7 @@ package com.overswayit.plesnisavezsrbije.viewmodels;
 import android.app.Application;
 
 import com.overswayit.plesnisavezsrbije.models.Club;
-import com.overswayit.plesnisavezsrbije.repository.ClubsReposetory;
+import com.overswayit.plesnisavezsrbije.repository.ClubsRepository;
 
 import java.util.List;
 
@@ -16,15 +16,15 @@ import androidx.lifecycle.LiveData;
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
 public class ClubsViewModel extends AndroidViewModel {
-    private ClubsReposetory clubsReposetory;
+    private ClubsRepository clubsRepository;
 
     public ClubsViewModel(@NonNull Application application) {
         super(application);
 
-        clubsReposetory = new ClubsReposetory(application);
+        clubsRepository = new ClubsRepository(application);
     }
 
     public LiveData<List<Club>> getAllClubs() {
-        return clubsReposetory.getClubsLiveData();
+        return clubsRepository.getClubsLiveData();
     }
 }

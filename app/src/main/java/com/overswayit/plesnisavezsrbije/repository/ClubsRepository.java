@@ -16,12 +16,12 @@ import io.reactivex.disposables.CompositeDisposable;
  * Created by lazarristic on 19/02/2019.
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
-public class ClubsReposetory {
+public class ClubsRepository {
     private Application application;
     private CompositeDisposable disposable = new CompositeDisposable();
     private MutableLiveData<List<Club>> clubsLiveData = new MutableLiveData<>();
 
-    public ClubsReposetory(Application application) {
+    public ClubsRepository(Application application) {
         this.application = application;
 
 //        ToDo: Create Instance of Database
@@ -50,6 +50,7 @@ public class ClubsReposetory {
 //        );
 
         Club best = new Club();
+        best.id = 100;
         best.name = "Best";
         best.address = "Kružni Put Kijevo 21v";
         best.town = "Beograd";
@@ -60,6 +61,7 @@ public class ClubsReposetory {
         best.logoUrl = "http://www.ples.co.rs/klubovi/logo/K01446.jpg";
 
         Club calypso = new Club();
+        calypso.id = 101;
         calypso.name = "Calypso";
         calypso.address = "Miloja Zakića 1/7";
         calypso.town = "Beograd";

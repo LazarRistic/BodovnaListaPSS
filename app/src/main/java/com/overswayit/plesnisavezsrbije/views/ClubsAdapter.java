@@ -1,6 +1,8 @@
 package com.overswayit.plesnisavezsrbije.views;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +11,9 @@ import android.widget.TextView;
 
 import com.overswayit.plesnisavezsrbije.App;
 import com.overswayit.plesnisavezsrbije.R;
+import com.overswayit.plesnisavezsrbije.activities.ClubActivity;
 import com.overswayit.plesnisavezsrbije.models.Club;
-import com.overswayit.plesnisavezsrbije.utils.StringUtil;
+import com.overswayit.plesnisavezsrbije.utils.ClubUtil;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -33,6 +36,12 @@ public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ClubsViewHol
     public ClubsAdapter(List<Club> clubList) {
         this.clubList = clubList;
     }
+
+    public interface  ViewInteractionListener {
+        void openClubActivity(Club club);
+    }
+
+    private ViewInteractionListener viewInteractionListener;
 
     @NonNull
     @Override
@@ -60,9 +69,11 @@ public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ClubsViewHol
                     }
                 });
 
-        holder.name.setText(club.name);
-        holder.address.setText(StringUtil.getString(R.string.club_address, club.address, club.town));
+        holder.name.setText(ClubUtil.getClubNameAndTown(club));
+        holder.contact.setText(club.contactName);
         holder.setClub(club);
+
+        holder.itemView.setOnClickListener(v -> viewInteractionListener.openClubActivity(club));
     }
 
     @Override
@@ -70,12 +81,14 @@ public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ClubsViewHol
         return clubList.size();
     }
 
+    public void setViewInteractionListener(ViewInteractionListener viewInteractionListener) {
+        this.viewInteractionListener = viewInteractionListener;
+    }
+
     class ClubsViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.club_name)
         TextView name;
-        @BindView(R.id.club_address)
-        TextView address;
         @BindView(R.id.club_logo)
         ImageView logo;
         @BindView(R.id.club_contact)
@@ -90,17 +103,6 @@ public class ClubsAdapter extends RecyclerView.Adapter<ClubsAdapter.ClubsViewHol
 
         void setClub(Club club) {
             this.club = club;
-        }
-
-        @OnClick({R.id.club_contact})
-        public void onContact(View view) {
-            ClubContactView contactView = new ClubContactView(App.getContext());
-            contactView.setupView(club);
-
-            new AlertDialog.Builder(App.getTopBaseActivity())
-                    .setView(contactView)
-                    .create().show();
-
         }
     }
 }

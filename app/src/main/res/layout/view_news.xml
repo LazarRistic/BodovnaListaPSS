@@ -40,7 +40,7 @@
                 android:paddingStart="10dp"
                 android:paddingEnd="0dp"
                 android:textColor="@color/black"
-                android:textSize="@dimen/heading2"
+                android:textSize="@dimen/articleTitle"
                 android:textStyle="bold" />
 
             <TextView
@@ -52,7 +52,7 @@
                 android:gravity="bottom|end"
                 android:maxLines="1"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text" />
+                android:textSize="@dimen/articleText" />
 
         </LinearLayout>
 
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="3"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text" />
+                android:textSize="@dimen/articleText" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

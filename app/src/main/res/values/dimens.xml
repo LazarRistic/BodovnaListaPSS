@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="heading1">20sp</dimen>
-    <dimen name="heading2">18sp</dimen>
-    <dimen name="text">14sp</dimen>
+    <dimen name="screenTitle">20sp</dimen>
+    <dimen name="articleTitle">18sp</dimen>
+    <dimen name="articleSmallerTitle">16sp</dimen>
+    <dimen name="articleText">14sp</dimen>
 </resources>

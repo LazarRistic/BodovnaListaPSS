@@ -60,6 +60,7 @@ public class ClubsActivity extends BaseActivity {
         toolbar.setTitle(R.string.clubs);
 
         clubsAdapter = new ClubsAdapter(clubList);
+        clubsAdapter.setViewInteractionListener(ClubsActivity.this::openClubActivity);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -108,5 +109,11 @@ public class ClubsActivity extends BaseActivity {
     @Subscribe
     public void on(ViewMesssages.ClubContactPhoneMessage message) {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", message.content, null)));
+    }
+
+    private void openClubActivity(Club club) {
+        Intent intent = new Intent(this, ClubActivity.class);
+        intent.putExtra(ClubActivity.CLUB_ID_KEY, club.id);
+        startActivity(intent);
     }
 }

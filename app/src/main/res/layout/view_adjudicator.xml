@@ -42,7 +42,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:textColor="@color/black"
-            android:textSize="@dimen/heading1"
+            android:textSize="@dimen/screenTitle"
             android:textStyle="bold" />
 
         <TextView
