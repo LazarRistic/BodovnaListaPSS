@@ -8,4 +8,28 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ScreenTitle" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
+        <item name="android:textSize">@dimen/screenTitle</item>
+        <item name="android:fontFamily">@font/sf_ui_display_medium</item>
+    </style>
+
+    <style name="ArticleTitle" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
+        <item name="android:textSize">@dimen/articleTitle</item>
+        <item name="android:fontFamily">@font/sf_ui_display_semibold</item>
+    </style>
+
+    <style name="ArticleSmallerTitle" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
+        <item name="android:textSize">@dimen/articleText</item>
+        <item name="android:fontFamily">@font/sf_ui_display_semibold</item>
+    </style>
+
+    <style name="ArticleText" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
+        <item name="android:textSize">@dimen/articleText</item>
+        <item name="android:fontFamily">@font/sf_ui_display_regular</item>
+    </style>
+
+    <style name="CustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">#90FFFFFF</item>
+    </style>
+
 </resources>

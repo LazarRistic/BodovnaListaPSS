@@ -10,4 +10,5 @@ public class Adjudicator {
     public String avatarUrl;
     public String name;
     public ArrayList<String> licenses = new ArrayList<>();
+    public AdjudicatorLicensesType licensesType;
 }

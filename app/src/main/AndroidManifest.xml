@@ -32,7 +32,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activities.ClubActivity"
-            android:label="@string/clubs"
+            android:label="@string/adjudicators"
             android:theme="@style/AppTheme"/>
     </application>
 

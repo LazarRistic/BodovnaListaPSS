@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#CB515C</color>
     <color name="colorAccent">#FFFFFF</color>
     <color name="white">#FFFFFF</color>
+    <color name="white90">#90FFFFFF</color>
     <color name="black">#000000</color>
     <color name="primaryGradientA">#F87362</color>
     <color name="primaryGradientB">#CB515C</color>

@@ -1,30 +1,25 @@
 package com.overswayit.plesnisavezsrbije.activities;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 
-import com.overswayit.plesnisavezsrbije.R;
-import com.overswayit.plesnisavezsrbije.models.Adjudicator;
-import com.overswayit.plesnisavezsrbije.viewmodels.AdjudicatorsViewModel;
-import com.overswayit.plesnisavezsrbije.views.AdjudicatorAdapter;
-
-import java.util.ArrayList;
-
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
+import com.overswayit.plesnisavezsrbije.R;
+import com.overswayit.plesnisavezsrbije.fragments.AdjudicatorsAdapter;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AdjudicatorsActivity extends BaseActivity {
 
-    @BindView(R.id.adjudicator_recycler_view)
-    RecyclerView recyclerView;
+    @BindView(R.id.tab_layout)
+    TabLayout tabLayout;
 
-    private AdjudicatorAdapter adjudicatorAdapter;
-    private ArrayList<Adjudicator> adjudicatorList = new ArrayList<>();
+    @BindView(R.id.pager)
+    ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,17 +33,30 @@ public class AdjudicatorsActivity extends BaseActivity {
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
         toolbar.setTitle(R.string.adjudicators);
 
-        adjudicatorAdapter = new AdjudicatorAdapter(adjudicatorList);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(adjudicatorAdapter);
+        tabLayout.addTab(tabLayout.newTab().setText("Latino i Standard"));
+        tabLayout.addTab(tabLayout.newTab().setText("Savremeni"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setTabTextColors(getResources().getColor(R.color.white90), getResources().getColor(R.color.white));
 
-        AdjudicatorsViewModel viewModel = ViewModelProviders.of(this).get(AdjudicatorsViewModel.class);
-        viewModel.getAllAdjudicators().observe(this, adjudicators -> {
-            adjudicatorList.clear();
-            adjudicatorList.addAll(adjudicators);
-            adjudicatorAdapter.notifyDataSetChanged();
+        final AdjudicatorsAdapter adapter = new AdjudicatorsAdapter
+                (getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
         });
     }
 }

@@ -2,7 +2,11 @@ package com.overswayit.plesnisavezsrbije;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -10,6 +14,7 @@ import com.overswayit.plesnisavezsrbije.activities.AdjudicatorsActivity;
 import com.overswayit.plesnisavezsrbije.activities.BaseActivity;
 import com.overswayit.plesnisavezsrbije.activities.ClubsActivity;
 import com.overswayit.plesnisavezsrbije.models.News;
+import com.overswayit.plesnisavezsrbije.utils.StringUtil;
 import com.overswayit.plesnisavezsrbije.viewmodels.NewsViewModel;
 import com.overswayit.plesnisavezsrbije.views.NewsAdapter;
 

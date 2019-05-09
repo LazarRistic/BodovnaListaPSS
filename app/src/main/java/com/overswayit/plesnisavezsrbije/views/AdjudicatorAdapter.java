@@ -19,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.overswayit.plesnisavezsrbije.utils.DisplayUtil.dpToPx;
+
 /**
  * Created by lazarristic on 21/02/2019.
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
@@ -49,7 +51,8 @@ public class AdjudicatorAdapter extends RecyclerView.Adapter<AdjudicatorAdapter.
         Picasso.get()
                 .load(viewModel.getAvatarUri())
                 .placeholder(new AvatarPlaceholder(viewModel.getName(), AvatarPlaceholder.DEFAULT_PLACEHOLDER_STRING))
-                .fit()
+                .resize(dpToPx(50), dpToPx(50))
+                .centerCrop()
                 .into(holder.avatarView);
     }
 
