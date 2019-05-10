@@ -19,4 +19,6 @@
     <string name="pps_app">Plesni Savez Srbije App</string>
     <string name="need_call_permission">Morate odobriti permisije za pozivanje u koliko hocete da kontaktirate klub iz aplikacije</string>
     <string name="ok">OK</string>
+    <string name="latin_and_standard">Latino i Standard</string>
+    <string name="modern">Savremeni</string>
 </resources>

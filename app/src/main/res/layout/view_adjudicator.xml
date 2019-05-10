@@ -1,47 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingStart="26dp"
-    android:paddingTop="10dp"
-    android:paddingEnd="0dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <agency.tango.android.avatarview.views.AvatarView
-        android:id="@+id/adjudicator_avatar_view"
-        android:layout_width="50dp"
-        android:layout_height="50dp" />
-
-    <TextView
-        style="@style/ArticleTitle"
-        android:id="@+id/adjudicator_name"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/adjudicator_avatar_view"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="10dp"
-        android:layout_toEndOf="@id/adjudicator_avatar_view"
-        android:gravity="center|start"
-        android:textColor="@color/black" />
+        android:orientation="vertical"
+        android:paddingStart="26dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="0dp">
 
-    <TextView
-        style="@style/ArticleText"
-        android:id="@+id/adjudicator_licenses"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/adjudicator_name"
-        android:layout_alignStart="@id/adjudicator_name"
-        android:paddingStart="0dp"
-        android:paddingTop="2dp"
-        android:paddingEnd="10dp"
-        android:textColor="#8C8C8C"/>
+        <agency.tango.android.avatarview.views.AvatarView
+            android:id="@+id/adjudicatorAvatarView"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/adjudicator_licenses"
-        android:background="#C8C7CC" />
+        <TextView
+            android:id="@+id/adjudicatorName"
+            style="@style/ArticleTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/adjudicatorAvatarView"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="10dp"
+            android:layout_toEndOf="@id/adjudicatorAvatarView"
+            android:gravity="center|start"
+            android:textColor="@color/black" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/adjudicatorLicenses"
+            style="@style/ArticleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/adjudicatorName"
+            android:layout_alignStart="@id/adjudicatorName"
+            android:paddingStart="0dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="10dp"
+            android:textColor="#8C8C8C" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/adjudicatorLicenses"
+            android:background="#C8C7CC" />
+
+    </RelativeLayout>
+
+</layout>
