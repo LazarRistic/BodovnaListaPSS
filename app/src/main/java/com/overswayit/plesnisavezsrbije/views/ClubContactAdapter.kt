@@ -69,12 +69,12 @@ class ClubContactAdapter(private val clubContacts: ArrayList<ClubContact>) : Rec
 
             when (clubContact.type) {
                 ClubContactType.EMAIL, ClubContactType.ADDRESS, ClubContactType.LAND_LINE -> if (clubContact.contacts != null && clubContact.contacts!!.isNotEmpty()) {
-                    icon1!!.setImageDrawable(App.getContext().getDrawable(clubContact.contacts!![0].second))
+                    icon1!!.setImageDrawable(App.context.getDrawable(clubContact.contacts!![0].second))
                     icon1!!.visibility = View.VISIBLE
                 }
                 ClubContactType.MOBILE -> if (clubContact.contacts != null && clubContact.contacts!!.isNotEmpty()) {
-                    icon2!!.setImageDrawable(App.getContext().getDrawable(clubContact.contacts!![0].second))
-                    icon1!!.setImageDrawable(App.getContext().getDrawable(clubContact.contacts!![1].second))
+                    icon2!!.setImageDrawable(App.context.getDrawable(clubContact.contacts!![0].second))
+                    icon1!!.setImageDrawable(App.context.getDrawable(clubContact.contacts!![1].second))
                     icon2!!.visibility = View.VISIBLE
                 }
             }
