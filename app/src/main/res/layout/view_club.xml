@@ -1,60 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="100dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:elevation="10dp"
-        app:cardCornerRadius="2dp">
+        android:layout_height="100dp">
 
-        <RelativeLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="102dp"
-            android:orientation="vertical"
-            android:paddingTop="6dp"
-            android:paddingBottom="6dp">
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:elevation="10dp"
+            app:cardCornerRadius="2dp">
 
-            <TextView
-                android:id="@+id/club_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/sf_ui_display_semibold"
-                android:textColor="@color/black"
-                android:textSize="@dimen/articleTitle" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="102dp"
+                android:orientation="vertical"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp">
 
-            <TextView
-                android:id="@+id/club_contact"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/club_name"
-                android:fontFamily="@font/sf_ui_display_regular"
-                android:paddingTop="4dp"
-                android:textSize="@dimen/articleText" />
+                <TextView
+                    android:id="@+id/clubName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sf_ui_display_semibold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/articleTitle" />
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/clubContact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/clubName"
+                    android:fontFamily="@font/sf_ui_display_regular"
+                    android:paddingTop="4dp"
+                    android:textSize="@dimen/articleText" />
 
-    </androidx.cardview.widget.CardView>
+            </RelativeLayout>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="10dp"
-        app:cardElevation="5dp"
-        app:cardCornerRadius="2dp">
+        </androidx.cardview.widget.CardView>
 
-        <ImageView
-            android:padding="2dp"
-            android:layout_gravity="center"
-            android:id="@+id/club_logo"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:contentDescription="@string/club_logo"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="5dp">
 
-    </androidx.cardview.widget.CardView>
-</RelativeLayout>
+            <ImageView
+                android:id="@+id/clubLogo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/club_logo"
+                android:padding="2dp" />
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+</layout>

@@ -17,11 +17,6 @@ import com.squareup.picasso.Picasso
 class AdjudicatorAdapter(private val adjudicators: List<Adjudicator>) : RecyclerView.Adapter<AdjudicatorAdapter.AdjudicatorViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdjudicatorViewHolder {
-
-//        binding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.view_adjudicator, parent, false)
-//
-//        return binding.root
-
         val inflater = LayoutInflater.from(parent.context)
         val binding = ViewAdjudicatorBinding.inflate(inflater)
 

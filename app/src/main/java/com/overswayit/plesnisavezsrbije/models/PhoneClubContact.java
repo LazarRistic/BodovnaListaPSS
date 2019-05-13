@@ -25,22 +25,22 @@ public class PhoneClubContact extends ClubContact {
     }
 
     private void createMobilePhoneClubContact() {
-        Pair<String, Integer> call = new Pair<>(super.contact, R.drawable.ic_local_phone);
-        Pair<String, Integer> message = new Pair<>(super.contact, R.drawable.ic_message);
+        Pair<String, Integer> call = new Pair<>(super.getContact(), R.drawable.ic_local_phone);
+        Pair<String, Integer> message = new Pair<>(super.getContact(), R.drawable.ic_message);
         ArrayList<Pair<String, Integer>> arrayList = new ArrayList<>();
         arrayList.add(call);
         arrayList.add(message);
 
-        super.contacts = arrayList;
-        super.type = ClubContactType.MOBILE;
+        super.setContacts(arrayList);
+        super.setType(ClubContactType.MOBILE);
     }
 
     private void createLandLinePhoneClubContact() {
-        Pair<String, Integer> call = new Pair<>(super.contact, R.drawable.ic_local_phone);
+        Pair<String, Integer> call = new Pair<>(super.getContact(), R.drawable.ic_local_phone);
         ArrayList<Pair<String, Integer>> arrayList = new ArrayList<>();
         arrayList.add(call);
 
-        super.contacts = arrayList;
-        super.type = ClubContactType.LAND_LINE;
+        super.setContacts(arrayList);
+        super.setType(ClubContactType.LAND_LINE);
     }
 }

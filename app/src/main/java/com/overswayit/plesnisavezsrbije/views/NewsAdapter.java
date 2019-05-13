@@ -64,6 +64,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         NewsViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            titleTextView = itemView.findViewById(R.id.news_heading);
+            dateTextView = itemView.findViewById(R.id.news_date);
+            contentTextView = itemView.findViewById(R.id.news_content);
+            readMoreTextView = itemView.findViewById(R.id.news_read_more);
+            readLessTextView = itemView.findViewById(R.id.news_read_less);
         }
 
         @OnClick({R.id.news_read_more})

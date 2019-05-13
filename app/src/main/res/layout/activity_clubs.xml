@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?><!-- Use DrawerLayout as root container for activity -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/content_news"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <RelativeLayout
+        android:id="@+id/content_news"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/primary_gradient_color"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:titleTextColor="@color/white" />
+        android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/clubs_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/primary_gradient_color"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:titleTextColor="@color/white" />
 
-</RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/clubsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize" />
+
+    </RelativeLayout>
+</layout>

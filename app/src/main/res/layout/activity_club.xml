@@ -1,89 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.ClubActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:id="@+id/top_holder"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/primary_gradient_color"
-        android:orientation="vertical"
-        android:paddingBottom="44dp"
-        android:paddingTop="?attr/actionBarSize">
+        android:layout_height="match_parent"
+        tools:context=".activities.ClubActivity">
 
-        <View
-            android:id="@+id/top_padding"
+        <LinearLayout
+            android:id="@+id/topHolder"
             android:layout_width="match_parent"
-            android:layout_height="16dp" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/primary_gradient_color"
+            android:orientation="vertical"
+            android:paddingTop="?attr/actionBarSize"
+            android:paddingBottom="44dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp">
+            <View
+                android:id="@+id/topPadding"
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_centerVertical="true"
-                android:background="#45FFFFFF" />
+                android:layout_height="80dp">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_centerHorizontal="true"
-                android:elevation="10dp"
-                app:cardCornerRadius="2dp">
-
-                <ImageView
-                    android:id="@+id/club_logo"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentStart="true"
-                    android:contentDescription="@string/club_logo" />
+                    android:layout_height="60dp"
+                    android:layout_centerVertical="true"
+                    android:background="#45FFFFFF" />
 
-            </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true"
+                    android:elevation="10dp"
+                    app:cardCornerRadius="2dp">
 
-        </RelativeLayout>
+                    <ImageView
+                        android:id="@+id/clubLogo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:contentDescription="@string/club_logo" />
 
-        <TextView
-            android:id="@+id/club_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/sf_ui_display_semibold"
-            android:text="Best - Beograd"
-            android:textColor="@color/white"
-            android:textSize="@dimen/articleTitle" />
+                </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/club_contact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="8dp"
-            android:alpha="0.6"
-            android:fontFamily="@font/sf_ui_display_regular"
-            android:text="Branislava Buba Radovanovic"
-            android:textColor="@color/white"
-            android:textSize="@dimen/articleText" />
+            </RelativeLayout>
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/clubName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/sf_ui_display_semibold"
+                android:text="Best - Beograd"
+                android:textColor="@color/white"
+                android:textSize="@dimen/articleTitle" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:titleTextColor="@color/white" />
+            <TextView
+                android:id="@+id/clubContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:alpha="0.6"
+                android:fontFamily="@font/sf_ui_display_regular"
+                android:text="Branislava Buba Radovanovic"
+                android:textColor="@color/white"
+                android:textSize="@dimen/articleText" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@id/top_holder"
-        android:id="@+id/contact_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        </LinearLayout>
 
-</RelativeLayout>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:titleTextColor="@color/white" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/contactRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/topHolder" />
+
+    </RelativeLayout>
+</layout>

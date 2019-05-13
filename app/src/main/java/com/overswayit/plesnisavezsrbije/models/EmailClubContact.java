@@ -15,11 +15,11 @@ public class EmailClubContact extends ClubContact {
     public EmailClubContact(String email) {
         super(email);
 
-        Pair<String, Integer> pair = new Pair<>(super.contact, R.drawable.ic_email);
+        Pair<String, Integer> pair = new Pair<>(super.getContact(), R.drawable.ic_email);
         ArrayList<Pair<String, Integer>> arrayList = new ArrayList<>();
         arrayList.add(pair);
 
-        super.contacts = arrayList;
-        super.type = ClubContactType.EMAIL;
+        super.setContacts(arrayList);
+        super.setType(ClubContactType.EMAIL);
     }
 }

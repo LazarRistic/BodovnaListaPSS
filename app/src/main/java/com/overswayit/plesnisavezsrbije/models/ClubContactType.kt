@@ -1,10 +1,10 @@
-package com.overswayit.plesnisavezsrbije.models;
+package com.overswayit.plesnisavezsrbije.models
 
 /**
  * Created by lazarristic on 18/04/2019.
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
-public enum ClubContactType {
+enum class ClubContactType {
     ADDRESS,
     LAND_LINE,
     MOBILE,
