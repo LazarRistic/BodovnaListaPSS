@@ -61,7 +61,7 @@ class ClubsAdapter(private val clubList: List<Club>) : RecyclerView.Adapter<Club
             biding.clubName.text = ClubUtil.getClubNameAndTown(club)
             biding.clubContact.text = club.contactName
 
-            biding.root.setOnClickListener { viewInteractionListener?.openClubActivity(club) }
+            biding.rootView.setOnClickListener { viewInteractionListener?.openClubActivity(club) }
         }
     }
 }

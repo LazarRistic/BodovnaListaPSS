@@ -9,7 +9,7 @@ import com.overswayit.plesnisavezsrbije.App
 object DisplayUtil {
 
     fun dpToPx(dp: Int): Int {
-        val density = App.context.resources.displayMetrics.density
+        val density = App.getContext().resources.displayMetrics.density
         return Math.round(dp.toFloat() * density)
     }
 }

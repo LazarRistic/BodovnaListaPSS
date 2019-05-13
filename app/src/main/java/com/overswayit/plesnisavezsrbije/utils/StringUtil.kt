@@ -1,7 +1,6 @@
 package com.overswayit.plesnisavezsrbije.utils
 
 import androidx.annotation.StringRes
-
 import com.overswayit.plesnisavezsrbije.App
 
 /**
@@ -11,6 +10,6 @@ import com.overswayit.plesnisavezsrbije.App
 object StringUtil {
 
     fun getString(@StringRes resId: Int, vararg formatArgs: Any): String {
-        return App.context.getString(resId, *formatArgs)
+        return App.getContext().getString(resId, *formatArgs)
     }
 }
