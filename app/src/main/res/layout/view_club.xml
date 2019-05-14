@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="club" type="com.overswayit.plesnisavezsrbije.models.Club" />
+    </data>
 
     <RelativeLayout
         android:id="@+id/rootView"
@@ -31,12 +34,12 @@
                     android:textSize="@dimen/articleTitle" />
 
                 <TextView
-                    android:id="@+id/clubContact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/clubName"
                     android:fontFamily="@font/sf_ui_display_regular"
                     android:paddingTop="4dp"
+                    android:text="@{club.contactName}"
                     android:textSize="@dimen/articleText" />
 
             </RelativeLayout>

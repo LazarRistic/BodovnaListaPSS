@@ -40,9 +40,7 @@ class NewsAdapter(private val newsList: List<News>) : RecyclerView.Adapter<NewsA
             newsReadMore = biding.newsReadMore
             newsReadLess = biding.newsReadLess
 
-            biding.newsHeading.text = news.title
-            biding.newsDate.text = news.date
-            newsContent.text = news.content
+            biding.news = news
 
             newsReadMore.setOnClickListener { onReadMore() }
             newsReadLess.setOnClickListener { onReadLess() }

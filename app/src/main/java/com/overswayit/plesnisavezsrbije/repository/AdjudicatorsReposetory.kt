@@ -2,27 +2,20 @@ package com.overswayit.plesnisavezsrbije.repository
 
 import android.app.Application
 import android.os.Handler
-
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-
 import com.overswayit.plesnisavezsrbije.models.Adjudicator
 import com.overswayit.plesnisavezsrbije.models.AdjudicatorLicensesType
-
-import java.util.ArrayList
-import java.util.stream.Collectors
-
-import io.reactivex.disposables.CompositeDisposable
-
 import com.overswayit.plesnisavezsrbije.models.AdjudicatorLicensesType.LA_ST
 import com.overswayit.plesnisavezsrbije.models.AdjudicatorLicensesType.MODERN
+import java.util.*
+import java.util.stream.Collectors
 
 /**
  * Created by lazarristic on 21/02/2019.
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
 class AdjudicatorsReposetory(private val application: Application) {
-    private val disposable = CompositeDisposable()
     private val laStAdjudicatorsLiveData = MutableLiveData<List<Adjudicator>>()
     private val modernAdjudicatorsLiveData = MutableLiveData<List<Adjudicator>>()
 
@@ -104,28 +97,28 @@ class AdjudicatorsReposetory(private val application: Application) {
         bombica.licensesType = LA_ST
 
         val mile = Adjudicator()
-        mile.name = aLicence
+        mile.name = "Ivan Mileusnić"
         mile.addLicense(aLicence)
         mile.avatarUrl = "http://www.ples.co.rs/sudije/foto/063.jpg"
         mile.licensesType = LA_ST
 
         val gaga = Adjudicator()
-        gaga.name = "Dragana Labudovic"
+        gaga.name = "Dragana Labudović"
         gaga.addLicense(aLicence)
         gaga.avatarUrl = "http://www.ples.co.rs/sudije/foto/060.jpg"
-        gaga.licensesType = AdjudicatorLicensesType.MODERN
+        gaga.licensesType = MODERN
 
         val danijela = Adjudicator()
-        danijela.name = "Danijela Sagic"
+        danijela.name = "Danijela Sagić"
         danijela.addLicense(aLicence)
         danijela.avatarUrl = "http://www.ples.co.rs/sudije/foto/062.jpg"
-        danijela.licensesType = AdjudicatorLicensesType.MODERN
+        danijela.licensesType = MODERN
 
         val miodrag = Adjudicator()
-        miodrag.name = "Miodrag Micic"
+        miodrag.name = "Miodrag Mičić"
         miodrag.addLicense(aLicence)
         miodrag.avatarUrl = "http://www.ples.co.rs/sudije/foto/043.jpg"
-        miodrag.licensesType = AdjudicatorLicensesType.MODERN
+        miodrag.licensesType = MODERN
 
         val adjudicators = ArrayList<Adjudicator>()
         adjudicators.add(nesa)

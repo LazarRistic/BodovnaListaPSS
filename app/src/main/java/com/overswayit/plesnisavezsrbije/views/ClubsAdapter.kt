@@ -54,12 +54,12 @@ class ClubsAdapter(private val clubList: List<Club>) : RecyclerView.Adapter<Club
                         }
 
                         override fun onError(e: Exception) {
-
+                            // ignored
                         }
                     })
 
+            biding.club = club
             biding.clubName.text = ClubUtil.getClubNameAndTown(club)
-            biding.clubContact.text = club.contactName
 
             biding.rootView.setOnClickListener { viewInteractionListener?.openClubActivity(club) }
         }

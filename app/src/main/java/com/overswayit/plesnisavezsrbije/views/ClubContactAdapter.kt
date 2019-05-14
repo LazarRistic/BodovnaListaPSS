@@ -9,17 +9,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.overswayit.plesnisavezsrbije.App
 import com.overswayit.plesnisavezsrbije.R
 import com.overswayit.plesnisavezsrbije.activities.ClubActivity
-import com.overswayit.plesnisavezsrbije.views.ClubContactAdapter.ClubContactViewModel
 import com.overswayit.plesnisavezsrbije.databinding.ViewClubContactItemBinding
 import com.overswayit.plesnisavezsrbije.models.ClubContact
 import com.overswayit.plesnisavezsrbije.models.ClubContactType
 import com.overswayit.plesnisavezsrbije.utils.StringUtil
+import com.overswayit.plesnisavezsrbije.views.ClubContactAdapter.ClubContactViewModel
 import java.util.*
 
 /**
@@ -45,37 +44,29 @@ class ClubContactAdapter(private val clubContacts: ArrayList<ClubContact>) : Rec
 
     inner class ClubContactViewModel(val binding: ViewClubContactItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        private var textView: TextView? = null
-        private var icon1: ImageView? = null
-        private var icon2: ImageView? = null
-
         private var clubContact: ClubContact? = null
 
         fun bind(clubContact: ClubContact) {
-            textView = binding.textView
-            icon1 = binding.firstImageView
-            icon2 = binding.secondImageView
-
-            icon1!!.setOnClickListener { view -> onFirstItemClicked(view) }
-            icon2!!.setOnClickListener { view -> onSecondItemClicked(view) }
-
-            setClubContact(clubContact)
-        }
-
-        private fun setClubContact(clubContact: ClubContact) {
             this.clubContact = clubContact
-            this.textView!!.text = clubContact.contact
-            this.icon2!!.visibility = View.GONE
+            binding.clubContact = clubContact
+
+            val icon1: ImageView = binding.firstImageView
+            val icon2: ImageView = binding.secondImageView
+
+            icon1.setOnClickListener { view -> onFirstItemClicked(view) }
+            icon2.setOnClickListener { view -> onSecondItemClicked(view) }
+
+            icon2.visibility = View.GONE
 
             when (clubContact.type) {
                 ClubContactType.EMAIL, ClubContactType.ADDRESS, ClubContactType.LAND_LINE -> if (clubContact.contacts != null && clubContact.contacts!!.isNotEmpty()) {
-                    icon1!!.setImageDrawable(App.getContext().getDrawable(clubContact.contacts!![0].second))
-                    icon1!!.visibility = View.VISIBLE
+                    icon1.setImageDrawable(App.getContext().getDrawable(clubContact.contacts!![0].second))
+                    icon1.visibility = View.VISIBLE
                 }
                 ClubContactType.MOBILE -> if (clubContact.contacts != null && clubContact.contacts!!.isNotEmpty()) {
-                    icon2!!.setImageDrawable(App.getContext().getDrawable(clubContact.contacts!![0].second))
-                    icon1!!.setImageDrawable(App.getContext().getDrawable(clubContact.contacts!![1].second))
-                    icon2!!.visibility = View.VISIBLE
+                    icon2.setImageDrawable(App.getContext().getDrawable(clubContact.contacts!![0].second))
+                    icon1.setImageDrawable(App.getContext().getDrawable(clubContact.contacts!![1].second))
+                    icon2.visibility = View.VISIBLE
                 }
             }
         }
