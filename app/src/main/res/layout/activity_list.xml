@@ -21,21 +21,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                app:title="@string/adjudicators"
+                app:title="@string/list"
                 app:titleTextColor="@color/white" />
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
-                style="@style/CustomTabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:elevation="6dp"
-                android:minHeight="?attr/actionBarSize" />
 
         </LinearLayout>
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/topHolder" />

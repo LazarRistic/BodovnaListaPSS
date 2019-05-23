@@ -15,6 +15,7 @@ import com.google.android.material.navigation.NavigationView
 import com.overswayit.plesnisavezsrbije.activities.AdjudicatorsActivity
 import com.overswayit.plesnisavezsrbije.activities.BaseActivity
 import com.overswayit.plesnisavezsrbije.activities.ClubsActivity
+import com.overswayit.plesnisavezsrbije.activities.ListActivity
 import com.overswayit.plesnisavezsrbije.databinding.ActivityMainBinding
 import com.overswayit.plesnisavezsrbije.models.News
 import com.overswayit.plesnisavezsrbije.viewmodels.NewsViewModel
@@ -88,9 +89,7 @@ class MainActivity : BaseActivity() {
             R.id.nav_news ->
                 //                ToDo: Open News Activity
                 Toast.makeText(applicationContext, R.string.news, Toast.LENGTH_SHORT).show()
-            R.id.nav_point_list ->
-                //                ToDo: Open Point ListActivity
-                Toast.makeText(applicationContext, R.string.point_list, Toast.LENGTH_SHORT).show()
+            R.id.nav_point_list -> openActivity(ListActivity::class.java)
             R.id.nav_rating_list ->
                 //                ToDo: Open Rating List Activity
                 Toast.makeText(applicationContext, R.string.rating_list, Toast.LENGTH_SHORT).show()

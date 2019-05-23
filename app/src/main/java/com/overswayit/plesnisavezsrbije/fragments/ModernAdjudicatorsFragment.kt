@@ -34,7 +34,7 @@ class ModernAdjudicatorsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        var binding: AdjudicatorsFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.adjudicators_fragment, container, false)
+        val binding: AdjudicatorsFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.adjudicators_fragment, container, false)
         recyclerView = binding.adjudicatorRecyclerView
 
         return binding.root
@@ -51,22 +51,14 @@ class ModernAdjudicatorsFragment : Fragment() {
 
 
         if (activity != null) {
-            val mViewModel = ViewModelProviders.of(this,
-                    AdjudicatorsViewModelFactory(this.activity!!.application, AdjudicatorLicensesType.MODERN)).get(AdjudicatorsViewModel::class.java)
-
-            mViewModel.allAdjudicators.observe(this, Observer { adjudicators ->
+            val viewModel = ViewModelProviders.of(this,
+                    AdjudicatorsViewModelFactory(AdjudicatorLicensesType.MODERN)).get(AdjudicatorsViewModel::class.java)
+            viewModel.allAdjudicators.observe(this, Observer { adjudicators ->
                 mAdjudicatorList.clear()
                 mAdjudicatorList.addAll(adjudicators)
                 mAdjudicatorAdapter!!.notifyDataSetChanged()
             })
         }
 
-    }
-
-    companion object {
-
-        fun newInstance(): ModernAdjudicatorsFragment {
-            return ModernAdjudicatorsFragment()
-        }
     }
 }

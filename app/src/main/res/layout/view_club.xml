@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
-        <variable name="club" type="com.overswayit.plesnisavezsrbije.models.Club" />
+        <variable
+            name="club"
+            type="com.overswayit.plesnisavezsrbije.models.Club" />
     </data>
 
     <RelativeLayout
         android:id="@+id/rootView"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="100dp"
+        android:paddingTop="10dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -31,7 +36,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sf_ui_display_semibold"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/articleTitle" />
+                    android:textSize="@dimen/articleTitle"
+                    tools:text="Best - Beograd"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -40,7 +46,8 @@
                     android:fontFamily="@font/sf_ui_display_regular"
                     android:paddingTop="4dp"
                     android:text="@{club.contactName}"
-                    android:textSize="@dimen/articleText" />
+                    android:textSize="@dimen/articleText"
+                    tools:text="Branislava Radovanovic"/>
 
             </RelativeLayout>
 
@@ -60,7 +67,8 @@
                 android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/club_logo"
-                android:padding="2dp" />
+                android:padding="2dp"
+                tools:src="@drawable/primary_gradient_color"/>
 
         </androidx.cardview.widget.CardView>
     </RelativeLayout>

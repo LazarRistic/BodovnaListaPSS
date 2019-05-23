@@ -8,4 +8,5 @@
     <color name="black">#000000</color>
     <color name="primaryGradientA">#F87362</color>
     <color name="primaryGradientB">#CB515C</color>
+    <color name="card_view_background_light">#F2F2F2</color>
 </resources>

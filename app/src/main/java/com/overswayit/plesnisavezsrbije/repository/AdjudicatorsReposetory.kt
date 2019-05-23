@@ -15,7 +15,7 @@ import java.util.stream.Collectors
  * Created by lazarristic on 21/02/2019.
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
-class AdjudicatorsReposetory(private val application: Application) {
+class AdjudicatorsReposetory() {
     private val laStAdjudicatorsLiveData = MutableLiveData<List<Adjudicator>>()
     private val modernAdjudicatorsLiveData = MutableLiveData<List<Adjudicator>>()
 
@@ -24,32 +24,6 @@ class AdjudicatorsReposetory(private val application: Application) {
     }
 
     init {
-
-        //        ToDo: Create Instance of Database
-        //        contactsAppDatabase= Room.databaseBuilder(application.getApplicationContext(),ContactsAppDatabase.class,"ContactDB").build();
-
-        //        ToDo: Create Event
-        //        disposable.add(contactsAppDatabase.getContactDAO().getContacts()
-        //                .subscribeOn(Schedulers.computation())
-        //                .observeOn(AndroidSchedulers.mainThread())
-        //                .subscribe(new Consumer<List<Contact>>() {
-        //                               @Override
-        //                               public void accept(List<Contact> contacts) throws Exception {
-        //
-        //                                   contactsLiveData.postValue(contacts);
-        //
-        //
-        //                               }
-        //                           }, new Consumer<Throwable>() {
-        //                               @Override
-        //                               public void accept(Throwable throwable) throws Exception {
-        //
-        //
-        //                               }
-        //                           }
-        //                )
-        //        );
-
         getFakeAdjudicators(object : FakeAdjudicatorListener {
             override fun onNewAdjudicator(adjudicators: List<Adjudicator>) {
                 filterAdjudicators(adjudicators)

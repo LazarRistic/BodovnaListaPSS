@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
         <variable
             name="clubContact"
@@ -18,7 +20,8 @@
             android:layout_centerVertical="true"
             android:contentDescription="@string/contact_image_content_description"
             android:padding="16dp"
-            android:tint="@color/black" />
+            android:tint="@color/black"
+            tools:src="@drawable/ic_message" />
 
         <ImageView
             android:id="@+id/secondImageView"
@@ -29,7 +32,8 @@
             android:contentDescription="@string/contact_image_content_description"
             android:padding="16dp"
             android:tint="@color/black"
-            android:visibility="visible" />
+            android:visibility="visible"
+            tools:src="@drawable/ic_local_phone" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -40,8 +44,9 @@
             android:layout_marginEnd="16dp"
             android:layout_toStartOf="@id/secondImageView"
             android:gravity="start"
+            android:text="@{clubContact.contact}"
             android:textSize="@dimen/articleSmallerTitle"
-            android:text="@{clubContact.contact}"/>
+            tools:text="0605523289" />
 
         <View
             android:layout_width="match_parent"

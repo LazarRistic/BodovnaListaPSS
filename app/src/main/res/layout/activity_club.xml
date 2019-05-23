@@ -57,7 +57,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/sf_ui_display_semibold"
-                android:text="Best - Beograd"
+                tools:text="Best - Beograd"
                 android:textColor="@color/white"
                 android:textSize="@dimen/articleTitle" />
 
@@ -69,7 +69,7 @@
                 android:layout_marginTop="8dp"
                 android:alpha="0.6"
                 android:fontFamily="@font/sf_ui_display_regular"
-                android:text="Branislava Buba Radovanovic"
+                tools:text="Branislava Buba Radovanovic"
                 android:textColor="@color/white"
                 android:textSize="@dimen/articleText" />
 
@@ -86,7 +86,9 @@
             android:id="@+id/contactRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/topHolder" />
+            android:layout_below="@id/topHolder"
+            tools:itemCount="4"
+            tools:listitem="@layout/view_club_contact_item"/>
 
     </RelativeLayout>
 </layout>

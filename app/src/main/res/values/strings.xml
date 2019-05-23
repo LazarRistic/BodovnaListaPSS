@@ -1,10 +1,11 @@
-<resources >
+<resources>
     <string name="app_name">Plesni Savez Srbije</string>
     <string name="point_list">Bodovna Lista</string>
     <string name="rating_list">Rejting Lista</string>
     <string name="favorite_couples">Omiljeni Parovi</string>
     <string name="clubs">Klubovi</string>
     <string name="adjudicators">Sudije</string>
+    <string name="list">Liste</string>
     <string name="competitions">Takmicenja</string>
     <string name="news">Vesti</string>
     <string name="read_more">Pročitaj više</string>
@@ -22,4 +23,5 @@
     <string name="latin_and_standard">Latino i Standard</string>
     <string name="modern">Savremeni</string>
     <string name="contact_image_content_description">Kontakt ikonica</string>
+    <string name="list_image_content_description">Slika liste</string>
 </resources>

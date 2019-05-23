@@ -1,116 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
-        <variable
-            name="news"
-            type="com.overswayit.plesnisavezsrbije.models.News" />
+        <variable name="news" type="com.overswayit.plesnisavezsrbije.models.News" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="10dp"
-        android:elevation="12dp"
-        android:innerRadius="0dp"
-        android:shape="ring"
-        android:thicknessRatio="1.9"
-        app:cardCornerRadius="20dp">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingLeft="5dp"
-            android:paddingTop="10dp"
-            android:paddingRight="5dp"
-            android:paddingBottom="20dp">
-
-            <LinearLayout
-                android:id="@+id/newsHeader"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="0dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/articleTitle"
-                    android:textStyle="bold"
-                    android:text="@{news.title}"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="2dp"
-                    android:layout_weight="1"
-                    android:gravity="bottom|end"
-                    android:maxLines="1"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/articleText"
-                    android:text="@{news.date}"/>
-
-            </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:elevation="12dp"
+            android:innerRadius="0dp"
+            android:shape="ring"
+            android:thicknessRatio="1.9"
+            app:cardCornerRadius="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:paddingLeft="10dp"
-                android:paddingTop="20dp"
-                android:paddingRight="10dp">
+                android:paddingLeft="5dp"
+                android:paddingTop="10dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="20dp">
 
-                <TextView
-                    android:id="@+id/newsContent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLines="3"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/articleText"
-                    android:text="@{news.content}"/>
-
-                <RelativeLayout
+                <LinearLayout
+                    android:id="@+id/newsHeader"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center">
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
                     <TextView
-                        android:id="@+id/newsReadMore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_drop_down"
-                        android:drawableTint="@color/black"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:text="@string/read_more"
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:id="@+id/newsReadLess"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd="@drawable/ic_arrow_drop_up"
-                        android:drawableTint="@color/black"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:text="@string/read_less"
+                        android:layout_weight="2"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="0dp"
+                        android:text="@{news.title}"
                         android:textColor="@color/black"
-                        android:visibility="gone" />
+                        android:textSize="@dimen/articleTitle"
+                        android:textStyle="bold"
+                        tools:text="Title"/>
 
-                </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="2dp"
+                        android:layout_weight="1"
+                        android:gravity="bottom|end"
+                        android:maxLines="1"
+                        android:text="@{news.date}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/articleText"
+                        tools:text="02. februar 2019."/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:id="@+id/newsContent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="3"
+                        android:text="@{news.content}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/articleText"
+                        tools:text="Lorem ipsum is simply dummy text of the printing and typesetting industry. orem Ipsum has been the industry's standard dummy text ever since the 1500s"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/newsReadMore"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableEnd="@drawable/ic_arrow_drop_down"
+                            android:drawableTint="@color/black"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="@string/read_more"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/newsReadLess"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableEnd="@drawable/ic_arrow_drop_up"
+                            android:drawableTint="@color/black"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="@string/read_less"
+                            android:textColor="@color/black"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </RelativeLayout>
 </layout>

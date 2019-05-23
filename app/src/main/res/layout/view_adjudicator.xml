@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="viewModel"
@@ -30,7 +31,8 @@
             android:layout_marginEnd="10dp"
             android:layout_toEndOf="@id/adjudicatorAvatarView"
             android:gravity="center|start"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            tools:text="Branislava Radovanovic"/>
 
         <TextView
             android:id="@+id/adjudicatorLicenses"
@@ -42,7 +44,8 @@
             android:paddingStart="0dp"
             android:paddingTop="2dp"
             android:paddingEnd="10dp"
-            android:textColor="#8C8C8C"/>
+            android:textColor="#8C8C8C"
+            tools:text="WDSF medjunarodna licenca \nLicenca za Glavnog sudiju"/>
 
         <View
             android:layout_width="match_parent"

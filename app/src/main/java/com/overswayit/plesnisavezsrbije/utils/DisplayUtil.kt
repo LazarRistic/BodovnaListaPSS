@@ -1,6 +1,6 @@
 package com.overswayit.plesnisavezsrbije.utils
 
-import com.overswayit.plesnisavezsrbije.App
+import com.overswayit.plesnisavezsrbije.MyApp
 
 /**
  * Created by lazarristic on 2019-05-08.
@@ -9,7 +9,7 @@ import com.overswayit.plesnisavezsrbije.App
 object DisplayUtil {
 
     fun dpToPx(dp: Int): Int {
-        val density = App.getContext().resources.displayMetrics.density
+        val density = MyApp.applicationContext().resources.displayMetrics.density
         return Math.round(dp.toFloat() * density)
     }
 }

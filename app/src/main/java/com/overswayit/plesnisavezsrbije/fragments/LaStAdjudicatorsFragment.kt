@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.overswayit.plesnisavezsrbije.R
 import com.overswayit.plesnisavezsrbije.databinding.AdjudicatorsFragmentBinding
 import com.overswayit.plesnisavezsrbije.models.Adjudicator
@@ -19,9 +18,7 @@ import com.overswayit.plesnisavezsrbije.models.AdjudicatorLicensesType
 import com.overswayit.plesnisavezsrbije.viewmodels.AdjudicatorsViewModel
 import com.overswayit.plesnisavezsrbije.viewmodels.AdjudicatorsViewModelFactory
 import com.overswayit.plesnisavezsrbije.views.AdjudicatorAdapter
-import kotlinx.android.synthetic.main.adjudicators_fragment.view.*
-
-import java.util.ArrayList
+import java.util.*
 
 class LaStAdjudicatorsFragment : Fragment() {
 
@@ -31,12 +28,7 @@ class LaStAdjudicatorsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-//        val view = inflater.inflate(R.layout.adjudicators_fragment, container, false)
-//        recyclerView = view.findViewById(R.id.adjudicatorRecyclerView)
-//
-//        return view
-
-        var binding: AdjudicatorsFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.adjudicators_fragment, container, false)
+        val binding: AdjudicatorsFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.adjudicators_fragment, container, false)
         recyclerView = binding.adjudicatorRecyclerView
         return binding.root
     }
@@ -52,22 +44,14 @@ class LaStAdjudicatorsFragment : Fragment() {
 
 
         if (activity != null) {
-            val mViewModel = ViewModelProviders.of(this,
-                    AdjudicatorsViewModelFactory(this.activity!!.application, AdjudicatorLicensesType.LA_ST)).get(AdjudicatorsViewModel::class.java)
-
-            mViewModel.allAdjudicators.observe(this, Observer { adjudicators ->
+            val viewModel = ViewModelProviders.of(this,
+                    AdjudicatorsViewModelFactory(AdjudicatorLicensesType.LA_ST)).get(AdjudicatorsViewModel::class.java)
+            viewModel.allAdjudicators.observe(this, Observer { adjudicators ->
                 mAdjudicatorList.clear()
                 mAdjudicatorList.addAll(adjudicators)
                 mAdjudicatorAdapter!!.notifyDataSetChanged()
             })
         }
 
-    }
-
-    companion object {
-
-        fun newInstance(): LaStAdjudicatorsFragment {
-            return LaStAdjudicatorsFragment()
-        }
     }
 }
