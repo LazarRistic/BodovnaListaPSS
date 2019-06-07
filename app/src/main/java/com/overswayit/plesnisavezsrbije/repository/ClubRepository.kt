@@ -48,11 +48,7 @@ class ClubRepository(id: Int, private val application: Application) {
         //        );
 
 
-        val handler = Handler()
-
-        FakeClubs.getAllCLubs().forEach {
-            handler.postDelayed({ clubLiveData.postValue(it) }, 300)
-        }
+        clubLiveData.postValue(FakeClubs.getClubById(id))
     }
 
     fun getClubLiveData(): LiveData<Club> {

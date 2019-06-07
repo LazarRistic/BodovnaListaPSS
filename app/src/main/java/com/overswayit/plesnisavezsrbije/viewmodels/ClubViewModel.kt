@@ -14,5 +14,5 @@ class ClubViewModel(id: Int, application: Application) : AndroidViewModel(applic
     private val clubRepository: ClubRepository = ClubRepository(id, application)
 
     val club: LiveData<Club>
-        get() = clubRepository.clubLiveData
+        get() = clubRepository.getClubLiveData()
 }
