@@ -1,11 +1,12 @@
 package com.overswayit.plesnisavezsrbije.models
 
-import java.util.ArrayList
+import java.util.*
 
 /**
  * Created by lazarristic on 19/02/2019.
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
+
 class Club {
     var id: Int = 0
     var logoUrl: String? = null

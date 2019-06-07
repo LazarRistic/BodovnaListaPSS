@@ -47,8 +47,8 @@ class ListActivity : AppCompatActivity() {
 
     private fun getActivityFromTitle(stringRes: Int): Class<*>? {
         return when (stringRes) {
-            R.string.point_list -> ClubsActivity::class.java
-            R.string.rating_list -> ClubsActivity::class.java
+            R.string.point_list -> PointListActivity::class.java
+            R.string.rating_list -> RatingListActivity::class.java
             R.string.favorite_couples -> ClubsActivity::class.java
             else -> ClubsActivity::class.java
         }

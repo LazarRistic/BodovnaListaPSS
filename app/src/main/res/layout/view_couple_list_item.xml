@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.overswayit.plesnisavezsrbije.viewmodels.ListItemViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:elevation="12dp"
+            android:innerRadius="0dp"
+            android:shape="ring"
+            android:thicknessRatio="1.9"
+            app:cardCornerRadius="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/avatarView"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="8dp"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="1dp"
+                    tools:civ_border_color="@color/colorPrimary"
+                    tools:src="@drawable/favorite_couples_image" />
+
+                <TextView
+                    android:id="@+id/place"
+                    style="@style/ScreenTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="8dp"
+                    android:text="@{viewModel.place}"
+                    android:textColor="@color/black"
+                    tools:text="1" />
+
+                <TextView
+                    android:id="@+id/points"
+                    style="@style/ArticleTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="30dp"
+                    android:layout_toStartOf="@id/place"
+                    android:text="@{viewModel.points}"
+                    android:textColor="@color/black"
+                    tools:text="744" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="8dp"
+                    android:layout_toStartOf="@id/points"
+                    android:layout_toEndOf="@id/avatarView">
+
+                    <TextView
+                        android:id="@+id/coupleName"
+                        style="@style/ArticleSmallerTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.couplesNames}"
+                        android:textColor="@color/black"
+                        tools:text="Matovic - Klenkovski" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/coupleName"
+                        android:layout_alignStart="@id/coupleName"
+                        android:layout_marginTop="4dp">
+
+                        <TextView
+                            android:id="@+id/ageCategory"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/category_drawable"
+                            android:paddingStart="8dp"
+                            android:paddingTop="4dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="4dp"
+                            android:text="@{viewModel.ageCategory.toString()}"
+                            android:textColor="@color/white"
+                            android:backgroundTint="@{viewModel.ageCategoryColor}"
+                            tools:backgroundTint="@color/colorPrimary"
+                            tools:text="Senior" />
+
+                        <TextView
+                            android:id="@+id/danceCategory"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:background="@drawable/category_drawable"
+                            android:paddingStart="8dp"
+                            android:paddingTop="4dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="4dp"
+                            android:text="@{viewModel.danceCategory.toString()}"
+                            android:textColor="@color/white"
+                            android:visibility="@{viewModel.danceCategoryVisibility}"
+                            android:backgroundTint="@{viewModel.danceCategoryColor}"
+                            tools:backgroundTint="@color/color_class_a"
+                            tools:text="A"
+                            tools:visibility="visible" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+</layout>

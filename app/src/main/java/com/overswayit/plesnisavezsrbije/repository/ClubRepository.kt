@@ -9,6 +9,7 @@ import java.util.ArrayList
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.overswayit.plesnisavezsrbije.database.FakeClubs
 import io.reactivex.disposables.CompositeDisposable
 
 /**
@@ -46,39 +47,12 @@ class ClubRepository(id: Int, private val application: Application) {
         //                )
         //        );
 
-        val best = Club()
-        best.id = 100
-        best.name = "Best"
-        best.address = "Kružni Put Kijevo 21v"
-        best.town = "Beograd"
-        best.contactName = "Branislava Radovanovic"
-        best.phoneNumbers.add("0605523289")
-        best.phoneNumbers.add("0112337082")
-        best.email = "bubarada70@gmail.com"
-        best.logoUrl = "http://www.ples.co.rs/klubovi/logo/K01446.jpg"
-
-        val calypso = Club()
-        calypso.id = 101
-        calypso.name = "Calypso"
-        calypso.address = "Miloja Zakića 1/7"
-        calypso.town = "Beograd"
-        calypso.contactName = "Dragana Labudović"
-        calypso.phoneNumbers.add("063/82 82 225")
-        calypso.email = "pkcalypso.dragana@gmail.com"
-        calypso.logoUrl = "http://www.ples.co.rs/klubovi/logo/K00066.jpg"
-
-        val clubList = ArrayList<Club>()
-        clubList.add(best)
-        clubList.add(calypso)
 
         val handler = Handler()
 
-        for (club in clubList) {
-            if (id == club.id) {
-                handler.postDelayed({ clubLiveData.postValue(club) }, 300)
-            }
+        FakeClubs.getAllCLubs().forEach {
+            handler.postDelayed({ clubLiveData.postValue(it) }, 300)
         }
-
     }
 
     fun getClubLiveData(): LiveData<Club> {

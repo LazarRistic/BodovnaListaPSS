@@ -24,4 +24,17 @@
     <string name="modern">Savremeni</string>
     <string name="contact_image_content_description">Kontakt ikonica</string>
     <string name="list_image_content_description">Slika liste</string>
+    <string name="club">Klub</string>
+    <string name="couple">Par</string>
+    <string name="points">Bodovi</string>
+    <string name="place">Mesto</string>
+    <string name="latin">Latino</string>
+    <string name="standard">Standard</string>
+    <string name="combined">10 Plesova</string>
+    <string name="la">LA</string>
+    <string name="st">ST</string>
+    <string name="km">KM</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

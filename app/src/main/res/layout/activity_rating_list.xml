@@ -1,0 +1,94 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".activities.RatingListActivity">
+
+        <LinearLayout
+            android:id="@+id/topHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/primary_gradient_color"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                app:title="@string/rating_list"
+                app:titleTextColor="@color/white" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                style="@style/CustomTabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="6dp"
+                android:minHeight="?attr/actionBarSize" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp">
+
+                <TextView
+                    android:id="@+id/clubTitle"
+                    style="@style/ArticleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="32dp"
+                    android:text="@string/club"
+                    android:textColor="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/coupleTitle"
+                    style="@style/ArticleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="88dp"
+                    android:layout_toEndOf="@id/clubTitle"
+                    android:text="@string/couple"
+                    android:textColor="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/placeTitle"
+                    style="@style/ArticleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/place"
+                    android:textColor="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/pointsTitle"
+                    style="@style/ArticleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="14dp"
+                    android:layout_toStartOf="@+id/placeTitle"
+                    android:layout_toEndOf="@id/coupleTitle"
+                    android:gravity="end"
+                    android:text="@string/points"
+                    android:textColor="@color/colorPrimary" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/topHolder" />
+
+    </RelativeLayout>
+</layout>
