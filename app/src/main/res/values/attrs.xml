@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CouplePointListView">
+        <attr name="pointsLatin" format="string" />
+        <attr name="pointsStandard" format="string" />
+        <attr name="placeLatin" format="string" />
+        <attr name="placeStandard" format="string" />
+        <attr name="danceCategoryLatin" format="string" />
+        <attr name="danceCategoryStandard" format="string" />
+        <attr name="danceCategoryColorLatin" format="color" />
+        <attr name="danceCategoryColorStandard" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="CoupleRatingListView">
+        <attr name="pointsLatin" />
+        <attr name="pointsStandard" />
+        <attr name="pointsCombined" format="string" />
+        <attr name="placeLatin" />
+        <attr name="placeStandard" />
+        <attr name="placeCombined" format="string" />
+        <attr name="danceCategoryLatin" />
+        <attr name="danceCategoryStandard" />
+        <attr name="danceCategoryCombined" format="string" />
+        <attr name="danceCategoryColorLatin" />
+        <attr name="danceCategoryColorStandard" />
+        <attr name="danceCategoryColorCombined" format="color" />
+    </declare-styleable>
+</resources>

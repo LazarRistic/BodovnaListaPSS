@@ -13,7 +13,7 @@ import com.overswayit.plesnisavezsrbije.utils.StringUtil
  * Created by lazarristic on 2019-06-07.
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
-class ListItemViewModel(private val couplesListItem: CouplesListItem) : ListItemViewModelProtocol {
+class ListItemViewModel(val couplesListItem: CouplesListItem) : ListItemViewModelProtocol {
 
     @ColorRes
     override var colorOfBorder: Int = getColorBorder()
@@ -123,24 +123,10 @@ class ListItemViewModel(private val couplesListItem: CouplesListItem) : ListItem
     }
 
     private fun getDanceCategoryColorAsResource(): Int {
-        return when ((couplesListItem as PointListItem).danceCategory) {
-            DanceCategory.I -> R.color.color_class_i
-            DanceCategory.A -> R.color.color_class_a
-            DanceCategory.B -> R.color.color_class_b
-            DanceCategory.C -> R.color.color_class_c
-            DanceCategory.D -> R.color.color_class_d
-            else -> R.color.white
-        }
+        return CoupleUtil.getDanceCategoryColor((couplesListItem as PointListItem).danceCategory)
     }
 
     private fun getAgeCategoryColorAsResource(): Int {
-        return when (couplesListItem.ageCategory!!) {
-            AgeCategory.SENIOR -> R.color.color_primary_state_list
-            AgeCategory.ADULT -> R.color.color_primary_state_list
-            AgeCategory.YOUTH -> R.color.color_primary_state_list
-            AgeCategory.JUNIOR_I -> R.color.color_primary_state_list
-            AgeCategory.JUNIOR_II -> R.color.color_primary_state_list
-            AgeCategory.JUVENILE -> R.color.color_primary_state_list
-        }
+        return CoupleUtil.getAgeCategoryColor(couplesListItem.ageCategory)
     }
 }

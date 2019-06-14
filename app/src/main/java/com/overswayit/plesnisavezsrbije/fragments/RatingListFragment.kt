@@ -1,5 +1,6 @@
 package com.overswayit.plesnisavezsrbije.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -13,9 +14,10 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.overswayit.plesnisavezsrbije.R
+import com.overswayit.plesnisavezsrbije.activities.CoupleActivity
 import com.overswayit.plesnisavezsrbije.databinding.RatingListFragmentBinding
 import com.overswayit.plesnisavezsrbije.models.DanceType
-import com.overswayit.plesnisavezsrbije.models.PointListItem
+import com.overswayit.plesnisavezsrbije.models.RatingListItem
 import com.overswayit.plesnisavezsrbije.viewmodels.ListItemViewModel
 import com.overswayit.plesnisavezsrbije.viewmodels.ListViewModel
 import com.overswayit.plesnisavezsrbije.views.RatingListItemAdapter
@@ -54,18 +56,18 @@ class RatingListFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         ratingListAdapter = RatingListItemAdapter(ratingListItemViewModels)
+        ratingListAdapter!!.setViewInteractionListener(object : RatingListItemAdapter.ViewInteractionListener {
+            override fun openCoupleActivity(ratingListItem: RatingListItem) {
+                val intent = Intent(context, CoupleActivity::class.java)
+                intent.putExtra(CoupleActivity.COUPLE_ID_KEY, ratingListItem.couple!!.id)
+                startActivity(intent)
+            }
+        })
+
         val layoutManager = LinearLayoutManager(context)
         recyclerView!!.layoutManager = layoutManager
         recyclerView!!.itemAnimator = DefaultItemAnimator()
         recyclerView!!.adapter = ratingListAdapter
-
-
-        ratingListAdapter = RatingListItemAdapter(ratingListItemViewModels)
-        ratingListAdapter!!.setViewInteractionListener(object : RatingListItemAdapter.ViewInteractionListener {
-            override fun openCoupleActivity(pointListItem: PointListItem) {
-                //ToDO: Open Activity
-            }
-        })
 
         if (activity != null) {
             val viewModel = ViewModelProviders.of(this).get(ListViewModel::class.java)

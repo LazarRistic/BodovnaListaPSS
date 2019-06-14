@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/placeTitle"
+            style="@style/ArticleSmallerTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/place"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/pointsTitle"
+            style="@style/ArticleSmallerTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/points"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/placeTitle"
+            app:layout_constraintTop_toTopOf="@+id/placeTitle" />
+
+        <TextView
+            android:id="@+id/danceClassTitle"
+            style="@style/ArticleSmallerTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/grade"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/pointsTitle"
+            app:layout_constraintTop_toTopOf="@+id/pointsTitle" />
+
+        <TextView
+            android:id="@+id/danceTitle"
+            style="@style/ArticleSmallerTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/dance"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/danceClassTitle"
+            app:layout_constraintTop_toTopOf="@+id/danceClassTitle" />
+
+        <TextView
+            android:id="@+id/placeLatin"
+            style="@style/ArticleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/pointsLatin"
+            app:layout_constraintEnd_toEndOf="@+id/placeTitle"
+            app:layout_constraintStart_toStartOf="@+id/placeTitle"
+            app:layout_constraintTop_toTopOf="@+id/pointsLatin"
+            tools:text="2" />
+
+        <TextView
+            android:id="@+id/pointsLatin"
+            style="@style/ArticleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/danceClassLatin"
+            app:layout_constraintEnd_toEndOf="@+id/pointsTitle"
+            app:layout_constraintStart_toStartOf="@+id/pointsTitle"
+            app:layout_constraintTop_toTopOf="@+id/danceClassLatin"
+            tools:text="16" />
+
+        <TextView
+            android:id="@+id/danceClassLatin"
+            style="@style/ArticleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/category_drawable"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="2dp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@id/danceClassTitle"
+            app:layout_constraintStart_toStartOf="@+id/danceClassTitle"
+            app:layout_constraintTop_toBottomOf="@id/danceClassTitle"
+            tools:backgroundTint="@color/color_class_a"
+            tools:text="A" />
+
+        <TextView
+            android:id="@+id/danceLatin"
+            style="@style/ArticleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/la"
+            app:layout_constraintBottom_toBottomOf="@+id/danceClassLatin"
+            app:layout_constraintEnd_toEndOf="@+id/danceTitle"
+            app:layout_constraintStart_toStartOf="@+id/danceTitle"
+            app:layout_constraintTop_toTopOf="@+id/danceClassLatin" />
+
+        <View
+            android:id="@+id/leftSeparatorMargin"
+            android:layout_width="8dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/danceTitle"
+            app:layout_constraintEnd_toStartOf="@id/danceTitle"
+            app:layout_constraintTop_toTopOf="@id/danceTitle" />
+
+        <View
+            android:id="@+id/rightSeparatorMargin"
+            android:layout_width="8dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/placeTitle"
+            app:layout_constraintStart_toEndOf="@id/placeTitle"
+            app:layout_constraintTop_toTopOf="@id/placeTitle" />
+
+        <View
+            android:id="@+id/separator"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="-8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="-8dp"
+            android:background="#929292"
+            app:layout_constraintEnd_toEndOf="@+id/rightSeparatorMargin"
+            app:layout_constraintStart_toStartOf="@+id/leftSeparatorMargin"
+            app:layout_constraintTop_toBottomOf="@id/danceClassLatin" />
+
+        <TextView
+            android:id="@+id/danceClassStandard"
+            style="@style/ArticleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/category_drawable"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="2dp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@id/danceClassTitle"
+            app:layout_constraintStart_toStartOf="@+id/danceClassTitle"
+            app:layout_constraintTop_toBottomOf="@id/separator"
+            tools:backgroundTint="@color/color_class_a"
+            tools:text="A" />
+
+        <TextView
+            android:id="@+id/placeStandard"
+            style="@style/ArticleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/pointsStandard"
+            app:layout_constraintEnd_toEndOf="@+id/placeTitle"
+            app:layout_constraintStart_toStartOf="@+id/placeTitle"
+            app:layout_constraintTop_toTopOf="@+id/pointsStandard"
+            tools:text="2" />
+
+        <TextView
+            android:id="@+id/pointsStandard"
+            style="@style/ArticleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/danceClassStandard"
+            app:layout_constraintEnd_toEndOf="@+id/pointsTitle"
+            app:layout_constraintStart_toStartOf="@+id/pointsTitle"
+            app:layout_constraintTop_toTopOf="@+id/danceClassStandard"
+            tools:text="16" />
+
+        <TextView
+            android:id="@+id/danceStandard"
+            style="@style/ArticleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/st"
+            app:layout_constraintBottom_toBottomOf="@+id/danceClassStandard"
+            app:layout_constraintEnd_toEndOf="@+id/danceTitle"
+            app:layout_constraintStart_toStartOf="@+id/danceTitle"
+            app:layout_constraintTop_toTopOf="@+id/danceClassStandard" />
+
+        <TextView
+            android:id="@+id/pointListTitle"
+            style="@style/ArticleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/point_list"
+            app:layout_constraintBottom_toBottomOf="@+id/danceStandard"
+            app:layout_constraintEnd_toStartOf="@+id/separator"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/danceLatin" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

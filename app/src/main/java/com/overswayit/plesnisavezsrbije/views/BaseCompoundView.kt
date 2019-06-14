@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
-
 import androidx.annotation.LayoutRes
 import androidx.annotation.StyleableRes
 
@@ -19,7 +18,7 @@ abstract class BaseCompoundView : FrameLayout {
     @get:LayoutRes
     protected abstract val layoutId: Int
 
-    private val styleableId: IntArray?
+    open val styleableId: IntArray?
         @StyleableRes
         get() = null
 
@@ -37,13 +36,11 @@ abstract class BaseCompoundView : FrameLayout {
         getParams(attrs)
     }
 
-    private fun getParams(ta: TypedArray) {}
+    open fun getParams(ta: TypedArray) {}
 
-    private fun bindViews(contentView: View) {}
+    open fun bindViews(contentView: View) {}
 
-    private fun inflateView(ctx: Context) {
-        val inflater = LayoutInflater.from(ctx)
-
+    open fun bindingInflateView(inflater: LayoutInflater) {
         val view = inflater.inflate(layoutId, this, false)
 
         addView(view)
@@ -51,15 +48,29 @@ abstract class BaseCompoundView : FrameLayout {
         bindViews(view)
     }
 
+    private fun inflateView(ctx: Context) {
+        val inflater = LayoutInflater.from(ctx)
+
+        bindingInflateView(inflater)
+    }
+
     private fun getParams(attrs: AttributeSet) {
         val styleableId = styleableId
 
         if (styleableId != null) {
-            val ta = context.obtainStyledAttributes(attrs, styleableId)
-            getParams(ta)
-            ta.recycle()
+            context.theme.obtainStyledAttributes(
+                    attrs,
+                    styleableId,
+                    0, 0).apply {
+
+                try {
+                    getParams(this)
+                } finally {
+                    recycle()
+                }
+            }
         }
+
+
     }
-
-
 }

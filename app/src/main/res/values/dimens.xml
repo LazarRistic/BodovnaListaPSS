@@ -4,4 +4,6 @@
     <dimen name="articleTitle">18sp</dimen>
     <dimen name="articleSmallerTitle">16sp</dimen>
     <dimen name="articleText">14sp</dimen>
+    <dimen name="articleTextBig">16sp</dimen>
+    <dimen name="bigText">22sp</dimen>
 </resources>

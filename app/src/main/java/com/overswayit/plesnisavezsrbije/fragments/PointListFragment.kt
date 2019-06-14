@@ -1,5 +1,6 @@
 package com.overswayit.plesnisavezsrbije.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.overswayit.plesnisavezsrbije.R
+import com.overswayit.plesnisavezsrbije.activities.CoupleActivity
 import com.overswayit.plesnisavezsrbije.databinding.PointListFragmentBinding
 import com.overswayit.plesnisavezsrbije.models.DanceType
 import com.overswayit.plesnisavezsrbije.models.PointListItem
@@ -57,18 +59,18 @@ class PointListFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         pointListAdapter = PointListItemAdapter(pointListItemViewModels)
+        pointListAdapter!!.setViewInteractionListener(object : PointListItemAdapter.ViewInteractionListener {
+            override fun openCoupleActivity(pointListItem: PointListItem) {
+                val intent = Intent(context, CoupleActivity::class.java)
+                intent.putExtra(CoupleActivity.COUPLE_ID_KEY, pointListItem.couple!!.id)
+                startActivity(intent)
+            }
+        })
+
         val layoutManager = LinearLayoutManager(context)
         recyclerView!!.layoutManager = layoutManager
         recyclerView!!.itemAnimator = DefaultItemAnimator()
         recyclerView!!.adapter = pointListAdapter
-
-
-        pointListAdapter = PointListItemAdapter(pointListItemViewModels)
-        pointListAdapter!!.setViewInteractionListener(object : PointListItemAdapter.ViewInteractionListener {
-            override fun openCoupleActivity(pointListItem: PointListItem) {
-                //ToDO: Open Activity
-            }
-        })
 
         if (activity != null) {
             val viewModel = ViewModelProviders.of(this).get(ListViewModel::class.java)

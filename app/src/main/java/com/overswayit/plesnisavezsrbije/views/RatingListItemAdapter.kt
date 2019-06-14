@@ -7,7 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.overswayit.plesnisavezsrbije.R
 import com.overswayit.plesnisavezsrbije.databinding.ViewCoupleListItemBinding
-import com.overswayit.plesnisavezsrbije.models.PointListItem
+import com.overswayit.plesnisavezsrbije.models.RatingListItem
 import com.overswayit.plesnisavezsrbije.viewmodels.ListItemViewModel
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -21,7 +21,7 @@ class RatingListItemAdapter(private val ratingList: List<ListItemViewModel>) : R
     private var viewInteractionListener: ViewInteractionListener? = null
 
     interface ViewInteractionListener {
-        fun openCoupleActivity(pointListItem: PointListItem)
+        fun openCoupleActivity(ratingListItem: RatingListItem)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RatingListViewHolder {
@@ -50,6 +50,10 @@ class RatingListItemAdapter(private val ratingList: List<ListItemViewModel>) : R
 
             loadClubLogo(ratingListItemViewModel.shouldLoadLogoUrl(), ratingListItemViewModel.avatarUrl)
             binding.avatarView.setBorderColor(getBorderColor(ratingListItemViewModel.colorOfBorder))
+
+            binding.root.setOnClickListener {
+                viewInteractionListener?.openCoupleActivity(ratingListItemViewModel.couplesListItem as RatingListItem)
+            }
         }
 
         private fun loadClubLogo(shouldLoadLogoUrl: Boolean, avatarUrl: String) {

@@ -51,6 +51,10 @@ class PointListItemAdapter(private val pointList: List<ListItemViewModel>) : Rec
 
             loadClubLogo(pointListItemViewModel.shouldLoadLogoUrl(), pointListItemViewModel.avatarUrl)
             binding.avatarView.setBorderColor(getBorderColor(pointListItemViewModel.colorOfBorder))
+
+            binding.root.setOnClickListener {
+                viewInteractionListener?.openCoupleActivity((pointListItemViewModel.couplesListItem) as PointListItem)
+            }
         }
 
         private fun loadClubLogo(shouldLoadLogoUrl: Boolean, avatarUrl: String) {

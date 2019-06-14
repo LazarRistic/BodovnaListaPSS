@@ -8,6 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="BigText" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
+        <item name="android:textSize">@dimen/screenTitle</item>
+        <item name="android:fontFamily">@font/sf_ui_display_semibold</item>
+    </style>
+
     <style name="ScreenTitle" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
         <item name="android:textSize">@dimen/screenTitle</item>
         <item name="android:fontFamily">@font/sf_ui_display_medium</item>
@@ -21,6 +26,11 @@
     <style name="ArticleSmallerTitle" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
         <item name="android:textSize">@dimen/articleText</item>
         <item name="android:fontFamily">@font/sf_ui_display_semibold</item>
+    </style>
+
+    <style name="ArticleTextBig" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
+        <item name="android:textSize">@dimen/articleTextBig</item>
+        <item name="android:fontFamily">@font/sf_ui_display_regular</item>
     </style>
 
     <style name="ArticleText" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
