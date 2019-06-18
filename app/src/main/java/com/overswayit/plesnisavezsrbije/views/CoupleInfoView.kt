@@ -42,6 +42,9 @@ class CoupleInfoView : BaseCompoundView {
         binding.latinCategory.backgroundTintList = androidx.databinding.adapters.Converters.convertColorToColorStateList(viewModel.latinCategoryColor)
         binding.standardCategory.backgroundTintList = androidx.databinding.adapters.Converters.convertColorToColorStateList(viewModel.standardCategoryColor)
         binding.ageCategory.backgroundTintList = androidx.databinding.adapters.Converters.convertColorToColorStateList(viewModel.ageCategoryColor)
+        binding.followImage.setOnClickListener {
+            binding.followImage.setImageDrawable(context.getDrawable(R.drawable.ic_following))
+        }
 
         Picasso.get()
                 .load(viewModel.coupleImageUrl)

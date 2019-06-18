@@ -41,4 +41,7 @@
     <string name="couple_image_content_description">Slika plesnog para</string>
     <string name="male_image_content_description">Ikonica partnera</string>
     <string name="female_image_content_description">Ikonica partnerke</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

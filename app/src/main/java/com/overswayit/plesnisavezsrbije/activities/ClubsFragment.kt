@@ -5,24 +5,27 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.overswayit.plesnisavezsrbije.MainActivity
 import com.overswayit.plesnisavezsrbije.R
-import com.overswayit.plesnisavezsrbije.databinding.ActivityClubsBinding
 import com.overswayit.plesnisavezsrbije.events.EventBus
 import com.overswayit.plesnisavezsrbije.events.ViewMesssages
 import com.overswayit.plesnisavezsrbije.models.Club
 import com.overswayit.plesnisavezsrbije.viewmodels.ClubsViewModel
 import com.overswayit.plesnisavezsrbije.views.ClubsAdapter
 import com.squareup.otto.Subscribe
-import kotlinx.android.synthetic.main.activity_clubs.*
-import java.util.*
+import java.util.ArrayList
 
-class ClubsActivity : BaseActivity() {
+
+class ClubsFragment : BaseFragment() {
 
     private val MY_PERMISSIONS_REQUEST_CALL_PHONE = 0
 
@@ -39,27 +42,27 @@ class ClubsActivity : BaseActivity() {
         EventBus.unregister(this)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding: ActivityClubsBinding = DataBindingUtil.setContentView(this, R.layout.activity_clubs)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        val binding: com.overswayit.plesnisavezsrbije.databinding.FragmentClubsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_clubs, container, false)
 
         val toolbar = binding.toolbar
-        setSupportActionBar(toolbar)
+        (activity as MainActivity).setSupportActionBar(toolbar)
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
-        toolbar.setNavigationOnClickListener { onBackPressed() }
+        toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
         toolbar.setTitle(R.string.clubs)
 
         clubsAdapter = ClubsAdapter(clubList)
         clubsAdapter!!.setViewInteractionListener(object : ClubsAdapter.ViewInteractionListener {
             override fun openClubActivity(club: Club) {
-                this@ClubsActivity.openClubActivity(club)
+                this@ClubsFragment.openClubActivity(club)
             }
         })
 
-        val layoutManager = LinearLayoutManager(applicationContext)
+        val layoutManager = LinearLayoutManager(activity)
         binding.clubsRecyclerView.layoutManager = layoutManager
-        clubsRecyclerView!!.itemAnimator = DefaultItemAnimator()
-        clubsRecyclerView!!.adapter = clubsAdapter
+        binding.clubsRecyclerView.itemAnimator = DefaultItemAnimator()
+        binding.clubsRecyclerView.adapter = clubsAdapter
 
         val viewModel = ViewModelProviders.of(this).get(ClubsViewModel::class.java)
         viewModel.allClubs.observe(this, Observer { clubs ->
@@ -68,11 +71,13 @@ class ClubsActivity : BaseActivity() {
             clubsAdapter!!.notifyDataSetChanged()
         })
 
-        if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this@ClubsActivity,
+        if (activity?.checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity!!,
                     arrayOf(Manifest.permission.CALL_PHONE),
                     MY_PERMISSIONS_REQUEST_CALL_PHONE)
         }
+
+        return binding.root
     }
 
     @Subscribe
@@ -82,7 +87,7 @@ class ClubsActivity : BaseActivity() {
         intent.putExtra(Intent.EXTRA_EMAIL, message.content)
         intent.putExtra(Intent.EXTRA_SUBJECT, R.string.pps_app)
 
-        if (intent.resolveActivity(packageManager) != null) {
+        if (intent.resolveActivity(activity?.packageManager!!) != null) {
             startActivity(intent)
         }
     }
@@ -91,8 +96,8 @@ class ClubsActivity : BaseActivity() {
     fun on(message: ViewMesssages.ClubContactPhoneCall) {
         val callIntent = Intent(Intent.ACTION_CALL)
         callIntent.data = Uri.parse("tel:" + message.content)
-        if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this@ClubsActivity,
+        if (activity?.checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity!!,
                     arrayOf(Manifest.permission.CALL_PHONE),
                     MY_PERMISSIONS_REQUEST_CALL_PHONE)
             return
@@ -107,8 +112,10 @@ class ClubsActivity : BaseActivity() {
     }
 
     private fun openClubActivity(club: Club) {
-        val intent = Intent(this, ClubActivity::class.java)
+        val intent = Intent(activity, ClubActivity::class.java)
         intent.putExtra(ClubActivity.CLUB_ID_KEY, club.id)
         startActivity(intent)
     }
+
+
 }

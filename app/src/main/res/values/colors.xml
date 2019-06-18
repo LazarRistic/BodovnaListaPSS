@@ -9,6 +9,7 @@
     <color name="primaryGradientA">#F87362</color>
     <color name="primaryGradientB">#CB515C</color>
     <color name="card_view_background_light">#F2F2F2</color>
+    <color name="bottom_menu_icons">#929292</color>
 
     <!-- Color for every class -->
     <color name="color_class_i">#D052E0</color>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/newsFragment"
+        android:icon="@drawable/ic_news"
+        android:title="@string/news" />
+    <item
+        android:id="@+id/listFragment"
+        android:icon="@drawable/ic_list"
+        android:title="@string/list" />
+    <item
+        android:id="@+id/clubsFragment"
+        android:icon="@drawable/ic_clubs"
+        android:title="@string/clubs" />
+    <item
+        android:id="@+id/adjudicatorsFragment"
+        android:icon="@drawable/ic_adjudicators"
+        android:title="@string/adjudicators" />
+    <item
+        android:id="@+id/nav_competitions"
+        android:icon="@drawable/ic_competitions"
+        android:title="@string/competitions" />
+</menu>
