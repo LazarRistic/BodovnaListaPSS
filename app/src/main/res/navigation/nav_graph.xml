@@ -19,10 +19,26 @@
         android:id="@+id/clubsFragment"
         android:name="com.overswayit.plesnisavezsrbije.activities.ClubsFragment"
         android:label="fragment_club"
-        tools:layout="@layout/fragment_clubs"/>
+        tools:layout="@layout/fragment_clubs">
+        <action
+            android:id="@+id/action_clubsFragment_to_clubFragment"
+            app:destination="@id/clubFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/adjudicatorsFragment"
         android:name="com.overswayit.plesnisavezsrbije.activities.AdjudicatorsFragment"
         android:label="fragment_adjudicators"
         tools:layout="@layout/fragment_adjudicators" />
+    <fragment
+        android:id="@+id/clubFragment"
+        android:name="com.overswayit.plesnisavezsrbije.activities.ClubFragment"
+        android:label="fragment_club"
+        tools:layout="@layout/fragment_club" >
+        <argument android:name="ClubId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

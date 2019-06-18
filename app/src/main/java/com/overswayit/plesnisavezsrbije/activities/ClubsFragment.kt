@@ -12,6 +12,10 @@ import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.overswayit.plesnisavezsrbije.MainActivity
@@ -112,9 +116,12 @@ class ClubsFragment : BaseFragment() {
     }
 
     private fun openClubActivity(club: Club) {
-        val intent = Intent(activity, ClubActivity::class.java)
-        intent.putExtra(ClubActivity.CLUB_ID_KEY, club.id)
-        startActivity(intent)
+//        val intent = Intent(activity, ClubActivity::class.java)
+//        intent.putExtra(ClubActivity.CLUB_ID_KEY, club.id)
+//        startActivity(intent)
+        val bundle = Bundle()
+        bundle.putInt(ClubFragment.CLUB_ID_KEY, club.id)
+        findNavController().navigate(R.id.clubFragment, bundle)
     }
 
 

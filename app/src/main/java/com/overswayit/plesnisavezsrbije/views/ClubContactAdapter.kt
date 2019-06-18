@@ -13,7 +13,7 @@ import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.overswayit.plesnisavezsrbije.MyApp
 import com.overswayit.plesnisavezsrbije.R
-import com.overswayit.plesnisavezsrbije.activities.ClubActivity
+import com.overswayit.plesnisavezsrbije.activities.ClubFragment
 import com.overswayit.plesnisavezsrbije.databinding.ViewClubContactItemBinding
 import com.overswayit.plesnisavezsrbije.models.ClubContact
 import com.overswayit.plesnisavezsrbije.models.ClubContactType
@@ -108,7 +108,7 @@ class ClubContactAdapter(private val clubContacts: ArrayList<ClubContact>) : Rec
             if (ActivityCompat.checkSelfPermission(view.context, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
                 view.context.startActivity(intent)
             } else {
-                ActivityCompat.requestPermissions(view.context as Activity, arrayOf(Manifest.permission.CALL_PHONE), ClubActivity.CALL_REQUEST)
+                ActivityCompat.requestPermissions(view.context as Activity, arrayOf(Manifest.permission.CALL_PHONE), ClubFragment.CALL_REQUEST)
             }
         }
 
