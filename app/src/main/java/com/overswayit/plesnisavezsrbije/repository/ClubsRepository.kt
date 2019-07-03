@@ -1,83 +1,63 @@
 package com.overswayit.plesnisavezsrbije.repository
 
 import android.app.Application
-import android.os.Handler
-
+import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-
+import androidx.lifecycle.liveData
+import com.overswayit.plesnisavezsrbije.database.AppDatabase
+import com.overswayit.plesnisavezsrbije.database.ClubDao
 import com.overswayit.plesnisavezsrbije.models.Club
+import kotlinx.coroutines.Dispatchers
 
-import java.util.ArrayList
-
-import io.reactivex.disposables.CompositeDisposable
 
 /**
  * Created by lazarristic on 19/02/2019.
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
 class ClubsRepository(private val application: Application) {
-    private val disposable = CompositeDisposable()
-    val clubsLiveData = MutableLiveData<List<Club>>()
+    private var clubDao: ClubDao = AppDatabase.invoke(application.applicationContext).clubDao()
 
-    init {
-
-        //        ToDo: Create Instance of Database
-        //        contactsAppDatabase= Room.databaseBuilder(application.getApplicationContext(),ContactsAppDatabase.class,"ContactDB").build();
-
-        //        ToDo: Create Event
-        //        disposable.add(contactsAppDatabase.getContactDAO().getContacts()
-        //                .subscribeOn(Schedulers.computation())
-        //                .observeOn(AndroidSchedulers.mainThread())
-        //                .subscribe(new Consumer<List<Contact>>() {
-        //                               @Override
-        //                               public void accept(List<Contact> contacts) throws Exception {
-        //
-        //                                   contactsLiveData.postValue(contacts);
-        //
-        //
-        //                               }
-        //                           }, new Consumer<Throwable>() {
-        //                               @Override
-        //                               public void accept(Throwable throwable) throws Exception {
-        //
-        //
-        //                               }
-        //                           }
-        //                )
-        //        );
-
-        val best = Club()
-        best.id = 100
-        best.name = "Best"
-        best.address = "Kružni Put Kijevo 21v"
-        best.town = "Beograd"
-        best.contactName = "Branislava Radovanovic"
-        best.phoneNumbers.add("0605523289")
-        best.phoneNumbers.add("0112337082")
-        best.email = "bubarada70@gmail.com"
-        best.logoUrl = "http://www.ples.co.rs/klubovi/logo/K01446.jpg"
-
-        val calypso = Club()
-        calypso.id = 101
-        calypso.name = "Calypso"
-        calypso.address = "Miloja Zakića 1/7"
-        calypso.town = "Beograd"
-        calypso.contactName = "Dragana Labudović"
-        calypso.phoneNumbers.add("063/82 82 225")
-        calypso.email = "pkcalypso.dragana@gmail.com"
-        calypso.logoUrl = "http://www.ples.co.rs/klubovi/logo/K00066.jpg"
-
-        val clubList = ArrayList<Club>()
-        clubList.add(best)
-
-        val handler = Handler()
-        handler.postDelayed({ clubsLiveData.postValue(clubList) }, 1000)
-        handler.postDelayed({ clubList.add(calypso) }, 3000)
-        handler.postDelayed({ clubsLiveData.postValue(clubList) }, 5000)
+    suspend fun getAll(): LiveData<List<Club>> = liveData(Dispatchers.IO) {
+        emitSource(clubDao.getAll())
     }
 
-    fun getClubsLiveData(): LiveData<List<Club>> {
-        return clubsLiveData
+    suspend fun getAll(ascending: Boolean): LiveData<List<Club>> = liveData(Dispatchers.IO) {
+        if (ascending) {
+            emitSource(clubDao.getAllByNameAscending())
+        } else {
+            emitSource(clubDao.getAllByNameDescending())
+        }
+    }
+
+    suspend fun findById(id: Int) = liveData(Dispatchers.IO) {
+        emit(clubDao.findById(id))
+    }
+
+    suspend fun findByName(name: String) = liveData(Dispatchers.IO) {
+        emit(clubDao.findByName(name))
+    }
+
+    suspend fun deleteAll() {
+        Log.d("CLUBS REPO", "Start Deleting all")
+        clubDao.getAllForDeleting().forEach {
+            Log.d("CLUBS REPO", "Deleting ${it.name}")
+            clubDao.delete(it)
+        }
+        Log.d("CLUBS REPO", "End Deleting all")
+    }
+
+    suspend fun insertOrUpdate(vararg clubs: Club) {
+        Log.d("CLUBS REPO", "Start insertOrUpdate ${clubs.size} : clubs")
+        clubs.forEach {
+            if (clubDao.findById(it.id).isEmpty()) {
+                Log.d("CLUBS REPO", "Start inserting ${it.name}")
+                clubDao.insertAll(it)
+            } else {
+                Log.d("CLUBS REPO", "Start updating ${it.name}")
+                clubDao.updateClub(it)
+            }
+        }
+
+        Log.d("CLUBS REPO", "End insertOrUpdate")
     }
 }

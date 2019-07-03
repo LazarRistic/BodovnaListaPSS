@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import com.overswayit.plesnisavezsrbije.MyApp
+import com.overswayit.plesnisavezsrbije.R
 import com.overswayit.plesnisavezsrbije.models.AgeCategory
 import com.overswayit.plesnisavezsrbije.models.Couple
 import com.overswayit.plesnisavezsrbije.models.DanceCategory
@@ -74,5 +75,31 @@ class CoupleInfoViewModel(val application: Application, private val couple: Coup
         get() {
             return ContextCompat.getColor(MyApp.applicationContext(), CoupleUtil.getDanceCategoryColor(standardCategory))
         }
+
+    val followImage: Int
+        get() {
+            return R.drawable.ic_following
+
+//        return if (FakeFavoriteList.isFavorite(couple)) {
+//            R.drawable.ic_following
+//        } else {
+//            R.drawable.ic_follow
+//        }
+        }
+
+    fun toggleFavorite(): Int {
+        return if (Math.random().toInt() % 2 == 0) {
+            R.drawable.ic_following
+        } else {
+            R.drawable.ic_follow
+        }
+//        return if (FakeFavoriteList.isFavorite(couple)) {
+//            FakeFavoriteList.removeCouple(couple)
+//            R.drawable.ic_follow
+//        } else {
+//            FakeFavoriteList.addCouple(couple)
+//            R.drawable.ic_following
+//        }
+    }
 
 }

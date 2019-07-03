@@ -38,7 +38,7 @@ object FakeCouple {
 //                createRatingList(AgeCategory.SENIOR, "2", "701"),
 //                createRatingList(AgeCategory.SENIOR, "2", "576"),
 //                createRatingList(AgeCategory.SENIOR, "2", "1260"),
-                FakeClubs.getCLubByName("beodance"))
+                FakeClubs.getClubByName("beodance"))
 
         val kranikBoronzan = createCouple("2",
                 "Djordje Kranik",
@@ -48,7 +48,7 @@ object FakeCouple {
 //                createRatingList(AgeCategory.SENIOR, "5", "370"),
 //                createRatingList(AgeCategory.SENIOR, "15", "0"),
 //                createRatingList(AgeCategory.SENIOR, "8", "0"),
-                FakeClubs.getCLubByName("best"))
+                FakeClubs.getClubByName("best"))
 
         val vukobratGavrilov = createCouple("3",
                 "Petar Vukobrat",
@@ -58,7 +58,7 @@ object FakeCouple {
 //                createRatingList(AgeCategory.SENIOR, "3", "697"),
 //                createRatingList(AgeCategory.SENIOR, "12", "32"),
 //                createRatingList(AgeCategory.SENIOR, "4", "100"),
-                FakeClubs.getCLubByName("dare to dance"))
+                FakeClubs.getClubByName("dare to dance"))
 
         return createCoupleList(maticKlenovski, kranikBoronzan, vukobratGavrilov)
     }

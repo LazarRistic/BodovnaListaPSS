@@ -12,10 +12,8 @@ import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.overswayit.plesnisavezsrbije.MainActivity
@@ -26,7 +24,7 @@ import com.overswayit.plesnisavezsrbije.models.Club
 import com.overswayit.plesnisavezsrbije.viewmodels.ClubsViewModel
 import com.overswayit.plesnisavezsrbije.views.ClubsAdapter
 import com.squareup.otto.Subscribe
-import java.util.ArrayList
+import java.util.*
 
 
 class ClubsFragment : BaseFragment() {
@@ -44,6 +42,22 @@ class ClubsFragment : BaseFragment() {
     override fun onPause() {
         super.onPause()
         EventBus.unregister(this)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val viewModel = ViewModelProviders.of(this).get(ClubsViewModel::class.java)
+
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.allClubs().observe(this@ClubsFragment, Observer { clubs ->
+                if (clubs != null) {
+                    clubList.clear()
+                    clubList.addAll(clubs)
+                    clubsAdapter!!.notifyDataSetChanged()
+                }
+            })
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -68,12 +82,6 @@ class ClubsFragment : BaseFragment() {
         binding.clubsRecyclerView.itemAnimator = DefaultItemAnimator()
         binding.clubsRecyclerView.adapter = clubsAdapter
 
-        val viewModel = ViewModelProviders.of(this).get(ClubsViewModel::class.java)
-        viewModel.allClubs.observe(this, Observer { clubs ->
-            clubList.clear()
-            clubList.addAll(clubs)
-            clubsAdapter!!.notifyDataSetChanged()
-        })
 
         if (activity?.checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity!!,

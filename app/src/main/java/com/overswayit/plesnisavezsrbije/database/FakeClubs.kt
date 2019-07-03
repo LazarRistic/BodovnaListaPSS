@@ -9,8 +9,8 @@ import com.overswayit.plesnisavezsrbije.models.Club
 object FakeClubs {
 
     fun getClubById(id: Int): Club? {
-        getAllCLubs().forEach {
-            if (it.id == id){
+        getAllClubs().forEach {
+            if (it.id == id) {
                 return it
             }
         }
@@ -18,9 +18,9 @@ object FakeClubs {
         return null
     }
 
-    fun getCLubByName(name: String): Club? {
-        getAllCLubs().forEach {
-            if (it.name?.toLowerCase() == name.toLowerCase()){
+    fun getClubByName(name: String): Club? {
+        getAllClubs().forEach {
+            if (it.name.toLowerCase() == name.toLowerCase()) {
                 return it
             }
         }
@@ -28,7 +28,7 @@ object FakeClubs {
         return null
     }
 
-    fun getAllCLubs(): List<Club> {
+    fun getAllClubs(): List<Club> {
         val best = createClub(100,
                 "Best",
                 "Kružni Put Kijevo 21v",
@@ -69,20 +69,13 @@ object FakeClubs {
     }
 
     private fun createClub(id: Int, name: String, address: String, town: String, contactName: String, email: String, logoUrl: String? = "", vararg phoneNumbers: String): Club {
-        val club = Club()
-        club.id = id
-        club.name = name
-        club.address = address
-        club.town = town
-        club.contactName = contactName
-        club.email = email
-        club.logoUrl = "http://www.ples.co.rs/klubovi/logo/$logoUrl"
+        val phoneNumberList = ArrayList<String>()
 
         phoneNumbers.forEach {
-            club.phoneNumbers.add(it)
+            phoneNumberList.add(it)
         }
 
-        return club
+        return Club(id, "http://www.ples.co.rs/klubovi/logo/$logoUrl", name, town, address, contactName, phoneNumberList, email)
     }
 
     private fun createClubList(vararg clubs: Club): List<Club> {

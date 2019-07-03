@@ -26,7 +26,9 @@ object ClubUtil {
         clubContacts.add(AddressClubContact(club.address))
         clubContacts.add(EmailClubContact(club.email))
 
-        for (phone in club.phoneNumbers) {
+        val clubNumbers = club.phoneNumbers
+
+        for (phone in clubNumbers) {
             clubContacts.add(PhoneClubContact(phone))
         }
 
