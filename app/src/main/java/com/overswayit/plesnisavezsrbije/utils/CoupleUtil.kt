@@ -5,6 +5,7 @@ import com.overswayit.plesnisavezsrbije.R
 import com.overswayit.plesnisavezsrbije.models.AgeCategory
 import com.overswayit.plesnisavezsrbije.models.Couple
 import com.overswayit.plesnisavezsrbije.models.DanceCategory
+import java.util.*
 
 /**
  * Created by lazarristic on 2019-05-23.
@@ -49,6 +50,10 @@ object CoupleUtil {
             DanceCategory.D -> R.color.color_class_d
             else -> R.color.white
         }
+    }
+
+    fun getPlaceHolderCouple(): Couple {
+        return Couple(UUID.randomUUID().toString(), StringUtil.getString(R.string.not_available), StringUtil.getString(R.string.not_available), ClubUtil.getPlaceHolderClub())
     }
 
     private fun getLastName(fullName: String): String {

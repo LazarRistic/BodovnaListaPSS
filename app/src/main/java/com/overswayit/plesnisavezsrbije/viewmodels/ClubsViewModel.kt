@@ -18,8 +18,8 @@ import kotlinx.coroutines.withContext
  */
 class ClubsViewModel(application: Application) : AndroidViewModel(application) {
     private val clubsRepository: ClubsRepository = ClubsRepository(application)
-    private var asscending = true
-    private val mObservableClubs = MediatorLiveData<List<Club>>()
+    private var ascending = true
+    private val observableClubs = MediatorLiveData<List<Club>>()
     private lateinit var sortedClubsAsc: LiveData<List<Club>>
     private lateinit var sortedClubsDesc: LiveData<List<Club>>
 
@@ -29,31 +29,31 @@ class ClubsViewModel(application: Application) : AndroidViewModel(application) {
             sortedClubsAsc = clubsRepository.getAll(true)
             sortedClubsDesc = clubsRepository.getAll(false)
 
-            if (asscending) {
-                mObservableClubs.addSource(sortedClubsAsc, mObservableClubs::setValue)
+            if (ascending) {
+                observableClubs.addSource(sortedClubsAsc, observableClubs::setValue)
             } else {
-                mObservableClubs.addSource(sortedClubsDesc, mObservableClubs::setValue)
+                observableClubs.addSource(sortedClubsDesc, observableClubs::setValue)
             }
         }
     }
 
     fun allClubs(): LiveData<List<Club>> {
-        return mObservableClubs
+        return observableClubs
     }
 
     fun doSortAscending() {
-        if (!asscending) {
-            asscending = true
-            mObservableClubs.removeSource(sortedClubsDesc)
-            mObservableClubs.addSource(sortedClubsAsc, mObservableClubs::setValue)
+        if (!ascending) {
+            ascending = true
+            observableClubs.removeSource(sortedClubsDesc)
+            observableClubs.addSource(sortedClubsAsc, observableClubs::setValue)
         }
     }
 
     fun doSortDescending() {
-        if (asscending) {
-            asscending = false
-            mObservableClubs.removeSource(sortedClubsAsc)
-            mObservableClubs.addSource(sortedClubsDesc, mObservableClubs::setValue)
+        if (ascending) {
+            ascending = false
+            observableClubs.removeSource(sortedClubsAsc)
+            observableClubs.addSource(sortedClubsDesc, observableClubs::setValue)
         }
     }
 

@@ -17,11 +17,7 @@ import kotlinx.coroutines.Dispatchers
 class ClubsRepository(private val application: Application) {
     private var clubDao: ClubDao = AppDatabase.invoke(application.applicationContext).clubDao()
 
-    suspend fun getAll(): LiveData<List<Club>> = liveData(Dispatchers.IO) {
-        emitSource(clubDao.getAll())
-    }
-
-    suspend fun getAll(ascending: Boolean): LiveData<List<Club>> = liveData(Dispatchers.IO) {
+    suspend fun getAll(ascending: Boolean = true): LiveData<List<Club>> = liveData(Dispatchers.IO) {
         if (ascending) {
             emitSource(clubDao.getAllByNameAscending())
         } else {
@@ -30,7 +26,7 @@ class ClubsRepository(private val application: Application) {
     }
 
     suspend fun findById(id: Int) = liveData(Dispatchers.IO) {
-        emit(clubDao.findById(id))
+        emitSource(clubDao.findById(id))
     }
 
     suspend fun findByName(name: String) = liveData(Dispatchers.IO) {
@@ -38,26 +34,12 @@ class ClubsRepository(private val application: Application) {
     }
 
     suspend fun deleteAll() {
-        Log.d("CLUBS REPO", "Start Deleting all")
         clubDao.getAllForDeleting().forEach {
-            Log.d("CLUBS REPO", "Deleting ${it.name}")
             clubDao.delete(it)
         }
-        Log.d("CLUBS REPO", "End Deleting all")
     }
 
     suspend fun insertOrUpdate(vararg clubs: Club) {
-        Log.d("CLUBS REPO", "Start insertOrUpdate ${clubs.size} : clubs")
-        clubs.forEach {
-            if (clubDao.findById(it.id).isEmpty()) {
-                Log.d("CLUBS REPO", "Start inserting ${it.name}")
-                clubDao.insertAll(it)
-            } else {
-                Log.d("CLUBS REPO", "Start updating ${it.name}")
-                clubDao.updateClub(it)
-            }
-        }
-
-        Log.d("CLUBS REPO", "End insertOrUpdate")
+        clubDao.restartDB(clubs.asList(), clubs.asList())
     }
 }

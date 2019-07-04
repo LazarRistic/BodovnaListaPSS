@@ -1,6 +1,9 @@
 package com.overswayit.plesnisavezsrbije.database
 
-import com.overswayit.plesnisavezsrbije.models.*
+import com.overswayit.plesnisavezsrbije.models.AgeCategory
+import com.overswayit.plesnisavezsrbije.models.DanceCategory
+import com.overswayit.plesnisavezsrbije.models.DanceType
+import com.overswayit.plesnisavezsrbije.models.PointListItem
 
 /**
  * Created by lazarristic on 2019-05-24.
@@ -42,10 +45,9 @@ object FakePointList {
     }
 
     private fun createPointListItem(danceType: DanceType, ageCategory: AgeCategory, danceCategory: DanceCategory, place: String, points: String, id: String): PointListItem {
-        val pointListItem = PointListItem()
+        val pointListItem = PointListItem(danceCategory)
         pointListItem.danceType = danceType
         pointListItem.ageCategory = ageCategory
-        pointListItem.danceCategory = danceCategory
         pointListItem.place = place
         pointListItem.points = points
         pointListItem.couple = FakeCouple.getCoupleById(id)

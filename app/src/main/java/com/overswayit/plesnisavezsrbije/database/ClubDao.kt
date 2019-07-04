@@ -23,10 +23,10 @@ interface ClubDao {
     fun getAllByNameDescending(): LiveData<List<Club>>
 
     @Query("SELECT * FROM club WHERE id LIKE :id")
-    suspend fun findById(id: Int): List<Club>
+    fun findById(id: Int): LiveData<Club>
 
     @Query("SELECT * FROM club WHERE name LIKE :name")
-    suspend fun findByName(name: String): List<Club>
+    fun findByName(name: String): LiveData<Club>
 
     @Insert
     suspend fun insertAll(vararg clubs: Club)
@@ -36,4 +36,15 @@ interface ClubDao {
 
     @Update
     suspend fun updateClub(vararg club: Club)
+
+    @Transaction
+    suspend fun restartDB(oldClub: List<Club>, newClub: List<Club>) {
+        oldClub.forEach {
+            delete(it)
+        }
+
+        newClub.forEach {
+            insertAll(it)
+        }
+    }
 }

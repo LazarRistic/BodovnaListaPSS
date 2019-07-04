@@ -1,6 +1,7 @@
 package com.overswayit.plesnisavezsrbije.database
 
 import com.overswayit.plesnisavezsrbije.models.*
+import com.overswayit.plesnisavezsrbije.utils.CoupleUtil
 
 /**
  * Created by lazarristic on 2019-05-24.
@@ -18,14 +19,14 @@ object FakeCouple {
         return null
     }
 
-    fun getCoupleById(id: String): Couple? {
+    fun getCoupleById(id: String): Couple {
         getAllCouples().forEach {
             if (id == it.id) {
                 return it
             }
         }
 
-        return null
+        return CoupleUtil.getPlaceHolderCouple()
     }
 
     fun getAllCouples(): List<Couple> {
@@ -75,17 +76,11 @@ object FakeCouple {
 
     private fun createCouple(id: String, nameMale: String, nameFemale: String,
                              club: Club?): Couple {
-        val couple = Couple()
-        couple.id = id
-        couple.nameMale = nameMale
-        couple.nameFemale = nameFemale
-        couple.club = club
-
-        return couple
+        return Couple(id, nameMale, nameFemale, club!!)
     }
 
-    private fun createRatingList(ageCategory: AgeCategory, place: String, points: String): RateingList {
-        val ratingList = RateingList()
+    private fun createRatingList(ageCategory: AgeCategory, place: String, points: String): RatingListItem {
+        val ratingList = RatingListItem()
         ratingList.ageCategory = ageCategory
         ratingList.place = place
         ratingList.points = points
@@ -94,9 +89,8 @@ object FakeCouple {
     }
 
     private fun createPointList(ageCategory: AgeCategory, danceCategory: DanceCategory, place: String, points: String): PointListItem {
-        val pointList = PointListItem()
+        val pointList = PointListItem(danceCategory)
         pointList.ageCategory = ageCategory
-        pointList.danceCategory = danceCategory
         pointList.place = place
         pointList.points = points
 

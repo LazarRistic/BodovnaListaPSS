@@ -1,52 +1,38 @@
 package com.overswayit.plesnisavezsrbije.repository
 
 import android.app.Application
-import android.os.Handler
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.overswayit.plesnisavezsrbije.database.FakePointList
-import com.overswayit.plesnisavezsrbije.database.FakeRatingList
-import com.overswayit.plesnisavezsrbije.models.*
-import java.util.ArrayList
+import androidx.lifecycle.liveData
+import com.overswayit.plesnisavezsrbije.database.AppDatabase
+import com.overswayit.plesnisavezsrbije.database.PointListDao
+import com.overswayit.plesnisavezsrbije.database.RatingListDao
+import com.overswayit.plesnisavezsrbije.models.DanceType
+import com.overswayit.plesnisavezsrbije.models.PointListItem
+import com.overswayit.plesnisavezsrbije.models.RatingListItem
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /**
  * Created by lazarristic on 2019-05-23.
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
 class ListRepository(private val application: Application) {
-    private val laPointListLiveData = MutableLiveData<List<PointListItem>>()
-    private val stPointListLiveData = MutableLiveData<List<PointListItem>>()
-    private val laRatingListLiveData = MutableLiveData<List<RatingListItem>>()
-    private val stRatingListLiveData = MutableLiveData<List<RatingListItem>>()
-    private val kmRatingListLiveData = MutableLiveData<List<RatingListItem>>()
+    private var pointListDao: PointListDao = AppDatabase.invoke(application.applicationContext).pointListDao()
+    private var ratingListDao: RatingListDao = AppDatabase.invoke(application.applicationContext).ratingListDao()
 
-
-    init {
-        laPointListLiveData.postValue(FakePointList.getPointListByDanceType(DanceType.LA))
-        stPointListLiveData.postValue(FakePointList.getPointListByDanceType(DanceType.ST))
-        laRatingListLiveData.postValue(FakeRatingList.getRatingListByDanceType(DanceType.LA))
-        stRatingListLiveData.postValue(FakeRatingList.getRatingListByDanceType(DanceType.ST))
-        kmRatingListLiveData.postValue(FakeRatingList.getRatingListByDanceType(DanceType.KM))
+    suspend fun getAllPointListCouples(danceType: DanceType) = liveData(Dispatchers.IO) {
+        emitSource(pointListDao.getAll(danceType))
     }
 
-    fun getLaPointListCouples(): LiveData<List<PointListItem>> {
-        return laPointListLiveData
+    suspend fun getAllRatingListCouples(danceType: DanceType) = liveData(Dispatchers.IO) {
+        emitSource(ratingListDao.getAll(danceType))
     }
 
-    fun getStPointListCouples(): LiveData<List<PointListItem>> {
-        return stPointListLiveData
+    suspend fun deleteAllAndInsertPointList(oldList: List<PointListItem>, newList: List<PointListItem>) = withContext(Dispatchers.IO) {
+        pointListDao.deleteAndInsert(oldList, newList)
     }
 
-    fun getLaRatingListCouples(): LiveData<List<RatingListItem>> {
-        return laRatingListLiveData
-    }
-
-    fun getStRatingListCouples(): LiveData<List<RatingListItem>> {
-        return stRatingListLiveData
-    }
-
-    fun getKmRatingListCouples(): LiveData<List<RatingListItem>> {
-        return kmRatingListLiveData
+    suspend fun deleteAllAndInsertRatingList(oldList: List<RatingListItem>, newList: List<RatingListItem>) = withContext(Dispatchers.IO) {
+        ratingListDao.deleteAndInsert(oldList, newList)
     }
 }
 
