@@ -52,6 +52,9 @@ dependencies {
     // Room and RxJava
     implementation "androidx.room:room-rxjava2:$rootProject.roomVersion"
 
+    //Room - Paging
+    implementation "android.arch.paging:runtime:1.0.1"
+
     // Lifecycle components
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.archLifecycleVersion"
     kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"

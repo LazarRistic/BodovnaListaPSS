@@ -62,7 +62,7 @@ class PointListFragment : Fragment() {
         pointListAdapter!!.setViewInteractionListener(object : PointListItemAdapter.ViewInteractionListener {
             override fun openCoupleActivity(pointListItem: PointListItem) {
                 val intent = Intent(context, CoupleActivity::class.java)
-                intent.putExtra(CoupleActivity.COUPLE_ID_KEY, pointListItem.couple!!.id)
+                intent.putExtra(CoupleActivity.COUPLE_ID_KEY, pointListItem.couple.id)
                 startActivity(intent)
             }
         })

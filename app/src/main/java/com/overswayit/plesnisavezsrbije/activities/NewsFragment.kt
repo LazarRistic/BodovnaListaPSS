@@ -18,8 +18,7 @@ import java.util.*
 
 class NewsFragment : BaseFragment() {
     private lateinit var binding: com.overswayit.plesnisavezsrbije.databinding.FragmentNewsBinding
-    private var newsAdapter: NewsAdapter? = null
-    private val newsArrayList = ArrayList<News>()
+    private lateinit var newsAdapter: NewsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -31,18 +30,14 @@ class NewsFragment : BaseFragment() {
 
         setupActionBar()
 
-        newsAdapter = NewsAdapter(newsArrayList)
+        newsAdapter = NewsAdapter()
         val mLayoutManager = LinearLayoutManager(activity)
         newsRecyclerView.layoutManager = mLayoutManager
         newsRecyclerView.itemAnimator = DefaultItemAnimator()
         newsRecyclerView.adapter = newsAdapter
 
         val viewModel = ViewModelProviders.of(this).get(NewsViewModel::class.java)
-        viewModel.allNews.observe(this, Observer { news ->
-            newsArrayList.clear()
-            newsArrayList.addAll(news)
-            newsAdapter!!.notifyDataSetChanged()
-        })
+        viewModel.allNews().observe(this, Observer(newsAdapter::submitList))
 
         return binding.root
     }

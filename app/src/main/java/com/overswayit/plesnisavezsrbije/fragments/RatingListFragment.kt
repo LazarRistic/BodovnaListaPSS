@@ -59,7 +59,7 @@ class RatingListFragment : Fragment() {
         ratingListAdapter!!.setViewInteractionListener(object : RatingListItemAdapter.ViewInteractionListener {
             override fun openCoupleActivity(ratingListItem: RatingListItem) {
                 val intent = Intent(context, CoupleActivity::class.java)
-                intent.putExtra(CoupleActivity.COUPLE_ID_KEY, ratingListItem.couple!!.id)
+                intent.putExtra(CoupleActivity.COUPLE_ID_KEY, ratingListItem.couple.id)
                 startActivity(intent)
             }
         })
