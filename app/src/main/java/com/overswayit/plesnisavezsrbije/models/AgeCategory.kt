@@ -4,7 +4,7 @@ package com.overswayit.plesnisavezsrbije.models
  * Created by lazarristic on 25/02/2019.
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
-enum class AgeCategory private constructor(private val `val`: String) {
+enum class AgeCategory constructor(private val `val`: String) {
     JUVENILE("PIO"),
     JUNIOR_I("MLO"),
     JUNIOR_II("OML"),

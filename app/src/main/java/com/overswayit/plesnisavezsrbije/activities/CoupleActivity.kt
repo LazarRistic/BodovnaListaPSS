@@ -9,9 +9,9 @@ import com.overswayit.plesnisavezsrbije.R
 import com.overswayit.plesnisavezsrbije.binding.CoupleInfoViewBindings
 import com.overswayit.plesnisavezsrbije.binding.CouplePointListViewBindings
 import com.overswayit.plesnisavezsrbije.binding.CoupleRatingListViewBindings
-import com.overswayit.plesnisavezsrbije.database.FakeCouple
-import com.overswayit.plesnisavezsrbije.database.FakePointList
-import com.overswayit.plesnisavezsrbije.database.FakeRatingList
+import com.overswayit.plesnisavezsrbije.database.fake.FakeCouple
+import com.overswayit.plesnisavezsrbije.database.fake.FakePointList
+import com.overswayit.plesnisavezsrbije.database.fake.FakeRatingList
 import com.overswayit.plesnisavezsrbije.databinding.ActivityCoupleBinding
 import com.overswayit.plesnisavezsrbije.models.Couple
 import com.overswayit.plesnisavezsrbije.models.DanceType
@@ -61,7 +61,7 @@ class CoupleActivity : AppCompatActivity() {
 
     private fun getRatingListItem(coupleid: String?, danceType: DanceType): RatingListItem? {
         FakeRatingList.getRatingListByDanceType(danceType).forEach {
-            if (coupleid == it.couple!!.id) {
+            if (coupleid == it.couple.id) {
                 return it
             }
         }
@@ -71,7 +71,7 @@ class CoupleActivity : AppCompatActivity() {
 
     private fun getPointListItem(coupleid: String?, danceType: DanceType): PointListItem? {
         FakePointList.getPointListByDanceType(danceType).forEach {
-            if (coupleid == it.couple!!.id) {
+            if (coupleid == it.couple.id) {
                 return it
             }
         }

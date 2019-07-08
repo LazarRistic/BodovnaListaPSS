@@ -52,8 +52,8 @@ class ModernAdjudicatorsFragment : Fragment() {
 
         if (activity != null) {
             val viewModel = ViewModelProviders.of(this,
-                    AdjudicatorsViewModelFactory(AdjudicatorLicensesType.MODERN)).get(AdjudicatorsViewModel::class.java)
-            viewModel.allAdjudicators.observe(this, Observer { adjudicators ->
+                    AdjudicatorsViewModelFactory(AdjudicatorLicensesType.MODERN, activity!!.application)).get(AdjudicatorsViewModel::class.java)
+            viewModel.getAll().observe(this, Observer { adjudicators ->
                 mAdjudicatorList.clear()
                 mAdjudicatorList.addAll(adjudicators)
                 mAdjudicatorAdapter!!.notifyDataSetChanged()

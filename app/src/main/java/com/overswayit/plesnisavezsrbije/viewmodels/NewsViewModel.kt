@@ -6,18 +6,11 @@ import androidx.lifecycle.*
 import com.overswayit.plesnisavezsrbije.models.News
 import com.overswayit.plesnisavezsrbije.repository.NewsRepository
 
-import androidx.paging.DataSource
-import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.overswayit.plesnisavezsrbije.database.AppDatabase
-import com.overswayit.plesnisavezsrbije.database.FakeClubs
-import com.overswayit.plesnisavezsrbije.database.FakeNews
-import com.overswayit.plesnisavezsrbije.models.Club
+import com.overswayit.plesnisavezsrbije.database.fake.FakeNews
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlin.collections.get
 
 /**
  * Created by lazarristic on 18/02/2019.

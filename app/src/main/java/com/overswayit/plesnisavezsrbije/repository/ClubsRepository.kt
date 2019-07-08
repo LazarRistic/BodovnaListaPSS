@@ -14,7 +14,7 @@ import kotlinx.coroutines.Dispatchers
  * Created by lazarristic on 19/02/2019.
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
-class ClubsRepository(private val application: Application) {
+class ClubsRepository(application: Application) {
     private var clubDao: ClubDao = AppDatabase.invoke(application.applicationContext).clubDao()
 
     suspend fun getAll(ascending: Boolean = true): LiveData<List<Club>> = liveData(Dispatchers.IO) {

@@ -5,8 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.viewModelScope
-import com.overswayit.plesnisavezsrbije.database.FakePointList
-import com.overswayit.plesnisavezsrbije.database.FakeRatingList
+import com.overswayit.plesnisavezsrbije.database.fake.FakePointList
+import com.overswayit.plesnisavezsrbije.database.fake.FakeRatingList
 import com.overswayit.plesnisavezsrbije.models.DanceType
 import com.overswayit.plesnisavezsrbije.models.PointListItem
 import com.overswayit.plesnisavezsrbije.models.RatingListItem

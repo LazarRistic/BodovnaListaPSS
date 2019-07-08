@@ -1,24 +1,15 @@
 package com.overswayit.plesnisavezsrbije.repository
 
 import android.app.Application
-import android.os.Handler
-import android.util.Log
 
 import com.overswayit.plesnisavezsrbije.models.News
 
-import java.util.ArrayList
-
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
-import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.overswayit.plesnisavezsrbije.database.AppDatabase
-import com.overswayit.plesnisavezsrbije.database.FakeNews
 import com.overswayit.plesnisavezsrbije.database.NewsDao
-import com.overswayit.plesnisavezsrbije.models.Club
-import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.Dispatchers
 
 /**

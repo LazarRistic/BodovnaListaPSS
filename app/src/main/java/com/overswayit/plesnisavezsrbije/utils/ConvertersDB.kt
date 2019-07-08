@@ -5,10 +5,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.overswayit.plesnisavezsrbije.MyApp
 import com.overswayit.plesnisavezsrbije.R
-import com.overswayit.plesnisavezsrbije.models.AgeCategory
-import com.overswayit.plesnisavezsrbije.models.DanceCategory
-import com.overswayit.plesnisavezsrbije.models.DanceType
-import com.overswayit.plesnisavezsrbije.models.ListType
+import com.overswayit.plesnisavezsrbije.models.*
 
 
 /**
@@ -51,6 +48,11 @@ class ConvertersDB {
     }
 
     @TypeConverter
+    fun fromAdjudicatorLicencesType(value: AdjudicatorLicensesType): String {
+        return value.asString()
+    }
+
+    @TypeConverter
     fun fromDanceCategoryString(value: String): DanceCategory {
         return when (value.toLowerCase()) {
             "i" -> DanceCategory.I
@@ -85,5 +87,10 @@ class ConvertersDB {
     @TypeConverter
     fun fromAgeCategoryString(value: String): AgeCategory {
         return AgeCategory.fromString(value)!!
+    }
+
+    @TypeConverter
+    fun fromAdjudicatorLicencesTypeString(value: String): AdjudicatorLicensesType {
+        return AdjudicatorLicensesType.fromString(value)
     }
 }

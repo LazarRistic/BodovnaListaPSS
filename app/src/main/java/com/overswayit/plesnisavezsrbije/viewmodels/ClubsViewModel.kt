@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.viewModelScope
-import com.overswayit.plesnisavezsrbije.database.FakeClubs
+import com.overswayit.plesnisavezsrbije.database.fake.FakeClubs
 import com.overswayit.plesnisavezsrbije.models.Club
 import com.overswayit.plesnisavezsrbije.repository.ClubsRepository
 import kotlinx.coroutines.Dispatchers

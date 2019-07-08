@@ -1,4 +1,4 @@
-package com.overswayit.plesnisavezsrbije.database
+package com.overswayit.plesnisavezsrbije.database.fake
 
 import com.overswayit.plesnisavezsrbije.models.AgeCategory
 import com.overswayit.plesnisavezsrbije.models.DanceCategory
