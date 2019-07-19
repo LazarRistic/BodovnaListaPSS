@@ -5,8 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.viewModelScope
-import com.overswayit.plesnisavezsrbije.database.fake.FakeClubs
 import com.overswayit.plesnisavezsrbije.models.Club
+import com.overswayit.plesnisavezsrbije.networking.ClubsApiService
 import com.overswayit.plesnisavezsrbije.repository.ClubsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,7 +17,7 @@ import kotlinx.coroutines.withContext
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
 class ClubsViewModel(application: Application) : AndroidViewModel(application) {
-    private val clubsRepository: ClubsRepository = ClubsRepository(application)
+    private val clubsRepository: ClubsRepository = ClubsRepository(application, ClubsApiService.clubsApi)
     private var ascending = true
     private val observableClubs = MediatorLiveData<List<Club>>()
     private lateinit var sortedClubsAsc: LiveData<List<Club>>
@@ -25,7 +25,6 @@ class ClubsViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         viewModelScope.launch {
-            insertClubs()
             sortedClubsAsc = clubsRepository.getAll(true)
             sortedClubsDesc = clubsRepository.getAll(false)
 
@@ -34,6 +33,8 @@ class ClubsViewModel(application: Application) : AndroidViewModel(application) {
             } else {
                 observableClubs.addSource(sortedClubsDesc, observableClubs::setValue)
             }
+
+            fetchClubs()
         }
     }
 
@@ -57,9 +58,7 @@ class ClubsViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    private suspend fun insertClubs() = withContext(Dispatchers.IO) {
-        FakeClubs.getAllClubs().forEach {
-            clubsRepository.insertOrUpdate(it)
-        }
+    private suspend fun fetchClubs() = withContext(Dispatchers.IO) {
+        clubsRepository.insertOrUpdate(clubsRepository.getLatestClubs())
     }
 }

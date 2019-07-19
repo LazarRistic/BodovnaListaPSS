@@ -9,7 +9,7 @@ import com.overswayit.plesnisavezsrbije.databinding.ActivityRatingListBinding
 import com.overswayit.plesnisavezsrbije.fragments.RatingListAdapter
 import kotlinx.android.synthetic.main.activity_point_list.*
 
-class RatingListActivity : AppCompatActivity() {
+class RatingListActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

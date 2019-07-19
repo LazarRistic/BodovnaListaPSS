@@ -3,62 +3,69 @@ package com.overswayit.plesnisavezsrbije.viewmodels
 import android.app.Application
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.overswayit.plesnisavezsrbije.MyApp
 import com.overswayit.plesnisavezsrbije.R
+import com.overswayit.plesnisavezsrbije.database.PointListDao
 import com.overswayit.plesnisavezsrbije.models.DanceCategory
+import com.overswayit.plesnisavezsrbije.models.DanceType
 import com.overswayit.plesnisavezsrbije.models.PointListItem
+import com.overswayit.plesnisavezsrbije.networking.PointListApiService
+import com.overswayit.plesnisavezsrbije.repository.ListRepository
 import com.overswayit.plesnisavezsrbije.utils.CoupleUtil
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 /**
  * Created by lazarristic on 2019-06-13.
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
-class CouplePointListViewModel(private val application: Application, private val latin: PointListItem, private val standard: PointListItem) : ViewModel() {
+class CouplePointListViewModel(application: Application, private val coupleId: String) : ViewModel() {
+    private val pointListRepository = ListRepository(application, PointListApiService.pointListApi)
 
     val title: String
-        get() {
-            return CoupleUtil.getCoupleLastNames(latin.couple!!)
+        get() = runBlocking {
+            CoupleUtil.getCoupleLastNames(pointListRepository.getPointListCouple(coupleId, DanceType.LA).couple)
         }
 
     val pointsLatin: String?
-        get() {
-            return latin.points
+        get() = runBlocking {
+            pointListRepository.getPointListCouple(coupleId, DanceType.LA).points
         }
 
     val pointsStandard: String?
-        get() {
-            return standard.points
+        get() = runBlocking {
+            pointListRepository.getPointListCouple(coupleId, DanceType.ST).points
         }
 
     val placeLatin: String?
-        get() {
-            return latin.place
+        get() = runBlocking {
+            pointListRepository.getPointListCouple(coupleId, DanceType.LA).place
         }
 
     val placeStandard: String?
-        get() {
-            return standard.place
+        get() = runBlocking {
+            pointListRepository.getPointListCouple(coupleId, DanceType.ST).place
         }
 
     val danceCategoryLatin: String?
-        get() {
-            return danceCategoryToString(latin.danceCategory)
-
+        get() = runBlocking {
+            danceCategoryToString(pointListRepository.getPointListCouple(coupleId, DanceType.LA).danceCategory)
         }
 
     val danceCategoryStandard: String?
-        get() {
-            return danceCategoryToString(standard.danceCategory)
+        get() = runBlocking {
+            danceCategoryToString(pointListRepository.getPointListCouple(coupleId, DanceType.ST).danceCategory)
         }
 
     val danceCategoryColorLatin: Int
-        get() {
-            return ContextCompat.getColor(MyApp.applicationContext(), CoupleUtil.getDanceCategoryColor(latin.danceCategory))
+        get() = runBlocking {
+            ContextCompat.getColor(MyApp.applicationContext(), CoupleUtil.getDanceCategoryColor(pointListRepository.getPointListCouple(coupleId, DanceType.LA).danceCategory))
         }
 
     val danceCategoryColorStandard: Int
-        get() {
-            return ContextCompat.getColor(MyApp.applicationContext(), CoupleUtil.getDanceCategoryColor(standard.danceCategory))
+        get() = runBlocking {
+            ContextCompat.getColor(MyApp.applicationContext(), CoupleUtil.getDanceCategoryColor(pointListRepository.getPointListCouple(coupleId, DanceType.ST).danceCategory))
         }
 
     private fun danceCategoryToString(danceCategory: DanceCategory?): String? {

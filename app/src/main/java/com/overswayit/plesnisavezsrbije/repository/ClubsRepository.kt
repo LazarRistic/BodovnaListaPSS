@@ -1,12 +1,14 @@
 package com.overswayit.plesnisavezsrbije.repository
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import com.google.gson.internal.LinkedTreeMap
 import com.overswayit.plesnisavezsrbije.database.AppDatabase
 import com.overswayit.plesnisavezsrbije.database.ClubDao
 import com.overswayit.plesnisavezsrbije.models.Club
+import com.overswayit.plesnisavezsrbije.networking.ClubsApiInterface
+import com.overswayit.plesnisavezsrbije.parsers.server.ClubParser
 import kotlinx.coroutines.Dispatchers
 
 
@@ -14,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
  * Created by lazarristic on 19/02/2019.
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
-class ClubsRepository(application: Application) {
+class ClubsRepository(application: Application, private val apiInterface: ClubsApiInterface) : BaseRepository() {
     private var clubDao: ClubDao = AppDatabase.invoke(application.applicationContext).clubDao()
 
     suspend fun getAll(ascending: Boolean = true): LiveData<List<Club>> = liveData(Dispatchers.IO) {
@@ -25,7 +27,7 @@ class ClubsRepository(application: Application) {
         }
     }
 
-    suspend fun findById(id: Int) = liveData(Dispatchers.IO) {
+    suspend fun findById(id: String) = liveData(Dispatchers.IO) {
         emitSource(clubDao.findById(id))
     }
 
@@ -39,7 +41,29 @@ class ClubsRepository(application: Application) {
         }
     }
 
-    suspend fun insertOrUpdate(vararg clubs: Club) {
-        clubDao.restartDB(clubs.asList(), clubs.asList())
+    suspend fun insertOrUpdate(clubs: List<Club>) {
+        clubs.forEach {
+            clubDao.insertOrUpdate(it)
+        }
+    }
+
+    suspend fun getLatestClubs(): List<Club> {
+        val result = safeApiCall(
+                call = { apiInterface.getClubs() },
+                error = "Error fetching clubs"
+        )
+
+        val clubs = ArrayList<Club>()
+
+        if (result != null) {
+            val list = result as java.util.ArrayList<*>
+
+            list.forEach {
+                @Suppress("UNCHECKED_CAST")
+                clubs.add(ClubParser.toClubFromServerHashMap(it as LinkedTreeMap<String, Any>))
+            }
+        }
+
+        return clubs
     }
 }

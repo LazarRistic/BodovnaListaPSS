@@ -1,5 +1,6 @@
 package com.overswayit.plesnisavezsrbije.viewmodels
 
+import com.overswayit.plesnisavezsrbije.MyApp
 import com.overswayit.plesnisavezsrbije.models.Adjudicator
 
 /**
@@ -24,4 +25,7 @@ class AdjudicatorViewModel(private val adjudicator: Adjudicator) {
 
     val avatarUri: String?
         get() = adjudicator.avatarUrl
+
+    val borderColor: Int
+        get() = MyApp.applicationContext().getColor(adjudicator.color)
 }

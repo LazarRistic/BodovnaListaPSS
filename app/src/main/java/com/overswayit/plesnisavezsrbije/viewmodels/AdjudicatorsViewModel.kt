@@ -8,6 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.overswayit.plesnisavezsrbije.database.fake.FakeAdjudicators
 import com.overswayit.plesnisavezsrbije.models.Adjudicator
 import com.overswayit.plesnisavezsrbije.models.AdjudicatorLicensesType
+import com.overswayit.plesnisavezsrbije.networking.AdjudicatorsApiInterface
+import com.overswayit.plesnisavezsrbije.networking.AdjudicatorsApiService
 import com.overswayit.plesnisavezsrbije.repository.AdjudicatorsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,24 +20,24 @@ import kotlinx.coroutines.withContext
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
 open class AdjudicatorsViewModel internal constructor(private val licensesType: AdjudicatorLicensesType, application: Application) : ViewModel() {
-    private val adjudicatorsRepository: AdjudicatorsRepository = AdjudicatorsRepository(application)
+    private val adjudicatorsRepository: AdjudicatorsRepository = AdjudicatorsRepository(application, AdjudicatorsApiService.adjudicatorApi)
     private val observableAdjudicator = MediatorLiveData<List<Adjudicator>>()
 
     init {
         viewModelScope.launch {
-            insertFakeAdjudicators()
-
             val adjudicators = adjudicatorsRepository.getAllWithLicensesType(licensesType)
             observableAdjudicator.addSource(adjudicators, observableAdjudicator::setValue)
-        }
-    }
 
-    private suspend fun insertFakeAdjudicators() = withContext(Dispatchers.IO) {
-        adjudicatorsRepository.insertOrUpdate(FakeAdjudicators.getFakeAdjudicators())
+            fetchAdjudicators()
+        }
     }
 
     fun getAll(): LiveData<List<Adjudicator>> {
         return observableAdjudicator
+    }
+
+    private suspend fun fetchAdjudicators() = withContext(Dispatchers.IO) {
+        adjudicatorsRepository.insertOrUpdate(adjudicatorsRepository.getLatestAdjudicators())
     }
 
 }

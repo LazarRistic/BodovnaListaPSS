@@ -4,9 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import com.overswayit.plesnisavezsrbije.R
 import com.overswayit.plesnisavezsrbije.databinding.ViewCoupleInfoBinding
-import com.overswayit.plesnisavezsrbije.models.Couple
 import com.overswayit.plesnisavezsrbije.utils.DisplayUtil
 import com.overswayit.plesnisavezsrbije.viewmodels.CoupleInfoViewModel
 import com.squareup.picasso.Picasso
@@ -33,31 +33,33 @@ class CoupleInfoView : BaseCompoundView {
     }
 
     fun setViewModel(viewModel: CoupleInfoViewModel) {
-        binding.clubName.text = viewModel.clubName
-        binding.clubTown.text = viewModel.clubTown
-        binding.maleName.text = viewModel.nameMale
-        binding.femaleName.text = viewModel.nameFemale
-        binding.latinCategory.text = viewModel.latinCategoryText
-        binding.standardCategory.text = viewModel.standardCategoryText
-        binding.ageCategory.text = viewModel.ageCategoryText
-        binding.latinCategory.backgroundTintList = androidx.databinding.adapters.Converters.convertColorToColorStateList(viewModel.latinCategoryColor)
-        binding.standardCategory.backgroundTintList = androidx.databinding.adapters.Converters.convertColorToColorStateList(viewModel.standardCategoryColor)
-        binding.ageCategory.backgroundTintList = androidx.databinding.adapters.Converters.convertColorToColorStateList(viewModel.ageCategoryColor)
-        binding.followImage.setImageDrawable(context.resources.getDrawable(viewModel.followImage, null))
-        binding.followImage.setOnClickListener {
-            binding.followImage.setImageDrawable(context.resources.getDrawable(viewModel.toggleFavorite(), null))
+        lifecycleScope.launchWhenResumed {
+            binding.clubName.text = viewModel.clubName
+            binding.clubTown.text = viewModel.clubTown
+            binding.maleName.text = viewModel.nameMale
+            binding.femaleName.text = viewModel.nameFemale
+            binding.latinCategory.text = viewModel.latinCategoryText
+            binding.standardCategory.text = viewModel.standardCategoryText
+            binding.ageCategory.text = viewModel.ageCategoryText
+            binding.latinCategory.backgroundTintList = androidx.databinding.adapters.Converters.convertColorToColorStateList(viewModel.latinCategoryColor)
+            binding.standardCategory.backgroundTintList = androidx.databinding.adapters.Converters.convertColorToColorStateList(viewModel.standardCategoryColor)
+            binding.ageCategory.backgroundTintList = androidx.databinding.adapters.Converters.convertColorToColorStateList(viewModel.ageCategoryColor)
+            binding.followImage.setImageDrawable(context.resources.getDrawable(viewModel.followImage, null))
+            binding.followImage.setOnClickListener {
+                binding.followImage.setImageDrawable(context.resources.getDrawable(viewModel.toggleFavorite(), null))
+            }
+
+            Picasso.get()
+                    .load(viewModel.coupleImageUrl)
+                    .fit()
+                    .into(binding.coupleImage)
+
+            Picasso.get()
+                    .load(viewModel.clubLogoUrl)
+                    .resize(DisplayUtil.dpToPx(50), DisplayUtil.dpToPx(50))
+                    .centerCrop()
+                    .into(binding.clubImage)
         }
-
-        Picasso.get()
-                .load(viewModel.coupleImageUrl)
-                .fit()
-                .into(binding.coupleImage)
-
-        Picasso.get()
-                .load(viewModel.clubLogoUrl)
-                .resize(DisplayUtil.dpToPx(50), DisplayUtil.dpToPx(50))
-                .centerCrop()
-                .into(binding.clubImage)
     }
 
 }

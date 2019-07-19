@@ -128,7 +128,7 @@ class ClubsFragment : BaseFragment() {
 //        intent.putExtra(ClubActivity.CLUB_ID_KEY, club.id)
 //        startActivity(intent)
         val bundle = Bundle()
-        bundle.putInt(ClubFragment.CLUB_ID_KEY, club.id)
+        bundle.putString(ClubFragment.CLUB_ID_KEY, club.id)
         findNavController().navigate(R.id.clubFragment, bundle)
     }
 

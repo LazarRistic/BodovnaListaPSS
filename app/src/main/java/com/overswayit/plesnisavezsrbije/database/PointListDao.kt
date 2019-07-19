@@ -17,8 +17,14 @@ interface PointListDao {
     @Query("SELECT * FROM point_list_item WHERE dance_type = :danceType")
     fun getAll(danceType: DanceType): LiveData<List<PointListItem>>
 
+    @Query("SELECT * FROM point_list_item WHERE couple_id = :coupleId AND dance_type = :danceType")
+    fun getCoupleById(coupleId: String, danceType: DanceType): PointListItem
+
     @Insert
     suspend fun insert(vararg pointListItems: PointListItem)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertOrUpdate(pointListItem: PointListItem)
 
     @Delete
     suspend fun delete(pointListItem: PointListItem)

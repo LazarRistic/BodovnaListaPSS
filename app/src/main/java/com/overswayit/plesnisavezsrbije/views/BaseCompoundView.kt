@@ -8,12 +8,16 @@ import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.LayoutRes
 import androidx.annotation.StyleableRes
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LifecycleRegistryOwner
+import com.overswayit.plesnisavezsrbije.MyApp
 
 /**
  * Created by lazarristic on 18/02/2019.
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
-abstract class BaseCompoundView : FrameLayout {
+abstract class BaseCompoundView : FrameLayout, LifecycleOwner {
 
     @get:LayoutRes
     protected abstract val layoutId: Int
@@ -46,6 +50,10 @@ abstract class BaseCompoundView : FrameLayout {
         addView(view)
 
         bindViews(view)
+    }
+
+    override fun getLifecycle(): Lifecycle {
+        return MyApp.applicationContext().getTopBaseActivity()!!.lifecycle
     }
 
     private fun inflateView(ctx: Context) {

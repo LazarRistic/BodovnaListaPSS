@@ -1,5 +1,6 @@
 package com.overswayit.plesnisavezsrbije.database
 
+import android.database.sqlite.SQLiteConstraintException
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.overswayit.plesnisavezsrbije.models.Club
@@ -23,7 +24,7 @@ interface ClubDao {
     fun getAllByNameDescending(): LiveData<List<Club>>
 
     @Query("SELECT * FROM club WHERE id LIKE :id")
-    fun findById(id: Int): LiveData<Club>
+    fun findById(id: String): LiveData<Club>
 
     @Query("SELECT * FROM club WHERE name LIKE :name")
     fun findByName(name: String): LiveData<Club>
@@ -36,6 +37,9 @@ interface ClubDao {
 
     @Update
     suspend fun updateClub(vararg club: Club)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertOrUpdate(club: Club)
 
     @Transaction
     suspend fun restartDB(oldClub: List<Club>, newClub: List<Club>) {

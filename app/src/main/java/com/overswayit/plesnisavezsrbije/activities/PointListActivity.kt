@@ -9,7 +9,7 @@ import com.overswayit.plesnisavezsrbije.databinding.ActivityPointListBinding
 import com.overswayit.plesnisavezsrbije.fragments.PointListAdapter
 import kotlinx.android.synthetic.main.activity_point_list.*
 
-class PointListActivity : AppCompatActivity() {
+class PointListActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

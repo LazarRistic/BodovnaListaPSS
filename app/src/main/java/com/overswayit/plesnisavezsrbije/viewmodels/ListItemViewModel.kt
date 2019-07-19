@@ -34,7 +34,7 @@ class ListItemViewModel(val couplesListItem: CouplesListItem) : ListItemViewMode
             val club = getClub()
 
             if (club != null) {
-                return club.logoUrl!!
+                return club.logoUrl
             }
 
             return StringUtil.getString(R.string.not_available)
@@ -43,7 +43,7 @@ class ListItemViewModel(val couplesListItem: CouplesListItem) : ListItemViewMode
     override val place: String
         get() {
             if (!TextUtils.isEmpty(couplesListItem.place)) {
-                return couplesListItem.place!!
+                return couplesListItem.place
             }
 
             return StringUtil.getString(R.string.not_available)
@@ -52,7 +52,7 @@ class ListItemViewModel(val couplesListItem: CouplesListItem) : ListItemViewMode
     override val points: String
         get() {
             if (!TextUtils.isEmpty(couplesListItem.points)) {
-                return couplesListItem.points!!
+                return couplesListItem.points
             }
 
             return StringUtil.getString(R.string.not_available)
@@ -90,13 +90,13 @@ class ListItemViewModel(val couplesListItem: CouplesListItem) : ListItemViewMode
     }
 
     fun getAgeCategory(): String {
-        return couplesListItem.ageCategory.toString()
+        return couplesListItem.ageCategory.asString()
     }
 
     fun getDanceCategory(): String {
         return when (couplesListItem.listType) {
             ListType.POINT -> (couplesListItem as PointListItem).danceCategory.toString()
-            else -> DanceCategory.A.toString()
+            else -> DanceCategory.A.asString()
         }
     }
 

@@ -33,6 +33,7 @@ class AdjudicatorAdapter(private val adjudicators: List<Adjudicator>) : Recycler
 
             binding.adjudicatorName.text = viewModel.name
             binding.adjudicatorLicenses.text = viewModel.licenses
+            binding.adjudicatorAvatarView.setBorderColor(viewModel.borderColor)
 
             Picasso.get()
                     .load(viewModel.avatarUri)

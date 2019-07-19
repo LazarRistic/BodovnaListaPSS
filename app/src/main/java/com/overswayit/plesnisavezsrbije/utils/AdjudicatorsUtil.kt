@@ -1,5 +1,6 @@
 package com.overswayit.plesnisavezsrbije.utils
 
+import com.overswayit.plesnisavezsrbije.R
 import com.overswayit.plesnisavezsrbije.models.Adjudicator
 import com.overswayit.plesnisavezsrbije.models.AdjudicatorLicensesType
 
@@ -14,6 +15,6 @@ object AdjudicatorsUtil {
             list.add(it)
         }
 
-        return Adjudicator(id, avatarUri, name, list, licencesType)
+        return Adjudicator(id, avatarUri, name, list, licencesType, R.color.white)
     }
 }

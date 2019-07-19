@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingComponent
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.lifecycleScope
 import com.overswayit.plesnisavezsrbije.R
 import com.overswayit.plesnisavezsrbije.binding.CoupleInfoViewBindings
 import com.overswayit.plesnisavezsrbije.binding.CouplePointListViewBindings
@@ -20,7 +21,7 @@ import com.overswayit.plesnisavezsrbije.models.RatingListItem
 import com.overswayit.plesnisavezsrbije.viewmodels.*
 
 
-class CoupleActivity : AppCompatActivity() {
+class CoupleActivity : BaseActivity() {
 
     companion object {
         const val COUPLE_ID_KEY = "couple_id_key"
@@ -32,18 +33,12 @@ class CoupleActivity : AppCompatActivity() {
 
         val coupleid = intent.getStringExtra(COUPLE_ID_KEY)
 
-        val pointListItemLA = getPointListItem(coupleid, DanceType.LA)
-        val pointListItemST = getPointListItem(coupleid, DanceType.ST)
-        val ratingListItemLA = getRatingListItem(coupleid, DanceType.LA)
-        val ratingListItemST = getRatingListItem(coupleid, DanceType.ST)
-        val ratingListItemKM = getRatingListItem(coupleid, DanceType.KM)
-
         val viewModelPointList = ViewModelProviders.of(this,
-                CouplePointListViewModelFactory(this.application, pointListItemLA!!, pointListItemST!!)).get(CouplePointListViewModel::class.java)
+                CouplePointListViewModelFactory(this.application, coupleid)).get(CouplePointListViewModel::class.java)
         val viewModelRatingList = ViewModelProviders.of(this,
-                CoupleRatingListViewModelFactory(this.application, ratingListItemLA!!, ratingListItemST!!, ratingListItemKM!!)).get(CoupleRatingListViewModel::class.java)
+                CoupleRatingListViewModelFactory(this.application, coupleid)).get(CoupleRatingListViewModel::class.java)
         val viewModelCoupleInfo = ViewModelProviders.of(this,
-                CoupleInfoViewModelFactory(this.application, getCouple(coupleid)!!, pointListItemLA, pointListItemST)).get(CoupleInfoViewModel::class.java)
+                CoupleInfoViewModelFactory(this.application, coupleid)).get(CoupleInfoViewModel::class.java)
         binding.viewModelPointList = viewModelPointList
         binding.viewModelRatingList = viewModelRatingList
         binding.viewModelInfo = viewModelCoupleInfo
@@ -52,31 +47,14 @@ class CoupleActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         toolbar.setNavigationOnClickListener { onBackPressed() }
-        toolbar.title = viewModelPointList.title
+
+        lifecycleScope.launchWhenResumed {
+            toolbar.title = viewModelPointList.title
+        }
     }
 
     private fun getCouple(coupleid: String?): Couple? {
         return FakeCouple.getCoupleById(coupleid!!)
-    }
-
-    private fun getRatingListItem(coupleid: String?, danceType: DanceType): RatingListItem? {
-        FakeRatingList.getRatingListByDanceType(danceType).forEach {
-            if (coupleid == it.couple.id) {
-                return it
-            }
-        }
-
-        return null
-    }
-
-    private fun getPointListItem(coupleid: String?, danceType: DanceType): PointListItem? {
-        FakePointList.getPointListByDanceType(danceType).forEach {
-            if (coupleid == it.couple.id) {
-                return it
-            }
-        }
-
-        return null
     }
 
     private inner class ExampleDataComponent : DataBindingComponent {

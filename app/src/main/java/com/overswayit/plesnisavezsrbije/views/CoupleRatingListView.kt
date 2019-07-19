@@ -6,6 +6,9 @@ import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import com.overswayit.plesnisavezsrbije.MyApp
 import com.overswayit.plesnisavezsrbije.R
 import com.overswayit.plesnisavezsrbije.viewmodels.CoupleRatingListViewModel
 
@@ -23,15 +26,15 @@ class CoupleRatingListView : BaseCompoundView {
 
     private lateinit var binding: com.overswayit.plesnisavezsrbije.databinding.ViewCoupleRatingListBinding
 
-    constructor(context: Context) : super(context)
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
-
     override fun bindingInflateView(inflater: LayoutInflater) {
         binding = DataBindingUtil.inflate(inflater, layoutId, this, false)
 
         addView(binding.root)
     }
+
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     override fun getParams(ta: TypedArray) {
         val pointsLatin = ta.getString(R.styleable.CoupleRatingListView_pointsLatin)
@@ -45,14 +48,15 @@ class CoupleRatingListView : BaseCompoundView {
         val place = Triple(placeLatin, placeStandard, placeCombined)
 
         setView(points, place)
-
     }
 
     fun setViewModel(viewModel: CoupleRatingListViewModel) {
-        val points = Triple(viewModel.pointsLatin, viewModel.pointsStandard, viewModel.pointsCombined)
-        val place = Triple(viewModel.placeLatin, viewModel.placeStandard, viewModel.placeCombined)
+        lifecycleScope.launchWhenResumed {
+            val points = Triple(viewModel.pointsLatin, viewModel.pointsStandard, viewModel.pointsCombined)
+            val place = Triple(viewModel.placeLatin, viewModel.placeStandard, viewModel.placeCombined)
 
-        setView(points, place)
+            setView(points, place)
+        }
     }
 
     private fun setView(points: Triple<String?, String?, String?>, place: Triple<String?, String?, String?>) {

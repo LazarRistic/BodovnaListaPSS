@@ -6,6 +6,7 @@ import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import com.overswayit.plesnisavezsrbije.R
 import com.overswayit.plesnisavezsrbije.databinding.ViewCouplePointListBinding
 import com.overswayit.plesnisavezsrbije.viewmodels.CouplePointListViewModel
@@ -50,17 +51,19 @@ class CouplePointListView : BaseCompoundView {
     }
 
     fun setViewModel(viewModel: CouplePointListViewModel) {
-        val pointsLatin = viewModel.pointsLatin
-        val pointsStandard = viewModel.pointsStandard
-        val placeLatin = viewModel.placeLatin
-        val placeStandard = viewModel.placeStandard
-        val danceCategoryLatin = viewModel.danceCategoryLatin
-        val danceCategoryStandard = viewModel.danceCategoryStandard
+        lifecycleScope.launchWhenResumed {
+            val pointsLatin = viewModel.pointsLatin
+            val pointsStandard = viewModel.pointsStandard
+            val placeLatin = viewModel.placeLatin
+            val placeStandard = viewModel.placeStandard
+            val danceCategoryLatin = viewModel.danceCategoryLatin
+            val danceCategoryStandard = viewModel.danceCategoryStandard
 
-        val danceCategoryColorLatin = viewModel.danceCategoryColorLatin
-        val danceCategoryColorStandard = viewModel.danceCategoryColorStandard
+            val danceCategoryColorLatin = viewModel.danceCategoryColorLatin
+            val danceCategoryColorStandard = viewModel.danceCategoryColorStandard
 
-        setView(pointsLatin, pointsStandard, placeLatin, placeStandard, danceCategoryLatin, danceCategoryStandard, danceCategoryColorLatin, danceCategoryColorStandard)
+            setView(pointsLatin, pointsStandard, placeLatin, placeStandard, danceCategoryLatin, danceCategoryStandard, danceCategoryColorLatin, danceCategoryColorStandard)
+        }
     }
 
     private fun setView(pointsLatin: String?, pointsStandard: String?, placeLatin: String?, placeStandard: String?, danceCategoryLatin: String?, danceCategoryStandard: String?, danceCategoryColorLatin: Int, danceCategoryColorStandard: Int) {
@@ -74,7 +77,6 @@ class CouplePointListView : BaseCompoundView {
 
         if (!TextUtils.isEmpty(placeLatin)) {
             binding.pointsLatin.text = pointsLatin
-
         }
 
         if (!TextUtils.isEmpty(placeStandard)) {

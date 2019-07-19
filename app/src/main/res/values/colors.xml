@@ -17,4 +17,18 @@
     <color name="color_class_b">#4FAD5A</color>
     <color name="color_class_c">#D3BB52</color>
     <color name="color_class_d">#C65B3D</color>
+
+    <!-- Color for every age category -->
+    <color name="color_age_category_SEN">#EA5866</color>
+    <color name="color_age_category_STO">#7F7EFF</color>
+    <color name="color_age_category_OML">#A390E4</color>
+    <color name="color_age_category_MLO">#643A71</color>
+    <color name="color_age_category_PIO">#BD9391</color>
+
+    <!-- Adjudicators border colors -->
+    <color name="adjudicator_color_5">#800000</color>
+    <color name="adjudicator_color_6">#A60000</color>
+    <color name="adjudicator_color_7">#DD0000</color>
+    <color name="adjudicator_color_8">#FF6060</color>
+    <color name="adjudicator_color_9">#FFAEAE</color>
 </resources>

@@ -15,13 +15,13 @@ object CoupleUtil {
 
     fun getCoupleLastNames(couple: Couple): String {
         val maleLastName = if (!TextUtils.isEmpty(couple.nameMale)) {
-            getLastName(couple.nameMale!!)
+            getLastName(couple.nameMale)
         } else {
             StringUtil.getString(R.string.not_available)
         }
 
         val femaleLastName = if (!TextUtils.isEmpty(couple.nameFemale)) {
-            getLastName(couple.nameFemale!!)
+            getLastName(couple.nameFemale)
         } else {
             StringUtil.getString(R.string.not_available)
         }
@@ -31,12 +31,12 @@ object CoupleUtil {
 
     fun getAgeCategoryColor(ageCategory: AgeCategory?): Int {
         return when (ageCategory) {
-            AgeCategory.SENIOR -> R.color.color_primary_state_list
-            AgeCategory.ADULT -> R.color.color_primary_state_list
-            AgeCategory.YOUTH -> R.color.color_primary_state_list
-            AgeCategory.JUNIOR_I -> R.color.color_primary_state_list
-            AgeCategory.JUNIOR_II -> R.color.color_primary_state_list
-            AgeCategory.JUVENILE -> R.color.color_primary_state_list
+            AgeCategory.SENIOR -> R.color.color_age_category_SEN
+            AgeCategory.ADULT -> R.color.color_age_category_SEN
+            AgeCategory.YOUTH -> R.color.color_age_category_STO
+            AgeCategory.JUNIOR_I -> R.color.color_age_category_OML
+            AgeCategory.JUNIOR_II -> R.color.color_age_category_MLO
+            AgeCategory.JUVENILE -> R.color.color_age_category_PIO
             else -> R.color.white
         }
     }

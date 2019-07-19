@@ -10,15 +10,18 @@ import com.overswayit.plesnisavezsrbije.database.fake.FakeRatingList
 import com.overswayit.plesnisavezsrbije.models.DanceType
 import com.overswayit.plesnisavezsrbije.models.PointListItem
 import com.overswayit.plesnisavezsrbije.models.RatingListItem
+import com.overswayit.plesnisavezsrbije.networking.PointListApiService
 import com.overswayit.plesnisavezsrbije.repository.ListRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * Created by lazarristic on 2019-05-23.
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
 class ListViewModel(application: Application) : AndroidViewModel(application) {
-    private val listRepository: ListRepository = ListRepository(application)
+    private val listRepository: ListRepository = ListRepository(application, PointListApiService.pointListApi)
     private val observableLaPointListMediator = MediatorLiveData<List<PointListItem>>()
     private val observableStPointListMediator = MediatorLiveData<List<PointListItem>>()
     private val observableLaRatingListMediator = MediatorLiveData<List<RatingListItem>>()
@@ -27,8 +30,6 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         viewModelScope.launch {
-            insertPointList()
-
             val pointListLatino = listRepository.getAllPointListCouples(DanceType.LA)
             observableLaPointListMediator.addSource(pointListLatino, observableLaPointListMediator::setValue)
 
@@ -43,6 +44,8 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
 
             val ratingListCombination = listRepository.getAllRatingListCouples(DanceType.KM)
             observableKmRatingListMediator.addSource(ratingListCombination, observableKmRatingListMediator::setValue)
+
+            fetchPointList()
         }
     }
 
@@ -73,5 +76,9 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
         listRepository.deleteAllAndInsertRatingList(ratingListLa, ratingListLa)
         listRepository.deleteAllAndInsertRatingList(ratingListSt, ratingListSt)
         listRepository.deleteAllAndInsertRatingList(ratingListKm, ratingListKm)
+    }
+
+    private suspend fun fetchPointList() = withContext(Dispatchers.IO) {
+        listRepository.insertOrUpdate(listRepository.getLatestPointList())
     }
 }

@@ -1,6 +1,8 @@
 package com.overswayit.plesnisavezsrbije.database.fake
 
 import com.overswayit.plesnisavezsrbije.models.Club
+import com.overswayit.plesnisavezsrbije.utils.ClubUtil
+import com.overswayit.plesnisavezsrbije.utils.ClubUtil.getLogoUrl
 
 /**
  * Created by lazarristic on 2019-05-24.
@@ -8,7 +10,7 @@ import com.overswayit.plesnisavezsrbije.models.Club
  */
 object FakeClubs {
 
-    fun getClubById(id: Int): Club? {
+    fun getClubById(id: String): Club? {
         getAllClubs().forEach {
             if (it.id == id) {
                 return it
@@ -29,53 +31,61 @@ object FakeClubs {
     }
 
     fun getAllClubs(): List<Club> {
-        val best = createClub(100,
+        val best = createClub("1446",
+                getLogoUrl("1446"),
                 "Best",
-                "Kružni Put Kijevo 21v",
+                "Calypso",
                 "Beograd",
+                "Kružni Put Kijevo 21v",
+                "www.danceclubbest.com",
                 "Branislava Radovanović",
                 "bubarada70@gmail.com",
-                "K01446.jpg",
                 "0605523289", "0112337082")
 
-        val calypso = createClub(101,
+        val calypso = createClub("66",
+                getLogoUrl("66"),
                 "Calypso",
-                "Miloja Zakića 1/7",
                 "Beograd",
+                "Serbia",
+                "Miloja Zakića 1/7",
+                "www.pkcalypso.rs",
                 "Dragana Labudović",
                 "pkcalypso.dragana@gmail.com",
-                "K00066.jpg",
                 "063/82 82 225")
 
-        val dareToDance = createClub(102,
+        val dareToDance = createClub("1300",
+                getLogoUrl("1300"),
                 "Dare To Dance",
-                "Kirovljeva 15",
                 "Beograd",
+                "Serbia",
+                "Kirovljeva 15",
+                "www.dare2daance.rs",
                 "Ivan Mileusnić",
                 "daretodance@gmail.com",
-                "K01300.jpg",
                 "0691700760")
 
-        val beodance = createClub(103,
+        val beodance = createClub("2",
+                getLogoUrl("2"),
                 "Beodance",
-                "Gospodar Jovanova 22",
                 "Beograd",
+                "Serbia",
+                "Gospodar Jovanova 22",
+                "www.beodance.rs",
                 "Nenad Jeftić",
                 "beodance@eunet.rs",
-                "K00002.jpg",
                 "011/328-39-46")
 
         return createClubList(beodance, dareToDance, calypso, best)
     }
 
-    private fun createClub(id: Int, name: String, address: String, town: String, contactName: String, email: String, logoUrl: String? = "", vararg phoneNumbers: String): Club {
+    private fun createClub(id: String, idNumber: String, logoUrl: String = "", name: String, town: String, country: String, address: String, web: String, contactName: String, email: String, vararg phoneNumbers: String): Club {
         val phoneNumberList = ArrayList<String>()
 
         phoneNumbers.forEach {
             phoneNumberList.add(it)
         }
 
-        return Club(id, "http://www.ples.co.rs/klubovi/logo/$logoUrl", name, town, address, contactName, phoneNumberList, email)
+        return Club(id, logoUrl, name, town, country, address, web, contactName, phoneNumberList, email)
     }
 
     private fun createClubList(vararg clubs: Club): List<Club> {

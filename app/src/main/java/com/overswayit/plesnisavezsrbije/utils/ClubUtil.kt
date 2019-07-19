@@ -1,9 +1,12 @@
 package com.overswayit.plesnisavezsrbije.utils
 
+import android.text.TextUtils
+import com.google.gson.JsonObject
+import com.google.gson.internal.LinkedHashTreeMap
+import com.google.gson.internal.LinkedTreeMap
 import com.overswayit.plesnisavezsrbije.R
 import com.overswayit.plesnisavezsrbije.models.*
-import java.util.*
-import kotlin.collections.ArrayList
+import com.overswayit.plesnisavezsrbije.services.JsonService
 
 /**
  * Created by lazarristic on 18/04/2019.
@@ -17,7 +20,7 @@ object ClubUtil {
         } else StringUtil.getString(R.string.not_available)
     }
 
-    fun getClubNameAndTown(name: String? = StringUtil.getString(R.string.not_available), town: String? = StringUtil.getString(R.string.not_available)): String {
+    private fun getClubNameAndTown(name: String? = StringUtil.getString(R.string.not_available), town: String? = StringUtil.getString(R.string.not_available)): String {
         return StringBuilder().append(name).append(" - ").append(town).toString()
     }
 
@@ -39,6 +42,42 @@ object ClubUtil {
     fun getPlaceHolderClub(): Club {
         val list = ArrayList<String>()
         list.add("+381111111111")
-        return Club(999999, "", StringUtil.getString(R.string.not_available), "Beograd", "Knez Mihajlova 1", "Plesni Savez Srbije", list, "pss@example.com")
+        return Club("999999", getLogoUrl("0"), StringUtil.getString(R.string.not_available), "Beograd", "Serbia", "Knez Mihajlova 1", "", "Plesni Savez Srbije", list, "pss@example.com")
+    }
+
+    fun getLogoUrl(idNumber: String): String {
+        return "http://www.ples.co.rs/klubovi/logo/K" + idNumber.padStart(5, '0') + ".jpg"
+    }
+
+    fun getPhonesFromServerHashMap(map: LinkedTreeMap<String, Any>): ArrayList<String> {
+        return addClubPhone(map, "phone_1", "phone_2", "phone_3")
+    }
+
+    private fun addClubPhone(map: LinkedTreeMap<String, Any>, vararg properties: String): ArrayList<String> {
+        val phoneList = ArrayList<String>()
+
+        properties.forEach {
+            val phone = map[it] as String
+
+            if (!TextUtils.isEmpty(phone)) {
+                phoneList.add(phone)
+            }
+        }
+
+        return phoneList
+    }
+
+    private fun addClubPhone(default: String = "", json: JsonObject, vararg properties: String): ArrayList<String> {
+        val phoneList = ArrayList<String>()
+
+        properties.forEach {
+            val phone = JsonService.asString(JsonService.getProperty(json, it), default)
+
+            if (!TextUtils.isEmpty(phone)) {
+                phoneList.add(phone)
+            }
+        }
+
+        return phoneList
     }
 }

@@ -26,12 +26,12 @@ import kotlinx.android.synthetic.main.fragment_club.*
 
 class ClubFragment : BaseFragment() {
 
-    private var clubId: Int? = null
+    private var clubId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        clubId = arguments?.getInt(CLUB_ID_KEY)
+        clubId = arguments?.getString(CLUB_ID_KEY)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
