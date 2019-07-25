@@ -21,17 +21,17 @@ object FakePointList {
 
     private fun getLaPointList(): List<PointListItem> {
         return createPointList(
-                createPointListItem(DanceType.LA, AgeCategory.SENIOR, DanceCategory.A, "1", "744", "1"),
-                createPointListItem(DanceType.LA, AgeCategory.SENIOR, DanceCategory.A, "2", "649", "2"),
-                createPointListItem(DanceType.LA, AgeCategory.SENIOR, DanceCategory.A, "4", "530", "3"))
+                createPointListItem(DanceType.LA, AgeCategory.SENIOR, DanceCategory.A, 2, 689, "3"),
+                createPointListItem(DanceType.LA, AgeCategory.SENIOR, DanceCategory.A, 3, 625, "1"),
+                createPointListItem(DanceType.LA, AgeCategory.SENIOR, DanceCategory.A, 4, 360, "2"))
 
     }
 
     private fun getStPointLisT(): List<PointListItem> {
         return createPointList(
-                createPointListItem(DanceType.ST, AgeCategory.SENIOR, DanceCategory.A, "2", "628", "1"),
-                createPointListItem(DanceType.ST, AgeCategory.SENIOR, DanceCategory.A, "5", "0", "2"),
-                createPointListItem(DanceType.ST, AgeCategory.SENIOR, DanceCategory.B, "7", "148", "3"))
+                createPointListItem(DanceType.ST, AgeCategory.SENIOR, DanceCategory.A, 2, 503, "1"),
+                createPointListItem(DanceType.ST, AgeCategory.SENIOR, DanceCategory.A, 12, 32, "3"),
+                createPointListItem(DanceType.ST, AgeCategory.SENIOR, DanceCategory.B, 15, 0, "2"))
 
     }
 
@@ -44,7 +44,7 @@ object FakePointList {
         return pointListItemList
     }
 
-    private fun createPointListItem(danceType: DanceType, ageCategory: AgeCategory, danceCategory: DanceCategory, place: String, points: String, id: String): PointListItem {
+    private fun createPointListItem(danceType: DanceType, ageCategory: AgeCategory, danceCategory: DanceCategory, place: Int, points: Int, id: String): PointListItem {
         val pointListItem = PointListItem(danceCategory)
         pointListItem.danceType = danceType
         pointListItem.ageCategory = ageCategory

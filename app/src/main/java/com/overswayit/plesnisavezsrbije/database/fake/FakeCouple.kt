@@ -78,22 +78,4 @@ object FakeCouple {
                              club: Club?): Couple {
         return Couple(id, nameMale, nameFemale, club!!)
     }
-
-    private fun createRatingList(ageCategory: AgeCategory, place: String, points: String): RatingListItem {
-        val ratingList = RatingListItem()
-        ratingList.ageCategory = ageCategory
-        ratingList.place = place
-        ratingList.points = points
-
-        return ratingList
-    }
-
-    private fun createPointList(ageCategory: AgeCategory, danceCategory: DanceCategory, place: String, points: String): PointListItem {
-        val pointList = PointListItem(danceCategory)
-        pointList.ageCategory = ageCategory
-        pointList.place = place
-        pointList.points = points
-
-        return pointList
-    }
 }

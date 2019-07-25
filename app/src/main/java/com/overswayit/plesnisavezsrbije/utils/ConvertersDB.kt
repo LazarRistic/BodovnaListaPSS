@@ -48,8 +48,13 @@ class ConvertersDB {
     }
 
     @TypeConverter
-    fun fromAdjudicatorLicencesType(value: AdjudicatorLicensesType): String {
+    fun fromAdjudicatorLicencesType(value: FederationDanceType): String {
         return value.asString()
+    }
+
+    @TypeConverter
+    fun fromCompetitionsList(value: ArrayList<Competition>): String {
+        return Gson().toJson(value)
     }
 
     @TypeConverter
@@ -90,7 +95,12 @@ class ConvertersDB {
     }
 
     @TypeConverter
-    fun fromAdjudicatorLicencesTypeString(value: String): AdjudicatorLicensesType {
-        return AdjudicatorLicensesType.fromString(value)
+    fun fromAdjudicatorLicencesTypeString(value: String): FederationDanceType {
+        return FederationDanceType.fromString(value)
+    }
+
+    @TypeConverter
+    fun fromCompetitionsListString(value: String): ArrayList<Competition> {
+        return Gson().fromJson(value, object : TypeToken<ArrayList<Competition>>() {}.type)
     }
 }

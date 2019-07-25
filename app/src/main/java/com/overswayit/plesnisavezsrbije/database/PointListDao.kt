@@ -2,6 +2,7 @@ package com.overswayit.plesnisavezsrbije.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.overswayit.plesnisavezsrbije.models.DanceCategory
 import com.overswayit.plesnisavezsrbije.models.DanceType
 import com.overswayit.plesnisavezsrbije.models.PointListItem
 
@@ -14,7 +15,7 @@ interface PointListDao {
     @Query("SELECT * FROM point_list_item")
     fun getAll(): LiveData<List<PointListItem>>
 
-    @Query("SELECT * FROM point_list_item WHERE dance_type = :danceType")
+    @Query("SELECT * FROM point_list_item WHERE dance_type = :danceType ORDER BY age_category DESC, dance_category DESC, points DESC")
     fun getAll(danceType: DanceType): LiveData<List<PointListItem>>
 
     @Query("SELECT * FROM point_list_item WHERE couple_id = :coupleId AND dance_type = :danceType")

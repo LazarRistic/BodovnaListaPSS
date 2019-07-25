@@ -41,22 +41,10 @@ class ListItemViewModel(val couplesListItem: CouplesListItem) : ListItemViewMode
         }
 
     override val place: String
-        get() {
-            if (!TextUtils.isEmpty(couplesListItem.place)) {
-                return couplesListItem.place
-            }
-
-            return StringUtil.getString(R.string.not_available)
-        }
+        get() = couplesListItem.place.toString()
 
     override val points: String
-        get() {
-            if (!TextUtils.isEmpty(couplesListItem.points)) {
-                return couplesListItem.points
-            }
-
-            return StringUtil.getString(R.string.not_available)
-        }
+        get() = couplesListItem.points.toString()
 
     override val danceCategoryVisibility: Int
         get() {

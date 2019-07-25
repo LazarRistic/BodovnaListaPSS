@@ -24,33 +24,33 @@ class CoupleRatingListViewModel(private val application: Application, private va
             CoupleUtil.getCoupleLastNames(pointListRepository.getPointListCouple(coupleId, DanceType.LA).couple)
         }
 
-    val pointsLatin: String?
+    val pointsLatin: Int?
         get() = runBlocking {
             pointListRepository.getPointListCouple(coupleId, DanceType.LA).points
         }
 
-    val pointsStandard: String?
+    val pointsStandard: Int?
         get() = runBlocking {
             pointListRepository.getPointListCouple(coupleId, DanceType.ST).points
         }
 
-    val pointsCombined: String?
+    val pointsCombined: Int?
         get() = runBlocking {
 //            pointListRepository.getPointListCouple(coupleId, DanceType.KM).points
             pointListRepository.getPointListCouple(coupleId, DanceType.LA).points
         }
 
-    val placeLatin: String?
+    val placeLatin: Int?
         get() = runBlocking {
             pointListRepository.getPointListCouple(coupleId, DanceType.LA).place
         }
 
-    val placeStandard: String?
+    val placeStandard: Int?
         get() = runBlocking {
             pointListRepository.getPointListCouple(coupleId, DanceType.ST).place
         }
 
-    val placeCombined: String?
+    val placeCombined: Int?
         get() = runBlocking {
 //            pointListRepository.getPointListCouple(coupleId, DanceType.KM).place
             pointListRepository.getPointListCouple(coupleId, DanceType.LA).place

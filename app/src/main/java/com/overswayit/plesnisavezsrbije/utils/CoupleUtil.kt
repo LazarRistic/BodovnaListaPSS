@@ -57,6 +57,6 @@ object CoupleUtil {
     }
 
     private fun getLastName(fullName: String): String {
-        return fullName.split(" ")[1]
+        return fullName.split(" ")[0]
     }
 }

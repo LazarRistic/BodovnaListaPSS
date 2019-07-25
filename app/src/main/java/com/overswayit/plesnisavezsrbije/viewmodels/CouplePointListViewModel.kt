@@ -28,22 +28,22 @@ class CouplePointListViewModel(application: Application, private val coupleId: S
             CoupleUtil.getCoupleLastNames(pointListRepository.getPointListCouple(coupleId, DanceType.LA).couple)
         }
 
-    val pointsLatin: String?
+    val pointsLatin: Int?
         get() = runBlocking {
             pointListRepository.getPointListCouple(coupleId, DanceType.LA).points
         }
 
-    val pointsStandard: String?
+    val pointsStandard: Int?
         get() = runBlocking {
             pointListRepository.getPointListCouple(coupleId, DanceType.ST).points
         }
 
-    val placeLatin: String?
+    val placeLatin: Int?
         get() = runBlocking {
             pointListRepository.getPointListCouple(coupleId, DanceType.LA).place
         }
 
-    val placeStandard: String?
+    val placeStandard: Int?
         get() = runBlocking {
             pointListRepository.getPointListCouple(coupleId, DanceType.ST).place
         }

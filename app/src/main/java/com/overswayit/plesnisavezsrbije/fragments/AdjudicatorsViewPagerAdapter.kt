@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter
  * Created by lazarristic on 2019-05-09.
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
-class AdjudicatorsAdapter(fm: FragmentManager, private val numberOfTabs: Int) : FragmentStatePagerAdapter(fm) {
+class AdjudicatorsViewPagerAdapter(fm: FragmentManager, private val numberOfTabs: Int) : FragmentStatePagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
 

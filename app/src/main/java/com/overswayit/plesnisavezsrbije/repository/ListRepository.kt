@@ -6,10 +6,7 @@ import com.google.gson.internal.LinkedTreeMap
 import com.overswayit.plesnisavezsrbije.database.AppDatabase
 import com.overswayit.plesnisavezsrbije.database.PointListDao
 import com.overswayit.plesnisavezsrbije.database.RatingListDao
-import com.overswayit.plesnisavezsrbije.models.Club
-import com.overswayit.plesnisavezsrbije.models.DanceType
-import com.overswayit.plesnisavezsrbije.models.PointListItem
-import com.overswayit.plesnisavezsrbije.models.RatingListItem
+import com.overswayit.plesnisavezsrbije.models.*
 import com.overswayit.plesnisavezsrbije.networking.PointListApiInterface
 import com.overswayit.plesnisavezsrbije.parsers.server.ClubParser
 import com.overswayit.plesnisavezsrbije.parsers.server.PointListParser

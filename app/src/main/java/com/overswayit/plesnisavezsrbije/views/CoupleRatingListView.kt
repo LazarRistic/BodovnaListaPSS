@@ -37,12 +37,12 @@ class CoupleRatingListView : BaseCompoundView {
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     override fun getParams(ta: TypedArray) {
-        val pointsLatin = ta.getString(R.styleable.CoupleRatingListView_pointsLatin)
-        val pointsStandard = ta.getString(R.styleable.CoupleRatingListView_pointsStandard)
-        val pointsCombined = ta.getString(R.styleable.CoupleRatingListView_pointsCombined)
-        val placeLatin = ta.getString(R.styleable.CoupleRatingListView_placeLatin)
-        val placeStandard = ta.getString(R.styleable.CoupleRatingListView_placeStandard)
-        val placeCombined = ta.getString(R.styleable.CoupleRatingListView_placeCombined)
+        val pointsLatin = ta.getInt(R.styleable.CoupleRatingListView_pointsLatin, 0)
+        val pointsStandard = ta.getInt(R.styleable.CoupleRatingListView_pointsStandard, 0)
+        val pointsCombined = ta.getInt(R.styleable.CoupleRatingListView_pointsCombined, 0)
+        val placeLatin = ta.getInt(R.styleable.CoupleRatingListView_placeLatin, 0)
+        val placeStandard = ta.getInt(R.styleable.CoupleRatingListView_placeStandard, 0)
+        val placeCombined = ta.getInt(R.styleable.CoupleRatingListView_placeCombined, 0)
 
         val points = Triple(pointsLatin, pointsStandard, pointsCombined)
         val place = Triple(placeLatin, placeStandard, placeCombined)
@@ -59,29 +59,29 @@ class CoupleRatingListView : BaseCompoundView {
         }
     }
 
-    private fun setView(points: Triple<String?, String?, String?>, place: Triple<String?, String?, String?>) {
-        if (!TextUtils.isEmpty(points.first)) {
-            binding.placeLatin.text = points.first
+    private fun setView(points: Triple<Int?, Int?, Int?>, place: Triple<Int?, Int?, Int?>) {
+        if (points.first != null) {
+            binding.placeLatin.text = points.first.toString()
         }
 
-        if (!TextUtils.isEmpty(points.second)) {
-            binding.placeStandard.text = points.second
+        if (points.second != null) {
+            binding.placeStandard.text = points.second.toString()
         }
 
-        if (!TextUtils.isEmpty(points.third)) {
-            binding.placeCombined.text = points.third
+        if (points.third != null) {
+            binding.placeCombined.text = points.third.toString()
         }
 
-        if (!TextUtils.isEmpty(place.first)) {
-            binding.pointsLatin.text = place.first
+        if (points.first != null) {
+            binding.pointsLatin.text = place.first.toString()
         }
 
-        if (!TextUtils.isEmpty(place.second)) {
-            binding.pointsStandard.text = place.second
+        if (points.second != null) {
+            binding.pointsStandard.text = place.second.toString()
         }
 
-        if (!TextUtils.isEmpty(place.third)) {
-            binding.pointsCombined.text = place.third
+        if (points.third != null) {
+            binding.pointsCombined.text = place.third.toString()
         }
     }
 }

@@ -3,7 +3,7 @@ package com.overswayit.plesnisavezsrbije.database
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.overswayit.plesnisavezsrbije.models.Adjudicator
-import com.overswayit.plesnisavezsrbije.models.AdjudicatorLicensesType
+import com.overswayit.plesnisavezsrbije.models.FederationDanceType
 
 /**
  * Created by lazarristic on 2019-07-08.
@@ -15,7 +15,7 @@ interface AdjudicatorDao {
     fun getAll(): LiveData<List<Adjudicator>>
 
     @Query("SELECT * FROM adjudicator WHERE licenses_type = :type")
-    fun getAllWithLicensesType(type: AdjudicatorLicensesType): LiveData<List<Adjudicator>>
+    fun getAllWithLicensesType(type: FederationDanceType): LiveData<List<Adjudicator>>
 
     @Insert
     suspend fun insertAll(adjudicators: List<Adjudicator>)

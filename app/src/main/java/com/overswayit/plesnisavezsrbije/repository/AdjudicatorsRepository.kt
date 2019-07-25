@@ -1,23 +1,15 @@
 package com.overswayit.plesnisavezsrbije.repository
 
 import android.app.Application
-import android.os.Handler
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.google.gson.internal.LinkedTreeMap
 import com.overswayit.plesnisavezsrbije.database.AppDatabase
 import com.overswayit.plesnisavezsrbije.models.Adjudicator
-import com.overswayit.plesnisavezsrbije.models.AdjudicatorLicensesType
-import com.overswayit.plesnisavezsrbije.models.AdjudicatorLicensesType.LA_ST
-import com.overswayit.plesnisavezsrbije.models.AdjudicatorLicensesType.MODERN
-import com.overswayit.plesnisavezsrbije.models.Club
+import com.overswayit.plesnisavezsrbije.models.FederationDanceType
 import com.overswayit.plesnisavezsrbije.networking.AdjudicatorsApiInterface
-import com.overswayit.plesnisavezsrbije.networking.AdjudicatorsApiService
 import com.overswayit.plesnisavezsrbije.parsers.server.AdjudicatorParser
-import com.overswayit.plesnisavezsrbije.parsers.server.ClubParser
 import java.util.*
-import java.util.stream.Collectors
 
 /**
  * Created by lazarristic on 21/02/2019.
@@ -30,7 +22,7 @@ class AdjudicatorsRepository(application: Application, private val apiInterface:
         emitSource(adjudicatorDao.getAll())
     }
 
-    suspend fun getAllWithLicensesType(licensesType: AdjudicatorLicensesType): LiveData<List<Adjudicator>> = liveData {
+    suspend fun getAllWithLicensesType(licensesType: FederationDanceType): LiveData<List<Adjudicator>> = liveData {
         emitSource(adjudicatorDao.getAllWithLicensesType(licensesType))
     }
 

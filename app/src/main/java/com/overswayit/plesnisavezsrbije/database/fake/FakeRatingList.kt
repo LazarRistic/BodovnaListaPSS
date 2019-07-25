@@ -18,23 +18,23 @@ object FakeRatingList {
 
     private fun getLaRatingList(): List<RatingListItem> {
         return createRatingList(
-                createRatingListItem(DanceType.LA, AgeCategory.SENIOR, "2", "689", "3"),
-                createRatingListItem(DanceType.LA, AgeCategory.SENIOR, "3", "625", "1"),
-                createRatingListItem(DanceType.LA, AgeCategory.SENIOR, "4", "360", "2"))
+                createRatingListItem(DanceType.LA, AgeCategory.SENIOR, 2, 689, "3"),
+                createRatingListItem(DanceType.LA, AgeCategory.SENIOR, 3, 625, "1"),
+                createRatingListItem(DanceType.LA, AgeCategory.SENIOR, 4, 360, "2"))
     }
 
     private fun getStRatingList(): List<RatingListItem> {
         return createRatingList(
-                createRatingListItem(DanceType.ST, AgeCategory.SENIOR, "2", "503", "1"),
-                createRatingListItem(DanceType.ST, AgeCategory.SENIOR, "12", "32", "3"),
-                createRatingListItem(DanceType.ST, AgeCategory.SENIOR, "15", "0", "2"))
+                createRatingListItem(DanceType.ST, AgeCategory.SENIOR, 2, 503, "1"),
+                createRatingListItem(DanceType.ST, AgeCategory.SENIOR, 12, 32, "3"),
+                createRatingListItem(DanceType.ST, AgeCategory.SENIOR, 15, 0, "2"))
     }
 
     private fun getKmRatingList(): List<RatingListItem> {
         return createRatingList(
-                createRatingListItem(DanceType.KM, AgeCategory.SENIOR, "1", "1076", "1"),
-                createRatingListItem(DanceType.KM, AgeCategory.SENIOR, "4", "100", "3"),
-                createRatingListItem(DanceType.KM, AgeCategory.SENIOR, "8", "0", "2"))
+                createRatingListItem(DanceType.KM, AgeCategory.SENIOR, 1, 1076, "1"),
+                createRatingListItem(DanceType.KM, AgeCategory.SENIOR, 4, 100, "3"),
+                createRatingListItem(DanceType.KM, AgeCategory.SENIOR, 8, 0, "2"))
     }
 
     private fun createRatingList(vararg ratingListItems: RatingListItem): List<RatingListItem> {
@@ -46,7 +46,7 @@ object FakeRatingList {
         return ratingListItemList
     }
 
-    private fun createRatingListItem(danceType: DanceType, ageCategory: AgeCategory, place: String, points: String, id: String): RatingListItem {
+    private fun createRatingListItem(danceType: DanceType, ageCategory: AgeCategory, place: Int, points: Int, id: String): RatingListItem {
         val ratingListItem = RatingListItem()
         ratingListItem.danceType = danceType
         ratingListItem.ageCategory = ageCategory

@@ -39,15 +39,15 @@ object PointListParser {
 
         val ageCategory = AgeCategoryParser.toAgeCategoryFromServerString(maleHashMap["age_category"] as String)
         val couple = CoupleParser.toCoupleFromServerHashMap(maleHashMap, femaleHashMap, clubMap)
-        val points = maleHashMap[pointsKey] as String
-        val place = maleHashMap[placeKey] as String
+        val points = maleHashMap[pointsKey] as Double
+        val place = maleHashMap[placeKey] as Double
 
         pointListItem.ageCategory = ageCategory
         pointListItem.couple = couple
         pointListItem.danceType = type
         pointListItem.ageCategory
-        pointListItem.points = points
-        pointListItem.place = place
+        pointListItem.points = points.toInt()
+        pointListItem.place = place.toInt()
 
         return pointListItem
     }

@@ -41,4 +41,9 @@
         <argument android:name="ClubId"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/competitionsFragment"
+        android:name="com.overswayit.plesnisavezsrbije.activities.CompetitionFragment"
+        android:label="fragment_competitions"
+        tools:layout="@layout/fragment_competition"/>
 </navigation>

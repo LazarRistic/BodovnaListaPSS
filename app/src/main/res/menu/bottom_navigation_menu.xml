@@ -17,7 +17,7 @@
         android:icon="@drawable/ic_adjudicators"
         android:title="@string/adjudicators" />
     <item
-        android:id="@+id/nav_competitions"
+        android:id="@+id/competitionsFragment"
         android:icon="@drawable/ic_competitions"
         android:title="@string/competitions" />
 </menu>

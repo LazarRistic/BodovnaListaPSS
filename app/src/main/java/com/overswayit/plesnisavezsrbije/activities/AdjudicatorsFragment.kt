@@ -9,7 +9,7 @@ import com.google.android.material.tabs.TabLayout
 import com.overswayit.plesnisavezsrbije.MainActivity
 import com.overswayit.plesnisavezsrbije.R
 import com.overswayit.plesnisavezsrbije.databinding.FragmentAdjudicatorsBinding
-import com.overswayit.plesnisavezsrbije.fragments.AdjudicatorsAdapter
+import com.overswayit.plesnisavezsrbije.fragments.AdjudicatorsViewPagerAdapter
 
 
 class AdjudicatorsFragment : BaseFragment() {
@@ -30,7 +30,7 @@ class AdjudicatorsFragment : BaseFragment() {
         tabLayout.tabGravity = TabLayout.GRAVITY_FILL
         tabLayout.setTabTextColors(resources.getColor(R.color.white90, null), resources.getColor(R.color.white, null))
 
-        val adapter = AdjudicatorsAdapter(activity?.supportFragmentManager!!, tabLayout.tabCount)
+        val adapter = AdjudicatorsViewPagerAdapter(activity?.supportFragmentManager!!, tabLayout.tabCount)
         val viewPager = binding.viewPager
         viewPager.adapter = adapter
         viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))

@@ -13,4 +13,7 @@ object ViewMesssages {
 
     var clubContactEmail = ClubContactEmail()
     class ClubContactEmail : Event<String>()
+
+    var competitionPdf = CompetitionPdf()
+    class CompetitionPdf : Event<String>()
 }

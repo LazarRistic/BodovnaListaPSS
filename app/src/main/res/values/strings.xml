@@ -5,7 +5,7 @@
     <string name="clubs">Klubovi</string>
     <string name="adjudicators">Sudije</string>
     <string name="list">Liste</string>
-    <string name="competitions">Takmicenja</string>
+    <string name="competitions">Takmičenja</string>
     <string name="news">Vesti</string>
     <string name="read_more">Pročitaj više</string>
     <string name="read_less">Pročitaj manje</string>
@@ -45,6 +45,9 @@
     <string name="licensed_chairman">Licenca za Glacnog sudiju</string>
     <string name="wdsf_examiner">WDSF Examiner</string>
     <string name="dance_category_license">%1$s licenca</string>
+    <string name="pdf_content_description">PDF fajl za raspis i rezultate</string>
+    <string name="school_and_first_league">Školska i prva liga</string>
+    <string name="super_league">Super liga</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

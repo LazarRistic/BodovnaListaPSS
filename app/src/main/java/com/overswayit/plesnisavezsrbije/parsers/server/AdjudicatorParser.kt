@@ -4,7 +4,7 @@ import android.text.TextUtils
 import com.google.gson.internal.LinkedTreeMap
 import com.overswayit.plesnisavezsrbije.R
 import com.overswayit.plesnisavezsrbije.models.Adjudicator
-import com.overswayit.plesnisavezsrbije.models.AdjudicatorLicensesType
+import com.overswayit.plesnisavezsrbije.models.FederationDanceType
 import com.overswayit.plesnisavezsrbije.utils.StringUtil
 
 /**
@@ -15,7 +15,7 @@ object AdjudicatorParser {
     fun toAdjudicatorFromServerHashMap(map: LinkedTreeMap<String, Any>): Adjudicator {
         val id = map["id"] as String
         val name = map["name"] as String
-        val type = AdjudicatorLicensesType.fromString(map["type"] as String)
+        val type = FederationDanceType.fromString(map["type"] as String)
         val picUrl = map["pic"] as String
         val color = getAdjudicatorColor(map["color"] as String)
 

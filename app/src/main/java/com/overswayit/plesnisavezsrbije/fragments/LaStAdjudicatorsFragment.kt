@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.overswayit.plesnisavezsrbije.R
 import com.overswayit.plesnisavezsrbije.databinding.AdjudicatorsFragmentBinding
 import com.overswayit.plesnisavezsrbije.models.Adjudicator
-import com.overswayit.plesnisavezsrbije.models.AdjudicatorLicensesType
+import com.overswayit.plesnisavezsrbije.models.FederationDanceType
 import com.overswayit.plesnisavezsrbije.viewmodels.AdjudicatorsViewModel
 import com.overswayit.plesnisavezsrbije.viewmodels.AdjudicatorsViewModelFactory
 import com.overswayit.plesnisavezsrbije.views.AdjudicatorAdapter
@@ -45,7 +45,7 @@ class LaStAdjudicatorsFragment : Fragment() {
 
         if (activity != null) {
             val viewModel = ViewModelProviders.of(this,
-                    AdjudicatorsViewModelFactory(AdjudicatorLicensesType.LA_ST, activity!!.application)).get(AdjudicatorsViewModel::class.java)
+                    AdjudicatorsViewModelFactory(FederationDanceType.LA_ST, activity!!.application)).get(AdjudicatorsViewModel::class.java)
             viewModel.getAll().observe(this, Observer { adjudicators ->
                 mAdjudicatorList.clear()
                 mAdjudicatorList.addAll(adjudicators)
