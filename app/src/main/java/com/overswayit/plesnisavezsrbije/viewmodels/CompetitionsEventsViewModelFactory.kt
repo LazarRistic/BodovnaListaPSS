@@ -14,8 +14,8 @@ class CompetitionsEventsViewModelFactory(private val danceType: FederationDanceT
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when (danceType) {
-            FederationDanceType.MODERN -> ModernAdjudicatorsViewModel(application) as T
-            FederationDanceType.LA_ST -> LaStAdjudicatorsViewModel(application) as T
+            FederationDanceType.MODERN -> ModernCompetitionViewModel(application) as T
+            FederationDanceType.LA_ST -> LaStCompetitionViewModel(application) as T
         }
     }
 }

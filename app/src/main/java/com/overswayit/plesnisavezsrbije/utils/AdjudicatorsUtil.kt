@@ -17,4 +17,15 @@ object AdjudicatorsUtil {
 
         return Adjudicator(id, avatarUri, name, list, licencesType, R.color.white)
     }
+
+    fun getInitials(name: String): String? {
+        val names = name.split(" ")
+        val letters = StringBuilder()
+
+        names.forEach {
+            letters.append(it.first().toUpperCase())
+        }
+
+        return letters.toString()
+    }
 }

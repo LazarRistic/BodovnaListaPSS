@@ -1,12 +1,16 @@
 package com.overswayit.plesnisavezsrbije.views
 
-import agency.tango.android.avatarview.AvatarPlaceholder
+import android.graphics.drawable.BitmapDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.overswayit.plesnisavezsrbije.MyApp
+import com.overswayit.plesnisavezsrbije.R
 import com.overswayit.plesnisavezsrbije.databinding.ViewAdjudicatorBinding
 import com.overswayit.plesnisavezsrbije.models.Adjudicator
+import com.overswayit.plesnisavezsrbije.utils.AdjudicatorsUtil
 import com.overswayit.plesnisavezsrbije.utils.DisplayUtil.dpToPx
+import com.overswayit.plesnisavezsrbije.utils.DrawUtil
 import com.overswayit.plesnisavezsrbije.viewmodels.AdjudicatorViewModel
 import com.squareup.picasso.Picasso
 
@@ -32,12 +36,17 @@ class AdjudicatorAdapter(private val adjudicators: List<Adjudicator>) : Recycler
             val viewModel = AdjudicatorViewModel(adjudicator)
 
             binding.adjudicatorName.text = viewModel.name
+            binding.adjudicatorName.setTextColor(viewModel.borderColor)
             binding.adjudicatorLicenses.text = viewModel.licenses
             binding.adjudicatorAvatarView.setBorderColor(viewModel.borderColor)
 
+            val bitmap = DrawUtil.writeTextOnBitmap(text = viewModel.initials!!, textColor = viewModel.borderColor, resource = R.drawable.contact_circle_gray)
+            val drawable = BitmapDrawable(MyApp.applicationContext().resources, bitmap)
+
             Picasso.get()
                     .load(viewModel.avatarUri)
-                    .placeholder(AvatarPlaceholder(viewModel.name, AvatarPlaceholder.DEFAULT_PLACEHOLDER_STRING))
+                    .placeholder(drawable)
+                    .error(drawable)
                     .resize(dpToPx(50), dpToPx(50))
                     .centerCrop()
                     .into(binding.adjudicatorAvatarView)
