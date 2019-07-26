@@ -3,6 +3,8 @@ apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'io.fabric'
 
 
 android {
@@ -122,6 +124,12 @@ dependencies {
 
     //Gson
     implementation 'com.google.code.gson:gson:2.8.5'
+
+    //FireBase
+    implementation 'com.google.firebase:firebase-core:17.0.0'
+
+    //Crashlytics
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
 }
 
 kapt {
