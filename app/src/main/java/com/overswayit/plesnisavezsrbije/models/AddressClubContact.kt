@@ -13,7 +13,7 @@ import java.util.ArrayList
 class AddressClubContact(address: String?) : ClubContact(address) {
 
     init {
-        val pair = Pair(super.contact, R.drawable.ic_message)
+        val pair = Pair(super.contact, R.drawable.ic_map_pin)
         val arrayList = ArrayList<Pair<String?, Int>>()
         arrayList.add(pair)
 

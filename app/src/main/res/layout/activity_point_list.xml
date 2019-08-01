@@ -16,7 +16,9 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.Toolbar
+                style="@style/AppToolbar"
                 android:id="@+id/toolbar"
+                app:collapseIcon="@drawable/ic_arrow"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar"

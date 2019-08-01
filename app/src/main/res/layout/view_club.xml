@@ -10,66 +10,73 @@
     </data>
 
     <RelativeLayout
-        android:id="@+id/rootView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:paddingTop="10dp">
+        android:layout_height="wrap_content"
+        android:background="@color/card_view_background_light"
+        android:layout_marginTop="10dp">
 
-        <androidx.cardview.widget.CardView
+        <RelativeLayout
+            android:id="@+id/rootView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:elevation="10dp"
-            app:cardCornerRadius="2dp">
+            android:layout_height="100dp">
 
-            <RelativeLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="102dp"
-                android:orientation="vertical"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp">
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:elevation="10dp"
+                app:cardCornerRadius="2dp">
 
-                <TextView
-                    android:id="@+id/clubName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sf_ui_display_semibold"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/articleTitle"
-                    tools:text="Best - Beograd"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="102dp"
+                    android:orientation="vertical"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/clubName"
-                    android:fontFamily="@font/sf_ui_display_regular"
-                    android:paddingTop="4dp"
-                    android:text="@{club.contactName}"
-                    android:textSize="@dimen/articleText"
-                    tools:text="Branislava Radovanovic"/>
+                    <TextView
+                        android:id="@+id/clubName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_ui_display_semibold"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/articleTitle"
+                        tools:text="Best - Beograd"/>
 
-            </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/clubName"
+                        android:fontFamily="@font/sf_ui_display_regular"
+                        android:paddingTop="4dp"
+                        android:text="@{club.contactName}"
+                        android:textSize="@dimen/articleText"
+                        tools:text="Branislava Radovanovic"/>
 
-        </androidx.cardview.widget.CardView>
+                </RelativeLayout>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            app:cardCornerRadius="2dp"
-            app:cardElevation="5dp">
+            </androidx.cardview.widget.CardView>
 
-            <ImageView
-                android:id="@+id/clubLogo"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-                android:contentDescription="@string/club_logo"
-                android:padding="2dp"
-                tools:src="@drawable/primary_gradient_color"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="5dp">
 
-        </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:id="@+id/clubLogo"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/club_logo"
+                    android:layout_margin="2dp"
+                    tools:src="@drawable/primary_gradient_color"/>
+
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
     </RelativeLayout>
 </layout>

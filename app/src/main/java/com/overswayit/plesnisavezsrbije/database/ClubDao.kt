@@ -1,6 +1,5 @@
 package com.overswayit.plesnisavezsrbije.database
 
-import android.database.sqlite.SQLiteConstraintException
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.overswayit.plesnisavezsrbije.models.Club

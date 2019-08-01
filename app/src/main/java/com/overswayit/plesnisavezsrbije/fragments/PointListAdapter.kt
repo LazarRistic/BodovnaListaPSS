@@ -3,8 +3,6 @@ package com.overswayit.plesnisavezsrbije.fragments
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import com.overswayit.plesnisavezsrbije.MyApp
-import com.overswayit.plesnisavezsrbije.R
 
 /**
  * Created by lazarristic on 2019-06-06.
@@ -15,8 +13,8 @@ class PointListAdapter(fm: FragmentManager, private val numberOfTabs: Int) : Fra
     override fun getItem(position: Int): Fragment {
 
         return when (position) {
-            0 -> PointListFragment.newInstance(MyApp.applicationContext().getString(R.string.la))
-            1 -> PointListFragment.newInstance(MyApp.applicationContext().getString(R.string.st))
+            0 -> LaPointListFragment()
+            1 -> StPointListFragment()
             else -> PointListFragment()
         }
     }

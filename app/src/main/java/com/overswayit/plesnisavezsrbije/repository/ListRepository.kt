@@ -1,14 +1,16 @@
 package com.overswayit.plesnisavezsrbije.repository
 
 import android.app.Application
+import android.text.TextUtils
 import androidx.lifecycle.liveData
 import com.google.gson.internal.LinkedTreeMap
 import com.overswayit.plesnisavezsrbije.database.AppDatabase
 import com.overswayit.plesnisavezsrbije.database.PointListDao
 import com.overswayit.plesnisavezsrbije.database.RatingListDao
-import com.overswayit.plesnisavezsrbije.models.*
+import com.overswayit.plesnisavezsrbije.models.DanceType
+import com.overswayit.plesnisavezsrbije.models.PointListItem
+import com.overswayit.plesnisavezsrbije.models.RatingListItem
 import com.overswayit.plesnisavezsrbije.networking.PointListApiInterface
-import com.overswayit.plesnisavezsrbije.parsers.server.ClubParser
 import com.overswayit.plesnisavezsrbije.parsers.server.PointListParser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -35,6 +37,17 @@ class ListRepository(private val application: Application, private val apiInterf
 
     suspend fun deleteAllAndInsertRatingList(oldList: List<RatingListItem>, newList: List<RatingListItem>) = withContext(Dispatchers.IO) {
         ratingListDao.deleteAndInsert(oldList, newList)
+    }
+
+    suspend fun getPointListCouplesWithQuery(danceType: DanceType, query: String?) = liveData(Dispatchers.IO) {
+        val queryForDB =
+                if (TextUtils.isEmpty(query)) {
+                    "%"
+                } else {
+                    "%" + query + "%"
+                }
+
+        emitSource(pointListDao.getCoupleByQuery(danceType, queryForDB))
     }
 
     suspend fun insertOrUpdate(pointList: List<PointListItem>) {

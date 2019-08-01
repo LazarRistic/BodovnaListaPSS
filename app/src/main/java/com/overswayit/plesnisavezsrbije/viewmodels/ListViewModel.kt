@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.viewModelScope
+import com.overswayit.plesnisavezsrbije.activities.PointListActivity
 import com.overswayit.plesnisavezsrbije.database.fake.FakePointList
 import com.overswayit.plesnisavezsrbije.database.fake.FakeRatingList
 import com.overswayit.plesnisavezsrbije.models.DanceType
@@ -27,23 +28,22 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
     private val observableLaRatingListMediator = MediatorLiveData<List<RatingListItem>>()
     private val observableStRatingListMediator = MediatorLiveData<List<RatingListItem>>()
     private val observableKmRatingListMediator = MediatorLiveData<List<RatingListItem>>()
+    private lateinit var pointListLatino: LiveData<List<PointListItem>>
+    private lateinit var pointListStandard: LiveData<List<PointListItem>>
+    private val searchQueryListener: PointListActivity.OnSearchQueryListener
+
+    private var query = ""
 
     init {
+        searchQueryListener = object : PointListActivity.OnSearchQueryListener {
+            override fun onQueryChanged(query: String) {
+                setSearchQuery(query)
+            }
+        }
+
         viewModelScope.launch {
-            val pointListLatino = listRepository.getAllPointListCouples(DanceType.LA)
-            observableLaPointListMediator.addSource(pointListLatino, observableLaPointListMediator::setValue)
-
-            val pointListStandard = listRepository.getAllPointListCouples(DanceType.ST)
-            observableStPointListMediator.addSource(pointListStandard, observableStPointListMediator::setValue)
-
-            val ratingListLatino = listRepository.getAllRatingListCouples(DanceType.LA)
-            observableLaRatingListMediator.addSource(ratingListLatino, observableLaRatingListMediator::setValue)
-
-            val ratingListStandard = listRepository.getAllRatingListCouples(DanceType.ST)
-            observableStRatingListMediator.addSource(ratingListStandard, observableStRatingListMediator::setValue)
-
-            val ratingListCombination = listRepository.getAllRatingListCouples(DanceType.KM)
-            observableKmRatingListMediator.addSource(ratingListCombination, observableKmRatingListMediator::setValue)
+            refreshPointList()
+            refreshRatingList()
 
             fetchPointList()
         }
@@ -64,6 +64,10 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
     val kmRatingListCouples: LiveData<List<RatingListItem>>
         get() = observableKmRatingListMediator
 
+    fun getQueryChangedListener(): PointListActivity.OnSearchQueryListener {
+        return searchQueryListener
+    }
+
     private suspend fun insertPointList() {
         val pointListLa = FakePointList.getPointListByDanceType(DanceType.LA)
         val pointListSt = FakePointList.getPointListByDanceType(DanceType.ST)
@@ -80,5 +84,35 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
 
     private suspend fun fetchPointList() = withContext(Dispatchers.IO) {
         listRepository.insertOrUpdate(listRepository.getLatestPointList())
+    }
+
+    private suspend fun refreshPointList() {
+        pointListLatino = listRepository.getPointListCouplesWithQuery(DanceType.LA, query)
+        observableLaPointListMediator.addSource(pointListLatino, observableLaPointListMediator::setValue)
+
+        pointListStandard = listRepository.getPointListCouplesWithQuery(DanceType.ST, query)
+        observableStPointListMediator.addSource(pointListStandard, observableStPointListMediator::setValue)
+    }
+
+    private suspend fun refreshRatingList() {
+        val ratingListLatino = listRepository.getAllRatingListCouples(DanceType.LA)
+        observableLaRatingListMediator.addSource(ratingListLatino, observableLaRatingListMediator::setValue)
+
+        val ratingListStandard = listRepository.getAllRatingListCouples(DanceType.ST)
+        observableStRatingListMediator.addSource(ratingListStandard, observableStRatingListMediator::setValue)
+
+        val ratingListCombination = listRepository.getAllRatingListCouples(DanceType.KM)
+        observableKmRatingListMediator.addSource(ratingListCombination, observableKmRatingListMediator::setValue)
+    }
+
+    fun setSearchQuery(query: String) {
+        this@ListViewModel.query = query
+
+        observableLaPointListMediator.removeSource(pointListLatino)
+        observableStPointListMediator.removeSource(pointListStandard)
+
+        viewModelScope.launch {
+            refreshPointList()
+        }
     }
 }
