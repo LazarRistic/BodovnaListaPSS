@@ -91,7 +91,7 @@ class ListItemViewModel(val couplesListItem: CouplesListItem) : ListItemViewMode
     @ColorRes
     private fun getColorBorder(): Int {
         return when (couplesListItem.listType) {
-            ListType.POINT -> getAgeCategoryColorAsResource()
+            ListType.POINT -> getDanceCategoryColorAsResource()
             else -> R.color.colorPrimary
         }
     }
