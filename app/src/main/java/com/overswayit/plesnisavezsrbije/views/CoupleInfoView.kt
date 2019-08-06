@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.overswayit.plesnisavezsrbije.R
 import com.overswayit.plesnisavezsrbije.databinding.ViewCoupleInfoBinding
@@ -44,9 +45,13 @@ class CoupleInfoView : BaseCompoundView {
             binding.latinCategory.backgroundTintList = androidx.databinding.adapters.Converters.convertColorToColorStateList(viewModel.latinCategoryColor)
             binding.standardCategory.backgroundTintList = androidx.databinding.adapters.Converters.convertColorToColorStateList(viewModel.standardCategoryColor)
             binding.ageCategory.backgroundTintList = androidx.databinding.adapters.Converters.convertColorToColorStateList(viewModel.ageCategoryColor)
-            binding.followImage.setImageDrawable(context.resources.getDrawable(viewModel.followImage, null))
+
+            viewModel.followImage.observe(this@CoupleInfoView, Observer {
+                binding.followImage.setImageDrawable(context.resources.getDrawable(it, null))
+            })
+
             binding.followImage.setOnClickListener {
-                binding.followImage.setImageDrawable(context.resources.getDrawable(viewModel.toggleFavorite(), null))
+                viewModel.toggleFavorite()
             }
 
             Picasso.get()

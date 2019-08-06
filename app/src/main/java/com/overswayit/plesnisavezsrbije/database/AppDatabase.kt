@@ -12,7 +12,7 @@ import com.overswayit.plesnisavezsrbije.utils.ConvertersDB
  * Created by lazarristic on 2019-06-25.
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
-@Database(entities = [Club::class, PointListItem::class, RatingListItem::class, News::class, Adjudicator::class, CompetitionEvent::class], version = 1, exportSchema = false)
+@Database(entities = [Club::class, PointListItem::class, RatingListItem::class, News::class, Adjudicator::class, CompetitionEvent::class, FavoriteCouple::class], version = 2, exportSchema = false)
 @TypeConverters(ConvertersDB::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun clubDao(): ClubDao
@@ -21,6 +21,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun newsDao(): NewsDao
     abstract fun adjudicatorDao(): AdjudicatorDao
     abstract fun competitionDao(): CompetitionDao
+    abstract fun favoriteCoupleDao(): FavoriteCoupleDao
 
     companion object {
         @Volatile

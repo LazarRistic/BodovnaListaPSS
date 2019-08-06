@@ -2,16 +2,15 @@ package com.overswayit.plesnisavezsrbije.viewmodels
 
 import android.app.Application
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.overswayit.plesnisavezsrbije.MyApp
 import com.overswayit.plesnisavezsrbije.R
 import com.overswayit.plesnisavezsrbije.models.*
 import com.overswayit.plesnisavezsrbije.networking.PointListApiService
+import com.overswayit.plesnisavezsrbije.repository.FavoriteCouplesRepository
 import com.overswayit.plesnisavezsrbije.repository.ListRepository
 import com.overswayit.plesnisavezsrbije.utils.CoupleUtil
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 /**
  * Created by lazarristic on 2019-06-14.
@@ -19,6 +18,22 @@ import kotlinx.coroutines.runBlocking
  */
 class CoupleInfoViewModel(val application: Application, private val coupleId: String) : ViewModel() {
     private val pointListRepository = ListRepository(application, PointListApiService.pointListApi)
+    private val favoriteCouplesRepository: FavoriteCouplesRepository = FavoriteCouplesRepository(application)
+    private val isFollowingObserver = MediatorLiveData<Int>()
+    private lateinit var isFollowingLiveData: LiveData<Int>
+    private lateinit var couple: Couple
+
+    init {
+        viewModelScope.launch {
+            couple = pointListRepository.getPointListCouple(coupleId, DanceType.LA).couple
+
+            isFollowingLiveData = Transformations.map(favoriteCouplesRepository.findFavoriteCoupleById(couple)) {
+                favorite -> transformFavoriteToIcon(favorite)
+            }
+
+            isFollowingObserver.addSource(isFollowingLiveData, isFollowingObserver::setValue)
+        }
+    }
 
     val clubTown: String?
         get() = runBlocking {
@@ -80,30 +95,19 @@ class CoupleInfoViewModel(val application: Application, private val coupleId: St
             ContextCompat.getColor(MyApp.applicationContext(), CoupleUtil.getDanceCategoryColor(pointListRepository.getPointListCouple(coupleId, DanceType.ST).danceCategory))
         }
 
-    val followImage: Int
-        get() {
-            return R.drawable.ic_following
+    val followImage: LiveData<Int> = isFollowingObserver
 
-//        return if (FakeFavoriteList.isFavorite(couple)) {
-//            R.drawable.ic_following
-//        } else {
-//            R.drawable.ic_follow
-//        }
+    fun toggleFavorite() {
+        viewModelScope.launch(Dispatchers.IO) {
+            favoriteCouplesRepository.toggleFavorite(couple)
         }
+    }
 
-    fun toggleFavorite(): Int {
-        return if (Math.random().toInt() % 2 == 0) {
+    private fun transformFavoriteToIcon(favorite: Boolean): Int {
+        return if (favorite) {
             R.drawable.ic_following
         } else {
             R.drawable.ic_follow
         }
-//        return if (FakeFavoriteList.isFavorite(couple)) {
-//            FakeFavoriteList.removeCouple(couple)
-//            R.drawable.ic_follow
-//        } else {
-//            FakeFavoriteList.addCouple(couple)
-//            R.drawable.ic_following
-//        }
     }
-
 }
