@@ -2,6 +2,7 @@ package com.overswayit.plesnisavezsrbije.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +33,8 @@ class StPointListFragment : Fragment() {
     private val pointListItemViewModels = ArrayList<ListItemViewModel>()
     private var recyclerView: RecyclerView? = null
     private lateinit var viewModel: StListViewModel
+
+    private var fakeItTillYouMakeIt: Boolean = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -66,6 +69,10 @@ class StPointListFragment : Fragment() {
 
             observerPointList(viewModel.listCouples)
         }
+
+        viewModel.filtersLiveData.observe(this, Observer {
+            viewModel.updateFilters(it)
+        })
     }
 
     private fun observerPointList(pointListCouples: LiveData<List<PointListItem>>) {

@@ -5,14 +5,16 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.overswayit.plesnisavezsrbije.models.*
 import com.overswayit.plesnisavezsrbije.utils.ConvertersDB
+import java.util.concurrent.Executors
 
 /**
  * Created by lazarristic on 2019-06-25.
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
-@Database(entities = [Club::class, PointListItem::class, RatingListItem::class, News::class, Adjudicator::class, CompetitionEvent::class, FavoriteCouple::class], version = 2, exportSchema = false)
+@Database(entities = [Club::class, PointListItem::class, RatingListItem::class, News::class, Adjudicator::class, CompetitionEvent::class, FavoriteCouple::class, Filter::class, LastModified::class], version = 4, exportSchema = false)
 @TypeConverters(ConvertersDB::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun clubDao(): ClubDao
@@ -22,6 +24,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun adjudicatorDao(): AdjudicatorDao
     abstract fun competitionDao(): CompetitionDao
     abstract fun favoriteCoupleDao(): FavoriteCoupleDao
+    abstract fun filterDao(): FilterDao
+    abstract fun lastModifiedDao(): LastModifiedDao
 
     companion object {
         @Volatile

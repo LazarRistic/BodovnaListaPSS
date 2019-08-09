@@ -11,7 +11,7 @@ import com.overswayit.plesnisavezsrbije.database.fake.FakeRatingList
 import com.overswayit.plesnisavezsrbije.models.DanceType
 import com.overswayit.plesnisavezsrbije.models.PointListItem
 import com.overswayit.plesnisavezsrbije.models.RatingListItem
-import com.overswayit.plesnisavezsrbije.networking.PointListApiService
+import com.overswayit.plesnisavezsrbije.networking.ListApiService
 import com.overswayit.plesnisavezsrbije.repository.ListRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,7 +22,7 @@ import kotlinx.coroutines.withContext
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
 class ListViewModel(application: Application) : AndroidViewModel(application) {
-    private val listRepository: ListRepository = ListRepository(application, PointListApiService.pointListApi)
+    private val listRepository: ListRepository = ListRepository(application, ListApiService.LIST_API)
     private val observableLaPointListMediator = MediatorLiveData<List<PointListItem>>()
     private val observableStPointListMediator = MediatorLiveData<List<PointListItem>>()
     private val observableLaRatingListMediator = MediatorLiveData<List<RatingListItem>>()
@@ -30,6 +30,9 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
     private val observableKmRatingListMediator = MediatorLiveData<List<RatingListItem>>()
     private lateinit var pointListLatino: LiveData<List<PointListItem>>
     private lateinit var pointListStandard: LiveData<List<PointListItem>>
+    private lateinit var ratingListLatino: LiveData<List<RatingListItem>>
+    private lateinit var ratingListStandard: LiveData<List<RatingListItem>>
+    private lateinit var ratingListCombination: LiveData<List<RatingListItem>>
     private val searchQueryListener: PointListActivity.OnSearchQueryListener
 
     private var query = ""
@@ -95,13 +98,13 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private suspend fun refreshRatingList() {
-        val ratingListLatino = listRepository.getAllRatingListCouples(DanceType.LA)
+        ratingListLatino = listRepository.getRatingListCouplesWithQuery(DanceType.LA, query)
         observableLaRatingListMediator.addSource(ratingListLatino, observableLaRatingListMediator::setValue)
 
-        val ratingListStandard = listRepository.getAllRatingListCouples(DanceType.ST)
+        ratingListStandard = listRepository.getRatingListCouplesWithQuery(DanceType.ST, query)
         observableStRatingListMediator.addSource(ratingListStandard, observableStRatingListMediator::setValue)
 
-        val ratingListCombination = listRepository.getAllRatingListCouples(DanceType.KM)
+        ratingListCombination = listRepository.getRatingListCouplesWithQuery(DanceType.KM, query)
         observableKmRatingListMediator.addSource(ratingListCombination, observableKmRatingListMediator::setValue)
     }
 
@@ -110,6 +113,9 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
 
         observableLaPointListMediator.removeSource(pointListLatino)
         observableStPointListMediator.removeSource(pointListStandard)
+        observableLaRatingListMediator.removeSource(ratingListLatino)
+        observableStRatingListMediator.removeSource(ratingListStandard)
+        observableKmRatingListMediator.removeSource(ratingListCombination)
 
         viewModelScope.launch {
             refreshPointList()

@@ -61,27 +61,27 @@ class CoupleRatingListView : BaseCompoundView {
 
     private fun setView(points: Triple<Int?, Int?, Int?>, place: Triple<Int?, Int?, Int?>) {
         if (points.first != null) {
-            binding.placeLatin.text = points.first.toString()
+            binding.placeLatin.text = place.first.toString()
         }
 
         if (points.second != null) {
-            binding.placeStandard.text = points.second.toString()
+            binding.placeStandard.text = place.second.toString()
         }
 
         if (points.third != null) {
-            binding.placeCombined.text = points.third.toString()
+            binding.placeCombined.text = place.third.toString()
         }
 
         if (points.first != null) {
-            binding.pointsLatin.text = place.first.toString()
+            binding.pointsLatin.text = points.first.toString()
         }
 
         if (points.second != null) {
-            binding.pointsStandard.text = place.second.toString()
+            binding.pointsStandard.text = points.second.toString()
         }
 
         if (points.third != null) {
-            binding.pointsCombined.text = place.third.toString()
+            binding.pointsCombined.text = points.third.toString()
         }
     }
 }

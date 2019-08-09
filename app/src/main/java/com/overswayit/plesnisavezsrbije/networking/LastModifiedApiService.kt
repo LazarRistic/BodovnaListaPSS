@@ -7,10 +7,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 /**
- * Created by lazarristic on 2019-07-16.
+ * Created by lazarristic on 2019-08-08.
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
-object PointListApiService {
+object LastModifiedApiService{
     private val interceptor = Interceptor { chain ->
         val url = chain.request().url().newBuilder().build()
         val request = chain.request().newBuilder().url(url).build()
@@ -27,5 +27,5 @@ object PointListApiService {
                 .build()
     }
 
-    val pointListApi: PointListApiInterface = getRetrofit().create(PointListApiInterface::class.java)
+    val lastModifiedApi: LastModifiedApiInterface = getRetrofit().create(LastModifiedApiInterface::class.java)
 }

@@ -6,7 +6,7 @@ import androidx.lifecycle.*
 import com.overswayit.plesnisavezsrbije.MyApp
 import com.overswayit.plesnisavezsrbije.R
 import com.overswayit.plesnisavezsrbije.models.*
-import com.overswayit.plesnisavezsrbije.networking.PointListApiService
+import com.overswayit.plesnisavezsrbije.networking.ListApiService
 import com.overswayit.plesnisavezsrbije.repository.FavoriteCouplesRepository
 import com.overswayit.plesnisavezsrbije.repository.ListRepository
 import com.overswayit.plesnisavezsrbije.utils.CoupleUtil
@@ -17,7 +17,7 @@ import kotlinx.coroutines.*
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
 class CoupleInfoViewModel(val application: Application, private val coupleId: String) : ViewModel() {
-    private val pointListRepository = ListRepository(application, PointListApiService.pointListApi)
+    private val pointListRepository = ListRepository(application, ListApiService.LIST_API)
     private val favoriteCouplesRepository: FavoriteCouplesRepository = FavoriteCouplesRepository(application)
     private val isFollowingObserver = MediatorLiveData<Int>()
     private lateinit var isFollowingLiveData: LiveData<Int>

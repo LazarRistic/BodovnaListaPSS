@@ -16,7 +16,6 @@ class MainActivity : BaseActivity() {
 
         val navController = Navigation.findNavController(this, R.id.navHostFragment)
         binding.bottomNavigation.setupWithNavController(navController)
-
     }
 
     override fun onSupportNavigateUp(): Boolean {

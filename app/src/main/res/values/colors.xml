@@ -31,4 +31,6 @@
     <color name="adjudicator_color_7">#DD0000</color>
     <color name="adjudicator_color_8">#FF6060</color>
     <color name="adjudicator_color_9">#FFAEAE</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

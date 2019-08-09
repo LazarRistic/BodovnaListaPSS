@@ -51,4 +51,16 @@
     <string name="search_title">Pretraži</string>
     <string name="filter_title">Filter</string>
     <string name="search_hint">Pretraži</string>
+    <string name="senior">Stariji Senior</string>
+    <string name="adult">Senior</string>
+    <string name="youth">Stariji Omladinci</string>
+    <string name="juvinale">Omladinci</string>
+    <string name="junior_ii">Mladji Omladinci</string>
+    <string name="junior_i">Pioniri</string>
+    <string name="i_class">I razred</string>
+    <string name="a_class">A razred</string>
+    <string name="b_class">B razred</string>
+    <string name="c_class">C razred</string>
+    <string name="d_class">D razred</string>
+    <string name="splash_activity_icon_content_description">Logo Plesnog Saveza Srbije</string>
 </resources>

@@ -26,5 +26,15 @@ enum class DanceCategory constructor(private val `val`: String) {
 
             return D
         }
+
+        fun fromStringNullable(category: String): DanceCategory? {
+            for (danceCategory in values()) {
+                if (danceCategory.`val` == category) {
+                    return danceCategory
+                }
+            }
+
+            return null
+        }
     }
 }

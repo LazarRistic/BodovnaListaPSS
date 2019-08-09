@@ -66,6 +66,10 @@ class LaPointListFragment : Fragment() {
 
             observerPointList(viewModel.listCouples)
         }
+
+        viewModel.filtersLiveData.observe(this, Observer {
+            viewModel.updateFilters(it)
+        })
     }
 
     private fun observerPointList(pointListCouples: LiveData<List<PointListItem>>) {

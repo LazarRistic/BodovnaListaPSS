@@ -23,8 +23,6 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         viewModelScope.launch {
-            insertNews()
-
             val news = newsRepository.getAllPaged(config)
             observableNews.addSource(news, observableNews::setValue)
         }
@@ -32,11 +30,5 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
     fun allNews(): LiveData<PagedList<News>> {
         return observableNews
-    }
-
-    private suspend fun insertNews() = withContext(Dispatchers.IO) {
-        FakeNews.getAllNews().forEach {
-            newsRepository.insertOrUpdate(it)
-        }
     }
 }

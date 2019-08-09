@@ -7,7 +7,10 @@ import retrofit2.http.GET
  * Created by lazarristic on 2019-07-16.
  * Copyright (c) 2019 PlesniSavezSrbije. All rights reserved.
  */
-interface PointListApiInterface {
+interface ListApiInterface {
     @GET("point_list/")
-    suspend fun getClubs(): Response<Any>
+    suspend fun getPointList(): Response<Any>
+
+    @GET("rating_list/")
+    suspend fun getRatingList(): Response<Any>
 }
